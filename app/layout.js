@@ -84,7 +84,11 @@ const AnimationScript = () => {
               
               // Animate headings with gradient
               document.querySelectorAll('.bg-gradient-to-r').forEach(el => {
-                el.classList.add('animated-gradient-text');
+                // Only add the animation class if it's a heading element or span within a heading
+                if (el.tagName === 'H1' || el.tagName === 'H2' || el.tagName === 'H3' || 
+                   (el.tagName === 'SPAN' && (el.parentElement.tagName === 'H1' || el.parentElement.tagName === 'H2' || el.parentElement.tagName === 'H3'))) {
+                  el.classList.add('animated-gradient-text');
+                }
               });
             }
             

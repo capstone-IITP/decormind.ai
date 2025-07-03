@@ -522,6 +522,7 @@
     --nav-underline-width: 0;
     opacity: 0;
     animation: fadeInDown 0.5s ease-out forwards;
+    text-decoration: none !important;
   }
 
   .nav-link:nth-child(1) { animation-delay: 0.1s; }
@@ -540,15 +541,23 @@
     bottom: -4px;
     left: 0;
     background-color: #22d3ee;
-    transition: width 0.3s ease;
+    transition: width 0.3s ease, background-color 0.3s ease;
   }
 
   .nav-link:hover::after {
     width: 100%;
+    --nav-underline-width: 100%;
   }
 
+  .nav-link.active::after,
   .nav-link.text-cyan-400::after {
     width: 100%;
+    --nav-underline-width: 100%;
+  }
+  
+  /* Prevent text-decoration from links */
+  a.nav-link {
+    text-decoration: none !important;
   }
 
   /* Navigation bar animation */

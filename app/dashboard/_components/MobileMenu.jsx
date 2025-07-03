@@ -93,42 +93,42 @@ export default function MobileMenu({ isOpen, onClose, onLinkClick }) {
           <nav className="flex flex-col gap-6">
             <Link 
               href="/dashboard" 
-              className="text-white hover:text-cyan-400 transition-colors duration-300 text-lg font-medium"
+              className="text-white hover:text-cyan-400 transition-colors duration-300 text-lg font-medium no-underline"
               onClick={() => onLinkClick('/dashboard')}
             >
               Home
             </Link>
             <Link 
               href="/redesign" 
-              className="text-white hover:text-cyan-400 transition-colors duration-300 text-lg font-medium"
+              className="text-white hover:text-cyan-400 transition-colors duration-300 text-lg font-medium no-underline"
               onClick={() => onLinkClick('/redesign')}
             >
               Redesign
             </Link>
             <Link 
               href="/decormind" 
-              className="text-white hover:text-cyan-400 transition-colors duration-300 text-lg font-medium"
+              className="text-white hover:text-cyan-400 transition-colors duration-300 text-lg font-medium no-underline"
               onClick={() => onLinkClick('/decormind')}
             >
               DecorMind
             </Link>
             <Link 
               href="/dashboard-pricing" 
-              className="text-white hover:text-cyan-400 transition-colors duration-300 text-lg font-medium"
+              className="text-white hover:text-cyan-400 transition-colors duration-300 text-lg font-medium no-underline"
               onClick={() => onLinkClick('/dashboard-pricing')}
             >
               Pricing
             </Link>
             <Link 
               href="/dashboard-contact-us" 
-              className="text-white hover:text-cyan-400 transition-colors duration-300 text-lg font-medium"
+              className="text-white hover:text-cyan-400 transition-colors duration-300 text-lg font-medium no-underline"
               onClick={() => onLinkClick('/dashboard-contact-us')}
             >
               Contact Us
             </Link>
             <Link 
               href="/favorites" 
-              className="text-white hover:text-cyan-400 transition-colors duration-300 text-lg font-medium"
+              className="text-white hover:text-cyan-400 transition-colors duration-300 text-lg font-medium no-underline"
               onClick={() => onLinkClick('/favorites')}
             >
               <div className="flex items-center gap-2">

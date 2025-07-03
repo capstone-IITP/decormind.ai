@@ -73,6 +73,7 @@ function Header() {
       .nav-link {
         position: relative;
         opacity: 0;
+        text-decoration: none;
       }
 
       .nav-link::after {
@@ -291,7 +292,7 @@ function Header() {
             <Link 
               href="/dashboard" 
               suppressHydrationWarning
-              className="nav-link text-white hover:text-cyan-400 transition-colors duration-300 relative"
+              className={`nav-link text-white hover:text-cyan-400 transition-colors duration-300 relative ${pathname === '/dashboard' ? 'active' : ''}`}
               onClick={() => handleLinkClick('/dashboard')}
             >
               Home
@@ -299,7 +300,7 @@ function Header() {
             <Link 
               href="/redesign" 
               suppressHydrationWarning
-              className="nav-link text-white hover:text-cyan-400 transition-colors duration-300 relative"
+              className={`nav-link text-white hover:text-cyan-400 transition-colors duration-300 relative ${pathname === '/redesign' ? 'active' : ''}`}
               onClick={() => handleLinkClick('/redesign')}
             >
               Redesign
@@ -307,7 +308,7 @@ function Header() {
             <Link 
               href="/decormind" 
               suppressHydrationWarning
-              className="nav-link text-white hover:text-cyan-400 transition-colors duration-300 relative"
+              className={`nav-link text-white hover:text-cyan-400 transition-colors duration-300 relative ${pathname === '/decormind' ? 'active' : ''}`}
               onClick={() => handleLinkClick('/decormind')}
             >
               DecorMind
@@ -315,7 +316,7 @@ function Header() {
             <Link 
               href="/dashboard-pricing" 
               suppressHydrationWarning
-              className="nav-link text-white hover:text-cyan-400 transition-colors duration-300 relative"
+              className={`nav-link text-white hover:text-cyan-400 transition-colors duration-300 relative ${pathname === '/dashboard-pricing' ? 'active' : ''}`}
               onClick={() => handleLinkClick('/dashboard-pricing')}
             >
               Pricing
@@ -323,7 +324,7 @@ function Header() {
             <Link 
               href="/dashboard-contact-us" 
               suppressHydrationWarning
-              className="nav-link text-white hover:text-cyan-400 transition-colors duration-300 relative"
+              className={`nav-link text-white hover:text-cyan-400 transition-colors duration-300 relative ${pathname === '/dashboard-contact-us' ? 'active' : ''}`}
               onClick={() => handleLinkClick('/dashboard-contact-us')}
             >
               Contact Us
