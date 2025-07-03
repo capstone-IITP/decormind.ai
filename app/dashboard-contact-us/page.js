@@ -7,6 +7,7 @@ import { Button } from "../../components/ui/button";
 import { UserButton } from '@clerk/nextjs';
 import useGoogleAnalytics from '../_hooks/useGoogleAnalytics';
 import { useUser } from '@clerk/nextjs';
+import MobileMenu from '../dashboard/_components/MobileMenu';
 
 export default function ContactUs() {
   const router = useRouter();
@@ -19,6 +20,7 @@ export default function ContactUs() {
   const [popupMessage, setPopupMessage] = useState('');
   const [popupAction, setPopupAction] = useState(null);
   const [isSuccessPopup, setIsSuccessPopup] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -30,6 +32,16 @@ export default function ContactUs() {
     type: '' // 'success' or 'error'
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Toggle mobile menu
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+  
+  // Close mobile menu
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false);
+  };
 
   // Custom popup component
   const CustomPopup = ({ message, onClose, onAction, isSuccess }) => (
@@ -129,6 +141,28 @@ export default function ContactUs() {
           }
         }
         
+        /* Hamburger menu styles */
+        .hamburger-line {
+          display: block;
+          width: 24px;
+          height: 2px;
+          margin: 4px auto;
+          background-color: white;
+          transition: all 0.3s ease-in-out;
+        }
+
+        .hamburger-open .line-1 {
+          transform: translateY(6px) rotate(45deg);
+        }
+
+        .hamburger-open .line-2 {
+          opacity: 0;
+        }
+
+        .hamburger-open .line-3 {
+          transform: translateY(-6px) rotate(-45deg);
+        }
+        
         .animate-fade-in-scale {
           animation: fade-in-scale 0.2s ease-out forwards;
         }
@@ -167,189 +201,31 @@ export default function ContactUs() {
             opacity: 0;
           }
         }
-        
-        /* Navbar link animations */
-        @keyframes fadeInDown {
-          0% {
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .nav-link {
-          position: relative;
-          opacity: 0;
-        }
-
-        .nav-link::after {
-          content: '';
-          position: absolute;
-          width: 0;
-          height: 2px;
-          bottom: -4px;
-          left: 0;
-          background-color: #22d3ee;
-          transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover::after {
-          width: 100%;
-        }
-
-        .nav-link.active::after {
-          width: 100%;
-        }
-
-        /* Click animation */
-        @keyframes clickEffect {
-          0% {
-            transform: scale(1);
-          }
-          50% {
-            transform: scale(0.95);
-          }
-          100% {
-            transform: scale(1);
-          }
-        }
-
-        .link-clicked {
-          animation: clickEffect 0.3s ease forwards;
-        }
-
-        .nav-link:nth-child(1) {
-          animation: fadeInDown 0.5s ease-out 0.1s forwards;
-        }
-
-        .nav-link:nth-child(2) {
-          animation: fadeInDown 0.5s ease-out 0.2s forwards;
-        }
-
-        .nav-link:nth-child(3) {
-          animation: fadeInDown 0.5s ease-out 0.3s forwards;
-        }
-
-        .nav-link:nth-child(4) {
-          animation: fadeInDown 0.5s ease-out 0.4s forwards;
-        }
-
-        .nav-link:nth-child(5) {
-          animation: fadeInDown 0.5s ease-out 0.5s forwards;
-        }
-
-        /* Navigation bar slide-down animation */
-        @keyframes slideDown {
-          0% {
-            transform: translateY(-100%);
-          }
-          100% {
-            transform: translateY(0);
-          }
-        }
-
-        .nav-slide-down {
-          animation: slideDown 0.5s ease-out forwards;
-        }
-
-        /* Logo animation */
-        @keyframes pulse {
-          0% {
-            transform: scale(1);
-          }
-          50% {
-            transform: scale(1.05);
-          }
-          100% {
-            transform: scale(1);
-          }
-        }
-
-        .logo-pulse:hover {
-          animation: pulse 1s infinite;
-        }
-        
-        /* Logo glow effect */
-        .logo-container {
-          position: relative;
-          transition: all 0.3s ease;
-        }
-        
-        .logo-container:hover::after {
-          content: '';
-          position: absolute;
-          top: -5px;
-          left: -5px;
-          right: -5px;
-          bottom: -5px;
-          border-radius: 50%;
-          background: radial-gradient(circle, rgba(34, 211, 238, 0.4) 0%, rgba(34, 211, 238, 0) 70%);
-          z-index: -1;
-          animation: glow 1.5s infinite alternate;
-        }
-        
-        @keyframes glow {
-          0% {
-            opacity: 0.5;
-          }
-          100% {
-            opacity: 1;
-          }
-        }
-        
-        /* Sticky navbar effect */
-        .sticky-nav {
-          position: sticky;
-          top: 0;
-          z-index: 50;
-          backdrop-filter: blur(10px);
-          transition: all 0.3s ease;
-        }
-        
-        .sticky-nav.scrolled {
-          background-color: rgba(24, 24, 27, 0.8);
-          box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Form field animation */
-        @keyframes formFieldFocus {
-          0% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0); }
-          50% { box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.3); }
-          100% { box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.2); }
-        }
-        
-        .form-field:focus {
-          animation: formFieldFocus 0.5s ease-out forwards;
-        }
       `;
       document.head.appendChild(style);
-
-      // Add scroll event for sticky navbar effect
-      const handleScroll = () => {
-        const navbar = document.querySelector('.sticky-nav');
-        if (navbar) {
-          if (window.scrollY > 10) {
-            navbar.classList.add('scrolled');
-          } else {
-            navbar.classList.remove('scrolled');
-          }
-        }
-      };
-
-      window.addEventListener('scroll', handleScroll);
-
-      // Cleanup
+      
+      // Clean up
       return () => {
-        if (style && style.parentNode) {
+        if (style && document.head.contains(style)) {
           document.head.removeChild(style);
         }
-        window.removeEventListener('scroll', handleScroll);
       };
     }
   }, []);
+
+  // Close mobile menu on resize if screen becomes larger than mobile breakpoint
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const handleResize = () => {
+        if (window.innerWidth >= 768 && mobileMenuOpen) {
+          setMobileMenuOpen(false);
+        }
+      };
+      
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }
+  }, [mobileMenuOpen]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -402,123 +278,162 @@ export default function ContactUs() {
       )}
       
       {/* Navigation Bar */}
-      <nav className="flex justify-between items-center py-4 px-6 bg-zinc-900 sticky top-0 z-50 shadow-md border-b border-zinc-800 rounded-bl-3xl rounded-br-3xl nav-slide-down">
+      <nav className="p-5 shadow-sm flex justify-between items-center bg-zinc-900 border-b border-zinc-800 rounded-bl-3xl rounded-br-3xl sticky top-0 z-30">
         <div
-          className="flex gap-2 items-center cursor-pointer hover:opacity-80 transition-opacity logo-pulse"
+          className="flex gap-2 items-center cursor-pointer hover:opacity-80 transition-opacity"
           onClick={() => router.push('/')}
         >
-          <div className="logo-container bg-cyan-400 w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold">DM</div>
-          <h2 className="font-bold text-lg bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text">DecorMind</h2>
+          <div className="bg-cyan-400 w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold">DM</div>
+          <h2 className="font-bold text-lg bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text" suppressHydrationWarning>DecorMind</h2>
         </div>
 
-        <div className="absolute left-1/2 transform -translate-x-1/2 flex gap-8 text-sm">
-          <nav className="flex gap-6">
-            <Link
-              href="/dashboard"
-              className={`nav-link ${isActive('/dashboard') ? 'text-cyan-400 active' : 'text-white'} ${activeLink === '/dashboard' ? 'link-clicked' : ''} hover:text-cyan-400 transition-colors duration-300 relative`}
+        {/* Desktop Navigation */}
+        <div className="hidden md:block">
+          <nav className="flex gap-6" style={{ fontSize: '0.875rem' }}>
+            <Link 
+              href="/dashboard" 
+              className={`text-white hover:text-cyan-400 transition-colors duration-300 ${isActive('/dashboard') ? 'text-cyan-400' : ''}`}
               onClick={() => handleLinkClick('/dashboard')}
+              suppressHydrationWarning
             >
               Home
             </Link>
-            <Link
-              href="/redesign"
-              className={`nav-link ${isActive('/redesign') ? 'text-cyan-400 active' : 'text-white'} ${activeLink === '/redesign' ? 'link-clicked' : ''} hover:text-cyan-400 transition-colors duration-300 relative`}
+            <Link 
+              href="/redesign" 
+              className={`text-white hover:text-cyan-400 transition-colors duration-300 ${isActive('/redesign') ? 'text-cyan-400' : ''}`}
               onClick={(e) => {
                 e.preventDefault();
                 handleLinkClick('/redesign');
               }}
+              suppressHydrationWarning
             >
               Redesign
             </Link>
-            <Link
-              href="/decormind"
-              className={`nav-link ${isActive('/decormind') ? 'text-cyan-400 active' : 'text-white'} ${activeLink === '/decormind' ? 'link-clicked' : ''} hover:text-cyan-400 transition-colors duration-300 relative`}
+            <Link 
+              href="/decormind" 
+              className={`text-white hover:text-cyan-400 transition-colors duration-300 ${isActive('/decormind') ? 'text-cyan-400' : ''}`}
               onClick={() => handleLinkClick('/decormind')}
+              suppressHydrationWarning
             >
               DecorMind
             </Link>
-            <Link
-              href="/dashboard-pricing"
-              className={`nav-link ${isActive('/dashboard-pricing') ? 'text-cyan-400 active' : 'text-white'} ${activeLink === '/dashboard-pricing' ? 'link-clicked' : ''} hover:text-cyan-400 transition-colors duration-300 relative`}
+            <Link 
+              href="/dashboard-pricing" 
+              className={`text-white hover:text-cyan-400 transition-colors duration-300 ${isActive('/dashboard-pricing') ? 'text-cyan-400' : ''}`}
               onClick={() => handleLinkClick('/dashboard-pricing')}
+              suppressHydrationWarning
             >
               Pricing
             </Link>
-            <Link
-              href="/dashboard-contact-us"
-              className={`nav-link ${isActive('/dashboard-contact-us') ? 'text-cyan-400 active' : 'text-white'} ${activeLink === '/dashboard-contact-us' ? 'link-clicked' : ''} hover:text-cyan-400 transition-colors duration-300 relative`}
+            <Link 
+              href="/dashboard-contact-us" 
+              className={`text-white hover:text-cyan-400 transition-colors duration-300 ${isActive('/dashboard-contact-us') ? 'text-cyan-400' : ''}`}
               onClick={() => handleLinkClick('/dashboard-contact-us')}
+              suppressHydrationWarning
             >
               Contact Us
             </Link>
           </nav>
         </div>
 
-        <div>
+        <div className="flex items-center gap-4">
+          <div className="flex items-center justify-center h-8">
+            <Link 
+              href="/favorites" 
+              className="flex items-center justify-center text-white hover:text-cyan-400 transition-all duration-300 transform hover:scale-110 h-full"
+              onClick={() => handleLinkClick('/favorites')}
+              aria-label="Favorites"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="hover:fill-cyan-400 transition-colors">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+            </Link>
+          </div>
           <UserButton afterSignOutUrl="/" />
+          
+          {/* Mobile Menu Button */}
+          <button 
+            type="button"
+            className={`md:hidden flex flex-col justify-center items-center p-2 rounded-md ${mobileMenuOpen ? 'hamburger-open bg-zinc-800' : ''}`}
+            onClick={toggleMobileMenu}
+            aria-label="Toggle menu"
+            aria-expanded={mobileMenuOpen}
+            suppressHydrationWarning
+          >
+            <span className="hamburger-line line-1"></span>
+            <span className="hamburger-line line-2"></span>
+            <span className="hamburger-line line-3"></span>
+          </button>
         </div>
       </nav>
+      
+      {/* Mobile Menu */}
+      <MobileMenu 
+        isOpen={mobileMenuOpen} 
+        onClose={() => setMobileMenuOpen(false)} 
+        onLinkClick={handleLinkClick} 
+      />
 
       {/* Main Content */}
-      <div className="py-16 px-6 fade-in">
+      <div className="py-10 md:py-16 px-4 md:px-6 fade-in">
         <div className="max-w-3xl mx-auto">
-          <div className="bg-zinc-900 p-8 rounded-xl border border-zinc-800 shadow-lg">
-            <h1 className="text-3xl font-bold mb-6 bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text">Contact Us</h1>
+          <div className="bg-zinc-900 p-6 md:p-8 rounded-xl border border-zinc-800 shadow-lg">
+            <h1 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text" suppressHydrationWarning>Contact Us</h1>
 
-            <p className="text-zinc-300 mb-8">Have questions or need assistance? Reach out to our team and we'll get back to you as soon as possible.</p>
+            <p className="text-zinc-300 mb-6 md:mb-8">Have questions or need assistance? Reach out to our team and we'll get back to you as soon as possible.</p>
 
             {mounted ? (
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-white mb-2">Name</label>
+                    <label htmlFor="name" className="block text-sm font-medium text-white mb-1 md:mb-2">Name</label>
                     <input
                       type="text"
                       id="name"
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-4 py-2 bg-black border border-zinc-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 form-field transition-all duration-300"
+                      className="w-full px-3 md:px-4 py-1.5 md:py-2 bg-black border border-zinc-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 form-field transition-all duration-300 text-sm md:text-base"
                       placeholder="Your name"
                       required={true}
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-white mb-2">Email</label>
+                    <label htmlFor="email" className="block text-sm font-medium text-white mb-1 md:mb-2">Email</label>
                     <input
                       type="email"
                       id="email"
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-4 py-2 bg-black border border-zinc-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 form-field transition-all duration-300"
+                      className="w-full px-3 md:px-4 py-1.5 md:py-2 bg-black border border-zinc-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 form-field transition-all duration-300 text-sm md:text-base"
                       placeholder="Your email"
                       required={true}
                     />
                   </div>
                 </div>
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-white mb-2">Subject</label>
+                  <label htmlFor="subject" className="block text-sm font-medium text-white mb-1 md:mb-2">Subject</label>
                   <input
                     type="text"
                     id="subject"
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 bg-black border border-zinc-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 form-field transition-all duration-300"
+                    className="w-full px-3 md:px-4 py-1.5 md:py-2 bg-black border border-zinc-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 form-field transition-all duration-300 text-sm md:text-base"
                     placeholder="Subject"
                     required={true}
                   />
                 </div>
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-white mb-2">Message</label>
+                  <label htmlFor="message" className="block text-sm font-medium text-white mb-1 md:mb-2">Message</label>
                   <textarea
                     id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
                     rows="4"
-                    className="w-full px-4 py-2 bg-black border border-zinc-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 form-field transition-all duration-300"
+                    className="w-full px-3 md:px-4 py-1.5 md:py-2 bg-black border border-zinc-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 form-field transition-all duration-300 text-sm md:text-base"
                     placeholder="Your message"
                     required={true}
                   ></textarea>
@@ -565,24 +480,24 @@ export default function ContactUs() {
               </div>
             )}
 
-            <div className="mt-8 pt-8 border-t border-zinc-800">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="mt-6 md:mt-8 pt-6 md:pt-8 border-t border-zinc-800">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 <div>
-                  <h3 className="text-lg font-semibold mb-3 text-white">Email Us</h3>
-                  <p className="text-zinc-300">For general inquiries: <a href="mailto:ai.decormind@gmail.com" className="text-cyan-400 hover:underline">ai.decormind@gmail.com</a></p>
+                  <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-white">Email Us</h3>
+                  <p className="text-zinc-300 text-sm md:text-base">For general inquiries: <a href="mailto:ai.decormind@gmail.com" className="text-cyan-400 hover:underline">ai.decormind@gmail.com</a></p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold mb-3 text-white">Address</h3>
-                  <a href="https://maps.google.com/?q=Old+Kondli,+Delhi,+110096" target="_blank" rel="noopener noreferrer" className="text-zinc-300 flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-white">Address</h3>
+                  <a href="https://maps.google.com/?q=Old+Kondli,+Delhi,+110096" target="_blank" rel="noopener noreferrer" className="text-zinc-300 text-sm md:text-base flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-cyan-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
-                    Old Kondli, Delhi, 110096
+                    <span>Old Kondli, Delhi, 110096</span>
                   </a>
                 </div>
-                <div>
-                  <h3 className="text-lg font-semibold mb-3 text-white">Follow Us</h3>
+                <div className="sm:col-span-2 md:col-span-1">
+                  <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-white">Follow Us</h3>
                   <div className="flex gap-4">
                     <a href="#" className="text-white hover:text-cyan-400 transform transition-transform duration-300 hover:-translate-y-1">
                       <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 48 48">
@@ -608,12 +523,12 @@ export default function ContactUs() {
       </div>
 
       {/* Footer */}
-      <footer className="bg-black py-10 px-6 border-t border-zinc-800 mt-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      <footer className="bg-black py-8 md:py-10 px-4 md:px-6 border-t border-zinc-800 mt-10 md:mt-16">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
               <div className="bg-cyan-400 w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold">DM</div>
-              <h1 className="text-lg font-bold bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text">DecorMind</h1>
+              <h1 className="text-lg font-bold bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text" suppressHydrationWarning>DecorMind</h1>
             </div>
           </div>
           <div>
@@ -641,7 +556,7 @@ export default function ContactUs() {
             </ul>
           </div>
         </div>
-        <div className="flex justify-between items-center pt-8 border-t border-zinc-800 text-sm text-white">
+        <div className="flex flex-col sm:flex-row justify-between items-center pt-6 md:pt-8 border-t border-zinc-800 text-xs md:text-sm text-white gap-4">
           <p>© {new Date().getFullYear()} DecorMind. All rights reserved.</p>
           <div className="flex gap-4">
             <Link href="#" className="hover:text-white transform transition-transform duration-300 hover:-translate-y-1">

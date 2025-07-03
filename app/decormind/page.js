@@ -7,11 +7,24 @@ import { Button } from '../../components/ui/button';
 import { useRouter } from 'next/navigation';
 import useGoogleAnalytics from '../_hooks/useGoogleAnalytics';
 import { UserButton } from '@clerk/nextjs';
+import MobileMenu from '../dashboard/_components/MobileMenu';
 
 export default function DecorMind() {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const { event } = useGoogleAnalytics();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Toggle mobile menu
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(prevState => !prevState);
+  };
+  
+  // Handle link click for navigation
+  const handleLinkClick = (path) => {
+    setMobileMenuOpen(false);
+    router.push(path);
+  };
 
   // Add CSS animations
   useEffect(() => {
@@ -170,6 +183,28 @@ export default function DecorMind() {
         .nav-link-clicked {
           animation: navLinkClick 0.3s ease-out;
           color: #22d3ee !important;
+        }
+
+        /* Hamburger menu styles */
+        .hamburger-line {
+          display: block;
+          width: 24px;
+          height: 2px;
+          margin: 4px auto;
+          background-color: white;
+          transition: all 0.3s ease-in-out;
+        }
+
+        .line-1.hamburger-open {
+          transform: translateY(6px) rotate(45deg);
+        }
+
+        .line-2.hamburger-open {
+          opacity: 0;
+        }
+
+        .line-3.hamburger-open {
+          transform: translateY(-6px) rotate(-45deg);
         }
 
         /* Navigation link hover animation */
@@ -422,33 +457,71 @@ export default function DecorMind() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Navigation Bar */}
+      {/* Navigation Bar - Made responsive */}
       <nav className="flex justify-between items-center py-4 px-6 bg-zinc-900 sticky top-0 z-50 shadow-md border-b border-zinc-800 rounded-bl-3xl rounded-br-3xl nav-slide-down">
         <div className="flex items-center gap-2 cursor-pointer" onClick={() => router.push('/')}>
           <div className="bg-cyan-400 w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold">DM</div>
-          <h1 className="text-lg font-bold bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text">DecorMind</h1>
+          <h1 className="text-lg font-bold bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text" suppressHydrationWarning>DecorMind</h1>
         </div>
-        <div className="absolute left-1/2 transform -translate-x-1/2 flex gap-8 text-sm">
+        
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 gap-8 text-sm">
           <Link href="/dashboard" className="nav-link hover:text-cyan-400 text-white transition-colors duration-300 relative" prefetch={true}>Home</Link>
           <Link href="/redesign" className="nav-link hover:text-cyan-400 text-white transition-colors duration-300 relative" prefetch={true}>Redesign</Link>
           <Link href="/decormind" className="nav-link text-cyan-400 transition-colors duration-300 relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-cyan-400" prefetch={true}>DecorMind</Link>
           <Link href="/dashboard-pricing" className="nav-link hover:text-cyan-400 text-white transition-colors duration-300 relative" prefetch={true}>Pricing</Link>
           <Link href="/dashboard-contact-us" className="nav-link hover:text-cyan-400 text-white transition-colors duration-300">Contact Us</Link>
         </div>
-        <div>
+        
+        <div className="flex items-center gap-4">
+          <div className="flex items-center justify-center h-8">
+            <Link 
+              href="/favorites" 
+              className="flex items-center justify-center text-white hover:text-cyan-400 transition-all duration-300 transform hover:scale-110 h-full"
+              onClick={() => handleLinkClick('/favorites')}
+              aria-label="Favorites"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="hover:fill-cyan-400 transition-colors">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+            </Link>
+          </div>
           <UserButton afterSignOutUrl="/" />
+          
+          {/* Mobile Menu Button */}
+          <button 
+            type="button"
+            className={`md:hidden flex flex-col justify-center items-center p-2 rounded-md ${mobileMenuOpen ? 'hamburger-open bg-zinc-800' : ''}`}
+            onClick={toggleMobileMenu}
+            aria-label="Toggle menu"
+            aria-expanded={mobileMenuOpen}
+            suppressHydrationWarning
+          >
+            <span className="hamburger-line line-1"></span>
+            <span className="hamburger-line line-2"></span>
+            <span className="hamburger-line line-3"></span>
+          </button>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <div className="relative px-6 py-16 bg-black flex flex-col items-center">
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <MobileMenu
+          isOpen={mobileMenuOpen}
+          onClose={toggleMobileMenu}
+          onLinkClick={handleLinkClick}
+        />
+      )}
+
+      {/* Hero Section - Made responsive */}
+      <div className="relative px-4 sm:px-6 py-12 sm:py-16 bg-black flex flex-col items-center">
         <div className="max-w-3xl text-center z-10">
-          <h2 className="text-4xl font-bold bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text mb-4">Meet DecorMind</h2>
-          <p className="text-lg text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text mb-4" suppressHydrationWarning>Meet DecorMind</h2>
+          <p className="text-base sm:text-lg text-white mb-6">
             Your AI interior design assistant that understands your style, preferences, and needs.
           </p>
           <Button
-            className="bg-cyan-400 text-slate-800 hover:bg-cyan-500 px-6 py-3 rounded-md font-medium transition-colors"
+            className="bg-cyan-400 text-slate-800 hover:bg-cyan-500 px-4 sm:px-6 py-2 sm:py-3 rounded-md font-medium transition-colors"
             onClick={handleTryDecorMind}
           >
             Try DecorMind Now
@@ -456,26 +529,26 @@ export default function DecorMind() {
         </div>
       </div>
 
-      {/* Features Section */}
-      <div className="py-16 px-6 bg-zinc-950">
+      {/* Features Section - Made responsive */}
+      <div className="py-12 sm:py-16 px-4 sm:px-6 bg-zinc-950">
         <div className="max-w-6xl mx-auto">
-          <h3 className="text-2xl font-bold text-center bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text mb-12">What DecorMind Can Do</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-black border border-zinc-800 p-6 rounded-lg">
+          <h3 className="text-xl sm:text-2xl font-bold text-center bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text mb-8 sm:mb-12" suppressHydrationWarning>What DecorMind Can Do</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <div className="bg-black border border-zinc-800 p-4 sm:p-6 rounded-lg">
               <div className="w-12 h-12 bg-cyan-400 rounded-full flex items-center justify-center text-slate-800 mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
               </div>
               <h4 className="text-lg font-bold mb-2 text-white">Personalized Advice</h4>
               <p className="text-white text-sm">Get tailored interior design recommendations based on your preferences, space, and budget.</p>
             </div>
-            <div className="bg-black border border-zinc-800 p-6 rounded-lg">
+            <div className="bg-black border border-zinc-800 p-4 sm:p-6 rounded-lg">
               <div className="w-12 h-12 bg-cyan-400 rounded-full flex items-center justify-center text-slate-800 mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
               </div>
               <h4 className="text-lg font-bold mb-2 text-white">Design Q&A</h4>
               <p className="text-white text-sm">Ask any interior design questions and get expert answers instantly.</p>
             </div>
-            <div className="bg-black border border-zinc-800 p-6 rounded-lg">
+            <div className="bg-black border border-zinc-800 p-4 sm:p-6 rounded-lg">
               <div className="w-12 h-12 bg-cyan-400 rounded-full flex items-center justify-center text-slate-800 mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
               </div>
@@ -486,11 +559,11 @@ export default function DecorMind() {
         </div>
       </div>
 
-      {/* How It Works Section */}
-      <div className="py-16 px-6 bg-black">
+      {/* How It Works Section - Made responsive */}
+      <div className="py-12 sm:py-16 px-4 sm:px-6 bg-black">
         <div className="max-w-4xl mx-auto">
-          <h3 className="text-2xl font-bold text-center bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text mb-12">How DecorMind Works</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <h3 className="text-xl sm:text-2xl font-bold text-center bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text mb-8 sm:mb-12" suppressHydrationWarning>How DecorMind Works</h3>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
             <div className="bg-zinc-900 p-8 rounded-lg border border-zinc-800">
               <div className="mb-6">
                 <span className="bg-cyan-400 text-slate-800 px-3 py-1 rounded-full text-sm font-medium">Step 1</span>
@@ -519,11 +592,11 @@ export default function DecorMind() {
         </div>
       </div>
 
-      {/* CTA Section */}
-      <div className="py-16 px-6 text-center bg-zinc-950">
+      {/* CTA Section - Made responsive */}
+      <div className="py-12 sm:py-16 px-4 sm:px-6 text-center bg-zinc-950">
         <div className="max-w-3xl mx-auto">
-          <h3 className="text-2xl font-bold bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text mb-4">Ready to Transform Your Space?</h3>
-          <p className="text-white mb-8">
+          <h3 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text mb-4" suppressHydrationWarning>Ready to Transform Your Space?</h3>
+          <p className="text-white mb-6 sm:mb-8">
             Get unlimited access to DecorMind with our premium plans.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -543,13 +616,13 @@ export default function DecorMind() {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="bg-black py-10 px-6 border-t border-zinc-800">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      {/* Footer - Made responsive */}
+      <footer className="bg-black py-8 sm:py-10 px-4 sm:px-6 border-t border-zinc-800">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
               <div className="bg-cyan-400 w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold">DM</div>
-              <h1 className="text-lg font-bold bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text">DecorMind</h1>
+              <h1 className="text-lg font-bold bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text" suppressHydrationWarning>DecorMind</h1>
             </div>
           </div>
           <div>
@@ -577,7 +650,7 @@ export default function DecorMind() {
             </ul>
           </div>
         </div>
-        <div className="flex justify-between items-center pt-8 border-t border-zinc-800 text-sm text-white">
+        <div className="flex flex-col sm:flex-row justify-between items-center pt-8 border-t border-zinc-800 text-sm text-white gap-4 sm:gap-0">
           <p>© 2025 DecorMind. All rights reserved.</p>
           <div className="flex gap-4">
             <Link href="#" className="hover:text-white transform transition-transform duration-300 hover:-translate-y-1">
