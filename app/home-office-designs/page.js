@@ -578,20 +578,7 @@ function HomeOfficeDesignsContent() {
                 </div>
             </div>
 
-            {/* Footer */}
-            <footer className="bg-zinc-900 border-t border-zinc-800 py-8">
-                <div className="container mx-auto px-4">
-                    <div className="flex flex-col md:flex-row justify-between items-center">
-                        <div className="flex items-center mb-4 md:mb-0">
-                            <div className="bg-cyan-400 w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold mr-2">DM</div>
-                            <span className="text-white font-medium">DecorMind</span>
-                        </div>
-                        <div className="text-zinc-500 text-sm">
-                            © {new Date().getFullYear()} DecorMind. All rights reserved.
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            {/* Footer section removed - now handled by global Footer component */}
         </div>
     );
 }

@@ -5,6 +5,7 @@ import NextTopLoader from './_components/NextTopLoader';
 import GoogleAnalytics from './_components/GoogleAnalytics';
 import ConditionalLoader from './_components/ConditionalLoader';
 import Provider from './provider';
+import Footer from './_components/Footer';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -133,6 +134,7 @@ export default function RootLayout({ children }) {
           <Provider>
             <ConditionalLoader>
               {children}
+              <Footer />
             </ConditionalLoader>
           </Provider>
         </body>

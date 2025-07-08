@@ -552,7 +552,7 @@ export default function BathroomDesigns() {
                 </div>
 
                 {/* FAQ section */}
-                <div className="mb-16 container mx-auto px-4 text-center">
+                <div className="mb-16 container mx-auto px-4 py-16 text-center">
                     <h2 className="text-3xl font-bold text-white mb-16 text-center">Frequently Asked Questions</h2>
                     <div className="space-y-6 max-w-3xl mx-auto">
                         <div className="bg-zinc-800/30 p-6 rounded-xl border border-zinc-700/30">
@@ -562,35 +562,22 @@ export default function BathroomDesigns() {
                             </p>
                         </div>
                         <div className="bg-zinc-800/30 p-6 rounded-xl border border-zinc-700/30">
-                            <h3 className="text-xl font-bold text-white mb-2">Can I get fixture and tile recommendations for my redesign?</h3>
+                            <h3 className="text-xl font-bold text-white mb-2">What bathroom styles can I choose from?</h3>
                             <p className="text-zinc-400">
-                                Yes! After generating your redesign, you'll receive a list of fixture, tile, and decor recommendations that match the new design, along with estimated prices.
+                                We offer a variety of styles including Modern, Scandinavian, Industrial, Traditional, Bohemian, and Minimalist. Each style has unique characteristics that can transform your bathroom space.
                             </p>
                         </div>
                         <div className="bg-zinc-800/30 p-6 rounded-xl border border-zinc-700/30">
-                            <h3 className="text-xl font-bold text-white mb-2">How accurate are the redesigns?</h3>
+                            <h3 className="text-xl font-bold text-white mb-2">Can I get product recommendations for my bathroom?</h3>
                             <p className="text-zinc-400">
-                                Our AI creates realistic visualizations based on your current space. While the redesigns are highly accurate in terms of spatial awareness and style, some minor details may vary in the final implementation.
+                                Yes! After generating your redesign, you'll receive a list of fixtures, materials, and decor recommendations that match the new design, along with estimated prices.
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            {/* Footer */}
-            <footer className="bg-zinc-900 border-t border-zinc-800 py-8">
-                <div className="container mx-auto px-4">
-                    <div className="flex flex-col md:flex-row justify-between items-center">
-                        <div className="flex items-center mb-4 md:mb-0">
-                            <div className="bg-cyan-400 w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold mr-2">DM</div>
-                            <span className="text-white font-medium">DecorMind</span>
-                        </div>
-                        <div className="text-zinc-500 text-sm">
-                            © {new Date().getFullYear()} DecorMind. All rights reserved.
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            {/* Footer section removed - now handled by global Footer component */}
         </div>
     );
 }
