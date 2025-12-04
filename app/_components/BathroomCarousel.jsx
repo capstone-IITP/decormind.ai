@@ -100,7 +100,10 @@ const BathroomCarousel = ({ onSeeMoreClick }) => {
     };
   }, []);
 
-  if (!mounted) {
+  if (!mounted) return null;
+
+  return (
+    <div className="bathroom-carousel">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         spaceBetween={30}
@@ -160,7 +163,7 @@ const BathroomCarousel = ({ onSeeMoreClick }) => {
           </Button>
         )}
       </div>
-    </div >
+    </div>
   );
 };
 
