@@ -144,8 +144,8 @@ function PricingComponent() {
       style = document.createElement('style');
       style.innerHTML = `
         @keyframes highlightSection {
-          0% { background-color: rgba(34, 211, 238, 0.1); }
-          50% { background-color: rgba(34, 211, 238, 0.2); }
+          0% { background-color: rgba(197, 167, 144, 0.1); }
+          50% { background-color: rgba(197, 167, 144, 0.2); }
           100% { background-color: transparent; }
         }
         
@@ -155,8 +155,8 @@ function PricingComponent() {
 
         /* Special animation for contact section */
         @keyframes highlightContactSection {
-          0% { background-color: rgba(34, 211, 238, 0.15); }
-          50% { background-color: rgba(34, 211, 238, 0.3); }
+          0% { background-color: rgba(197, 167, 144, 0.15); }
+          50% { background-color: rgba(197, 167, 144, 0.3); }
           100% { background-color: rgba(24, 24, 27, 1); } /* bg-zinc-900 */
         }
         
@@ -166,9 +166,9 @@ function PricingComponent() {
 
         /* Contact form highlight animation */
         @keyframes highlightContactForm {
-          0% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.3); }
-          50% { box-shadow: 0 0 20px 5px rgba(34, 211, 238, 0.5); }
-          100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0); }
+          0% { box-shadow: 0 0 0 0 rgba(197, 167, 144, 0.3); }
+          50% { box-shadow: 0 0 20px 5px rgba(197, 167, 144, 0.5); }
+          100% { box-shadow: 0 0 0 0 rgba(197, 167, 144, 0); }
         }
         
         #contact.highlight-section form {
@@ -191,7 +191,7 @@ function PricingComponent() {
 
         .success-popup-content {
           background-color: #18181b;
-          border: 2px solid #22d3ee;
+          border: 2px solid #C5A790;
           border-radius: 12px;
           padding: 20px 30px;
           text-align: center;
@@ -211,7 +211,7 @@ function PricingComponent() {
         }
 
         .success-popup button {
-          background-color: #22d3ee;
+          background-color: #C5A790;
           color: #000;
           border: none;
           border-radius: 50px;
@@ -223,7 +223,7 @@ function PricingComponent() {
         }
 
         .success-popup button:hover {
-          background-color: #0cb8de;
+          background-color: #b0927a;
           transform: scale(1.05);
         }
         
@@ -254,7 +254,7 @@ function PricingComponent() {
         }
         
         .heading-highlight {
-          background-image: linear-gradient(transparent 60%, rgba(34, 211, 238, 0.2) 40%);
+          background-image: linear-gradient(transparent 60%, rgba(197, 167, 144, 0.2) 40%);
           background-size: 100% 0%;
           background-repeat: no-repeat;
           animation: headingHighlight 0.8s ease-out forwards;
@@ -264,15 +264,15 @@ function PricingComponent() {
         @keyframes iconPulse {
           0% { 
             transform: scale(1);
-            box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.7);
+            box-shadow: 0 0 0 0 rgba(197, 167, 144, 0.7);
           }
           70% { 
             transform: scale(1.1);
-            box-shadow: 0 0 0 10px rgba(34, 211, 238, 0);
+            box-shadow: 0 0 0 10px rgba(197, 167, 144, 0);
           }
           100% { 
             transform: scale(1);
-            box-shadow: 0 0 0 0 rgba(34, 211, 238, 0);
+            box-shadow: 0 0 0 0 rgba(197, 167, 144, 0);
           }
         }
         
@@ -289,7 +289,7 @@ function PricingComponent() {
         
         .nav-link-clicked {
           animation: navLinkClick 0.3s ease-out;
-          color: #22d3ee !important;
+          color: #C5A790 !important;
         }
 
         /* Navigation link hover animation */
@@ -380,7 +380,7 @@ function PricingComponent() {
           right: -5px;
           bottom: -5px;
           border-radius: 50%;
-          background: radial-gradient(circle, rgba(34, 211, 238, 0.4) 0%, rgba(34, 211, 238, 0) 70%);
+          background: radial-gradient(circle, rgba(197, 167, 144, 0.4) 0%, rgba(197, 167, 144, 0) 70%);
           z-index: -1;
           animation: glow 1.5s infinite alternate;
         }
@@ -583,22 +583,22 @@ function PricingComponent() {
           className="flex gap-2 items-center cursor-pointer hover:opacity-80 transition-opacity logo-pulse animate-fade-in"
           onClick={() => router.push('/')}
         >
-          <div className="logo-container bg-cyan-400 w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold">DM</div>
-          <h2 className="font-bold text-lg bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text">DecorMind</h2>
+          <div className="logo-container bg-[#C5A790] w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold">DM</div>
+          <h2 className="font-bold text-lg bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text">DecorMind</h2>
         </div>
 
         <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 items-center">
           <nav className="flex gap-4 md:gap-6 mx-auto justify-center flex-wrap" style={{ fontSize: '0.875rem' }}>
             <Link
               href="/"
-              className="nav-link text-white hover:text-cyan-400 transition-colors relative group"
+              className="nav-link text-white hover:text-[#C5A790] transition-colors relative group"
               style={{ animationDelay: '100ms' }}
             >
               Home
             </Link>
             <Link
               href="/#features"
-              className="nav-link text-white hover:text-cyan-400 transition-colors relative group"
+              className="nav-link text-white hover:text-[#C5A790] transition-colors relative group"
               style={{ animationDelay: '200ms' }}
               onClick={(e) => {
                 e.preventDefault();
@@ -609,7 +609,7 @@ function PricingComponent() {
             </Link>
             <Link
               href="/#how-it-works"
-              className="nav-link text-white hover:text-cyan-400 transition-colors relative group"
+              className="nav-link text-white hover:text-[#C5A790] transition-colors relative group"
               style={{ animationDelay: '300ms' }}
               onClick={(e) => {
                 e.preventDefault();
@@ -620,7 +620,7 @@ function PricingComponent() {
             </Link>
             <Link
               href="/#gallery"
-              className="nav-link text-white hover:text-cyan-400 transition-colors relative group"
+              className="nav-link text-white hover:text-[#C5A790] transition-colors relative group"
               style={{ animationDelay: '400ms' }}
               onClick={(e) => {
                 e.preventDefault();
@@ -631,14 +631,14 @@ function PricingComponent() {
             </Link>
             <Link
               href="/tutorial-video"
-              className="nav-link text-white hover:text-cyan-400 transition-colors relative group"
+              className="nav-link text-white hover:text-[#C5A790] transition-colors relative group"
               style={{ animationDelay: '500ms' }}
             >
               Tutorial Video
             </Link>
             <Link
               href="/pricing"
-              className="nav-link text-cyan-400 active transition-colors relative group"
+              className="nav-link text-[#C5A790] active transition-colors relative group"
               style={{ animationDelay: '600ms' }}
               onClick={(e) => {
                 e.preventDefault();
@@ -649,7 +649,7 @@ function PricingComponent() {
             </Link>
             <Link
               href="/contact-us"
-              className="nav-link text-white hover:text-cyan-400 transition-colors relative group"
+              className="nav-link text-white hover:text-[#C5A790] transition-colors relative group"
               style={{ animationDelay: '700ms' }}
               onClick={(e) => {
                 e.preventDefault();
@@ -677,7 +677,7 @@ function PricingComponent() {
                 </Link>
                 <Link
                   href={`/sign-up?redirectUrl=${encodeURIComponent('/dashboard-pricing')}`}
-                  className="bg-cyan-400 text-slate-800 hover:bg-cyan-500 px-3 py-1.5 rounded-md text-sm font-medium transition-colors"
+                  className="bg-[#C5A790] text-slate-800 hover:bg-[#b0927a] px-3 py-1.5 rounded-md text-sm font-medium transition-colors"
                 >
                   Sign Up
                 </Link>
@@ -698,12 +698,12 @@ function PricingComponent() {
 
       {/* Mobile Menu */}
       <div className={`md:hidden fixed top-16 left-0 right-0 z-40 bg-zinc-900 shadow-md border-b border-zinc-800 transition-all duration-300 ${mobileMenuOpen ? 'block' : 'hidden'}`}>
-        <Link href="/" className="block py-2 w-full text-center hover:text-cyan-400 text-white transition-colors duration-300 " onClick={closeMobileMenu}>Home</Link>
-        <Link href="/#features" className="block py-2 w-full text-center hover:text-cyan-400 text-white transition-colors duration-300" onClick={closeMobileMenu}>Features</Link>
-        <Link href="/#how-it-works" className="block py-2 w-full text-center hover:text-cyan-400 text-white transition-colors duration-300" onClick={closeMobileMenu}>How it Works</Link>
-        <Link href="/#gallery" className="block py-2 w-full text-center hover:text-cyan-400 text-white transition-colors duration-300" onClick={closeMobileMenu}>Gallery</Link>
-        <Link href="/pricing" className="block py-2 w-full text-center text-cyan-400 transition-colors duration-300" onClick={closeMobileMenu}>Pricing</Link>
-        <Link href="/contact-us" className="block py-2 w-full text-center hover:text-cyan-400 text-white transition-colors duration-300" onClick={closeMobileMenu}>Contact Us</Link>
+        <Link href="/" className="block py-2 w-full text-center hover:text-[#C5A790] text-white transition-colors duration-300 " onClick={closeMobileMenu}>Home</Link>
+        <Link href="/#features" className="block py-2 w-full text-center hover:text-[#C5A790] text-white transition-colors duration-300" onClick={closeMobileMenu}>Features</Link>
+        <Link href="/#how-it-works" className="block py-2 w-full text-center hover:text-[#C5A790] text-white transition-colors duration-300" onClick={closeMobileMenu}>How it Works</Link>
+        <Link href="/#gallery" className="block py-2 w-full text-center hover:text-[#C5A790] text-white transition-colors duration-300" onClick={closeMobileMenu}>Gallery</Link>
+        <Link href="/pricing" className="block py-2 w-full text-center text-[#C5A790] transition-colors duration-300" onClick={closeMobileMenu}>Pricing</Link>
+        <Link href="/contact-us" className="block py-2 w-full text-center hover:text-[#C5A790] text-white transition-colors duration-300" onClick={closeMobileMenu}>Contact Us</Link>
         <div className="flex gap-2 mt-4 w-full justify-center pb-4">
           <button
             className="text-white border border-white bg-white/10 hover:bg-white/20 px-4 py-2 rounded-md text-sm transition-colors"
@@ -715,7 +715,7 @@ function PricingComponent() {
             Sign In
           </button>
           <button
-            className="bg-cyan-400 text-slate-800 hover:bg-cyan-500 px-4 py-2 rounded-md text-sm font-bold transition-colors"
+            className="bg-[#C5A790] text-slate-800 hover:bg-[#b0927a] px-4 py-2 rounded-md text-sm font-bold transition-colors"
             onClick={() => {
               closeMobileMenu();
               handleSignUp();
@@ -728,7 +728,7 @@ function PricingComponent() {
 
       <div className="container mx-auto px-4 py-16">
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-[#1e3a5c] via-[#22d3ee] to-[#4ade80] text-transparent bg-clip-text">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text">
             Choose Your Plan
           </h1>
           <p className="text-zinc-400 max-w-2xl mx-auto mb-6">
@@ -739,7 +739,7 @@ function PricingComponent() {
           <div className="flex justify-center items-center space-x-2 mb-8">
             <span className="text-zinc-400">Select Currency:</span>
             <select
-              className="bg-zinc-800 text-white rounded-md border border-zinc-700 py-1 px-2 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+              className="bg-zinc-800 text-white rounded-md border border-zinc-700 py-1 px-2 focus:outline-none focus:ring-2 focus:ring-[#C5A790]"
               value={currency}
               onChange={(e) => setCurrency(e.target.value)}
             >
@@ -772,7 +772,7 @@ function PricingComponent() {
             return (
               <div
                 key={plan.planKey}
-                className={`rounded-xl p-6 bg-zinc-900 text-white shadow-md ${isCurrent ? "border-2 border-cyan-400" : ""
+                className={`rounded-xl p-6 bg-zinc-900 text-white shadow-md ${isCurrent ? "border-2 border-[#C5A790]" : ""
                   } ${isDisabled ? "opacity-50 pointer-events-none" : ""}`}
               >
                 <h2 className="text-2xl font-bold">{plan.name}</h2>
@@ -825,7 +825,7 @@ function SimplifiedPricingComponent() {
         height: 2px;
         bottom: -4px;
         left: 0;
-        background-color: #22d3ee;
+        background-color: #C5A790;
         transition: width 0.3s ease;
       }
       
@@ -859,7 +859,7 @@ function SimplifiedPricingComponent() {
   // Custom popup component
   const CustomPopup = ({ message, onClose, onAction, isSuccess }) => (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-zinc-900 border-2 border-cyan-400 rounded-xl p-6 max-w-md w-full mx-4">
+      <div className="bg-zinc-900 border-2 border-[#C5A790] rounded-xl p-6 max-w-md w-full mx-4">
         <div className="text-center">
           {isSuccess ? (
             <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
@@ -878,7 +878,7 @@ function SimplifiedPricingComponent() {
           <div className="flex justify-center space-x-4">
             <button
               onClick={onAction || onClose}
-              className="px-4 py-2 bg-cyan-400 text-black rounded-lg hover:bg-cyan-500 transition-colors"
+              className="px-4 py-2 bg-[#C5A790] text-black rounded-lg hover:bg-[#b0927a] transition-colors"
             >
               {onAction ? 'Continue' : 'Close'}
             </button>
@@ -917,13 +917,13 @@ function SimplifiedPricingComponent() {
   // Handle link click
   const handleLinkClick = (path) => {
     closeMobileMenu();
-    
+
     // If it's an anchor link on the same page
     if (path.startsWith('/#')) {
       // Extract the id from the path
       const id = path.substring(2);
       const element = document.getElementById(id);
-      
+
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       } else {
@@ -961,10 +961,10 @@ function SimplifiedPricingComponent() {
         showCustomPopup("You have already used your free plan credits. Please choose a premium plan to continue.", null, false);
         return;
       }
-      
+
       // Update to free plan
       updatePlan('free');
-      
+
       // Show success notification and redirect
       showCustomPopup(`Successfully switched to ${plan.toUpperCase()} plan!`, () => {
         router.push("/interior-generator");
@@ -998,11 +998,11 @@ function SimplifiedPricingComponent() {
     } else if (plan.planKey === 'free') {
       // Disable free plan if already used
       const freeDisabled = !userDetail.canUseFreeplan;
-      
+
       return (
         <button
           onClick={() => handleUpgrade('free')}
-          className={`mt-6 w-full ${freeDisabled ? "bg-gray-500 cursor-not-allowed" : "bg-cyan-400 hover:bg-cyan-500"} text-black py-2 rounded-lg`}
+          className={`mt-6 w-full ${freeDisabled ? "bg-gray-500 cursor-not-allowed" : "bg-[#C5A790] hover:bg-[#b0927a]"} text-black py-2 rounded-lg`}
           disabled={freeDisabled}
         >
           {freeDisabled ? "Already Used" : "Select Free Plan"}
@@ -1014,7 +1014,7 @@ function SimplifiedPricingComponent() {
         return (
           <button
             onClick={() => router.push(`/sign-in?redirectUrl=${encodeURIComponent('/pricing')}`)}
-            className="mt-6 w-full bg-cyan-400 hover:bg-cyan-500 text-black py-2 rounded-lg"
+            className="mt-6 w-full bg-[#C5A790] hover:bg-[#b0927a] text-black py-2 rounded-lg"
           >
             Sign in to upgrade
           </button>
@@ -1022,12 +1022,12 @@ function SimplifiedPricingComponent() {
       } else {
         // Check if user is already on this plan and has used all credits
         const needsRenewal = userDetail.plan === 'premium' && !userDetail.hasAvailableCredits;
-        
+
         return (
           <PaymentButton
             amount={100} // 1 INR in paise
             buttonText={needsRenewal ? "Buy Again" : "Buy Premium Plan"}
-            className="mt-6 w-full bg-cyan-400 hover:bg-cyan-500 text-black py-2 rounded-lg"
+            className="mt-6 w-full bg-[#C5A790] hover:bg-[#b0927a] text-black py-2 rounded-lg"
             onSuccess={(response) => handlePaymentSuccess('premium', response)}
           />
         );
@@ -1038,7 +1038,7 @@ function SimplifiedPricingComponent() {
         return (
           <button
             onClick={() => router.push(`/sign-in?redirectUrl=${encodeURIComponent('/pricing')}`)}
-            className="mt-6 w-full bg-cyan-400 hover:bg-cyan-500 text-black py-2 rounded-lg"
+            className="mt-6 w-full bg-[#C5A790] hover:bg-[#b0927a] text-black py-2 rounded-lg"
           >
             Sign in to upgrade
           </button>
@@ -1046,12 +1046,12 @@ function SimplifiedPricingComponent() {
       } else {
         // Check if user is already on this plan and has used all credits
         const needsRenewal = userDetail.plan === 'pro' && !userDetail.hasAvailableCredits;
-        
+
         return (
           <PaymentButton
             amount={83500} // 835 INR in paise
             buttonText={needsRenewal ? "Buy Again" : "Buy Unlimited Credits"}
-            className="mt-6 w-full bg-cyan-400 hover:bg-cyan-500 text-black py-2 rounded-lg"
+            className="mt-6 w-full bg-[#C5A790] hover:bg-[#b0927a] text-black py-2 rounded-lg"
             onSuccess={(response) => handlePaymentSuccess('pro', response)}
           />
         );
@@ -1097,22 +1097,22 @@ function SimplifiedPricingComponent() {
           className="flex gap-2 items-center cursor-pointer hover:opacity-80 transition-opacity logo-pulse animate-fade-in"
           onClick={() => router.push('/')}
         >
-          <div className="logo-container bg-cyan-400 w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold">DM</div>
-          <h2 className="font-bold text-lg bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text">DecorMind</h2>
+          <div className="logo-container bg-[#C5A790] w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold">DM</div>
+          <h2 className="font-bold text-lg bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text">DecorMind</h2>
         </div>
 
         <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 items-center">
           <nav className="flex gap-4 md:gap-6 mx-auto justify-center flex-wrap" style={{ fontSize: '0.875rem' }}>
             <Link
               href="/"
-              className="nav-link text-white hover:text-cyan-400 transition-colors relative group"
+              className="nav-link text-white hover:text-[#C5A790] transition-colors relative group"
               style={{ animationDelay: '100ms' }}
             >
               Home
             </Link>
             <Link
               href="/#features"
-              className="nav-link text-white hover:text-cyan-400 transition-colors relative group"
+              className="nav-link text-white hover:text-[#C5A790] transition-colors relative group"
               style={{ animationDelay: '200ms' }}
               onClick={(e) => {
                 e.preventDefault();
@@ -1123,7 +1123,7 @@ function SimplifiedPricingComponent() {
             </Link>
             <Link
               href="/#how-it-works"
-              className="nav-link text-white hover:text-cyan-400 transition-colors relative group"
+              className="nav-link text-white hover:text-[#C5A790] transition-colors relative group"
               style={{ animationDelay: '300ms' }}
               onClick={(e) => {
                 e.preventDefault();
@@ -1134,7 +1134,7 @@ function SimplifiedPricingComponent() {
             </Link>
             <Link
               href="/#gallery"
-              className="nav-link text-white hover:text-cyan-400 transition-colors relative group"
+              className="nav-link text-white hover:text-[#C5A790] transition-colors relative group"
               style={{ animationDelay: '400ms' }}
               onClick={(e) => {
                 e.preventDefault();
@@ -1145,7 +1145,7 @@ function SimplifiedPricingComponent() {
             </Link>
             <Link
               href="/tutorial-video"
-              className="nav-link text-white hover:text-cyan-400 transition-colors relative group"
+              className="nav-link text-white hover:text-[#C5A790] transition-colors relative group"
               style={{ animationDelay: '500ms' }}
               onClick={(e) => {
                 e.preventDefault();
@@ -1156,7 +1156,7 @@ function SimplifiedPricingComponent() {
             </Link>
             <Link
               href="/pricing"
-              className="nav-link text-cyan-400 active transition-colors relative group"
+              className="nav-link text-[#C5A790] active transition-colors relative group"
               style={{ animationDelay: '600ms' }}
               onClick={(e) => {
                 e.preventDefault();
@@ -1167,7 +1167,7 @@ function SimplifiedPricingComponent() {
             </Link>
             <Link
               href="/contact-us"
-              className="nav-link text-white hover:text-cyan-400 transition-colors relative group"
+              className="nav-link text-white hover:text-[#C5A790] transition-colors relative group"
               style={{ animationDelay: '700ms' }}
               onClick={(e) => {
                 e.preventDefault();
@@ -1195,7 +1195,7 @@ function SimplifiedPricingComponent() {
                 </Link>
                 <Link
                   href={`/sign-up?redirectUrl=${encodeURIComponent('/dashboard-pricing')}`}
-                  className="bg-cyan-400 text-slate-800 hover:bg-cyan-500 px-3 py-1.5 rounded-md text-sm font-medium transition-colors"
+                  className="bg-[#C5A790] text-slate-800 hover:bg-[#b0927a] px-3 py-1.5 rounded-md text-sm font-medium transition-colors"
                 >
                   Sign Up
                 </Link>
@@ -1218,14 +1218,14 @@ function SimplifiedPricingComponent() {
       <div className={`md:hidden fixed top-16 left-0 right-0 z-40 bg-zinc-900 shadow-md border-b border-zinc-800 transition-all duration-300 ${mobileMenuOpen ? 'block' : 'hidden'}`}>
         <Link
           href="/dashboard"
-          className="block py-2 w-full text-center hover:text-cyan-400 text-white transition-colors duration-300"
+          className="block py-2 w-full text-center hover:text-[#C5A790] text-white transition-colors duration-300"
           onClick={closeMobileMenu}
         >
           Home
         </Link>
         <Link
           href="#"
-          className="block py-2 w-full text-center hover:text-cyan-400 text-white transition-colors duration-300"
+          className="block py-2 w-full text-center hover:text-[#C5A790] text-white transition-colors duration-300"
           onClick={(e) => {
             e.preventDefault();
             handleLinkClick('/redesign');
@@ -1236,21 +1236,21 @@ function SimplifiedPricingComponent() {
         </Link>
         <Link
           href="/decormind"
-          className="block py-2 w-full text-center hover:text-cyan-400 text-white transition-colors duration-300"
+          className="block py-2 w-full text-center hover:text-[#C5A790] text-white transition-colors duration-300"
           onClick={closeMobileMenu}
         >
           DecorMind
         </Link>
         <Link
           href="/pricing"
-          className="block py-2 w-full text-center text-cyan-400 transition-colors duration-300"
+          className="block py-2 w-full text-center text-[#C5A790] transition-colors duration-300"
           onClick={closeMobileMenu}
         >
           Pricing
         </Link>
         <Link
           href="/contact-us"
-          className="block py-2 w-full text-center hover:text-cyan-400 text-white transition-colors duration-300"
+          className="block py-2 w-full text-center hover:text-[#C5A790] text-white transition-colors duration-300"
           onClick={closeMobileMenu}
         >
           Contact Us
@@ -1259,7 +1259,7 @@ function SimplifiedPricingComponent() {
 
       <div className="container mx-auto px-4 py-16">
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-[#1e3a5c] via-[#22d3ee] to-[#4ade80] text-transparent bg-clip-text">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text">
             Choose Your Plan
           </h1>
           <p className="text-zinc-400 max-w-2xl mx-auto mb-6">
@@ -1270,7 +1270,7 @@ function SimplifiedPricingComponent() {
           <div className="flex justify-center items-center space-x-2 mb-8">
             <span className="text-zinc-400">Select Currency:</span>
             <select
-              className="bg-zinc-800 text-white rounded-md border border-zinc-700 py-1 px-2 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+              className="bg-zinc-800 text-white rounded-md border border-zinc-700 py-1 px-2 focus:outline-none focus:ring-2 focus:ring-[#C5A790]"
               value={currency}
               onChange={(e) => setCurrency(e.target.value)}
             >
@@ -1303,7 +1303,7 @@ function SimplifiedPricingComponent() {
             return (
               <div
                 key={plan.planKey}
-                className={`rounded-xl p-6 bg-zinc-900 text-white shadow-md ${isCurrent ? "border-2 border-cyan-400" : ""
+                className={`rounded-xl p-6 bg-zinc-900 text-white shadow-md ${isCurrent ? "border-2 border-[#C5A790]" : ""
                   } ${isDisabled ? "opacity-50 pointer-events-none" : ""}`}
               >
                 <h2 className="text-2xl font-bold">{plan.name}</h2>

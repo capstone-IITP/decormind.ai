@@ -28,7 +28,7 @@ export default function Page() {
       const redirectParam = params.get('redirectUrl');
       console.log('Sign-up page - URL query parameters:', window.location.search);
       console.log('Sign-up page - redirectParam:', redirectParam);
-      
+
       if (redirectParam) {
         try {
           // Decode the URL if it's encoded
@@ -65,7 +65,7 @@ export default function Page() {
   // Effect to change the image every 2 seconds
   useEffect(() => {
     if (!isClient) return;
-    
+
     // Preload all images
     images.forEach((src) => {
       const img = new window.Image();
@@ -105,8 +105,8 @@ export default function Page() {
         <div className="relative z-30 p-12 flex flex-col h-full justify-between">
           <div>
             <div className="flex items-center gap-2 mb-8 cursor-pointer hover:opacity-80 transition-opacity" onClick={handleLogoClick}>
-              <div className="bg-cyan-400 w-8 h-8 rounded-full flex items-center justify-center text-slate-800 text-lg font-bold">DM</div>
-              <h1 suppressHydrationWarning className="text-2xl font-bold bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text">DecorMind</h1>
+              <div className="bg-[#C5A790] w-8 h-8 rounded-full flex items-center justify-center text-slate-800 text-lg font-bold">DM</div>
+              <h1 suppressHydrationWarning className="text-2xl font-bold bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text">DecorMind</h1>
             </div>
             <h2 suppressHydrationWarning className="text-3xl font-bold text-white mb-4">Join DecorMind</h2>
             <p className="text-zinc-400 max-w-md">
@@ -132,18 +132,18 @@ export default function Page() {
                 card: 'bg-zinc-900 border-none shadow-xl rounded-xl',
                 headerTitle: 'text-white text-center text-xl',
                 headerSubtitle: 'text-zinc-400 text-center',
-                socialButtonsBlockButton: 'bg-[#2cd4ec] border-none hover:bg-[#22c3d8] text-slate-800',
+                socialButtonsBlockButton: 'bg-[#C5A790] border-none hover:bg-[#b0927a] text-slate-800',
                 socialButtonsBlockButtonArrow: 'text-slate-800',
                 socialButtonsBlockButtonText: 'text-slate-800 font-medium',
                 socialButtonsBlockButtonIcon: 'text-slate-800',
-                dividerLine: 'bg-cyan-400',
+                dividerLine: 'bg-[#C5A790]',
                 dividerText: 'text-zinc-500',
                 formFieldLabel: 'text-zinc-300',
                 formFieldInput: 'bg-zinc-800 border-zinc-700 text-white',
-                formButtonPrimary: 'bg-cyan-400 hover:bg-cyan-500 text-slate-800 font-normal',
+                formButtonPrimary: 'bg-[#C5A790] hover:bg-[#b0927a] text-slate-800 font-normal',
                 footerActionText: 'text-zinc-400',
-                footerActionLink: 'text-cyan-400 hover:text-cyan-300',
-                formFieldAction: 'text-cyan-400 hover:text-cyan-300',
+                footerActionLink: 'text-[#C5A790] hover:text-[#b0927a]',
+                formFieldAction: 'text-[#C5A790] hover:text-[#b0927a]',
               },
               layout: {
                 socialButtonsPlacement: 'top',
@@ -152,7 +152,7 @@ export default function Page() {
               variables: {
                 borderRadius: '0.75rem',
                 colorBackground: '#18181b', // zinc-900
-                colorPrimary: '#22d3ee', // cyan-400
+                colorPrimary: '#C5A790', // primary-color
                 colorText: 'white',
                 colorTextSecondary: '#a1a1aa', // zinc-400
                 fontFamily: 'var(--font-geist-sans)',

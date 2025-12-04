@@ -84,7 +84,7 @@ function HomeContent() {
       // Animate hamburger to X
       if (menuButton) {
         menuButton.classList.toggle('menu-active');
-        
+
         // Animate the menu bars
         const spans = menuButton.querySelectorAll('span');
         if (mobileMenu.classList.contains('active')) {
@@ -102,14 +102,14 @@ function HomeContent() {
 
       // Toggle body scroll
       body.classList.toggle('mobile-menu-open');
-      
+
       // Add staggered animations to menu items
       if (mobileMenu.classList.contains('active')) {
         const menuItems = mobileMenu.querySelectorAll('a, button');
         menuItems.forEach((item, index) => {
           item.style.opacity = '0';
           item.style.transform = 'translateY(20px)';
-          
+
           // Staggered animation with delay
           setTimeout(() => {
             item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
@@ -135,11 +135,11 @@ function HomeContent() {
         item.style.opacity = '0';
         item.style.transform = 'translateY(10px)';
       });
-      
+
       // Delay the menu closing slightly for a smoother animation
       setTimeout(() => {
         mobileMenu.classList.remove('active');
-        
+
         // Reset hamburger icon
         if (menuButton) {
           menuButton.classList.remove('menu-active');
@@ -187,8 +187,8 @@ function HomeContent() {
       style = document.createElement('style');
       style.innerHTML = `
         @keyframes highlightSection {
-          0% { background-color: rgba(34, 211, 238, 0.1); }
-          50% { background-color: rgba(34, 211, 238, 0.2); }
+          0% { background-color: rgba(197, 167, 144, 0.1); }
+          50% { background-color: rgba(197, 167, 144, 0.2); }
           100% { background-color: transparent; }
         }
         
@@ -198,8 +198,8 @@ function HomeContent() {
 
         /* Special animation for contact section */
         @keyframes highlightContactSection {
-          0% { background-color: rgba(34, 211, 238, 0.15); }
-          50% { background-color: rgba(34, 211, 238, 0.3); }
+          0% { background-color: rgba(197, 167, 144, 0.15); }
+          50% { background-color: rgba(197, 167, 144, 0.3); }
           100% { background-color: rgba(24, 24, 27, 1); } /* bg-zinc-900 */
         }
         
@@ -209,9 +209,9 @@ function HomeContent() {
 
         /* Contact form highlight animation */
         @keyframes highlightContactForm {
-          0% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.3); }
-          50% { box-shadow: 0 0 20px 5px rgba(34, 211, 238, 0.5); }
-          100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0); }
+          0% { box-shadow: 0 0 0 0 rgba(197, 167, 144, 0.3); }
+          50% { box-shadow: 0 0 20px 5px rgba(197, 167, 144, 0.5); }
+          100% { box-shadow: 0 0 0 0 rgba(197, 167, 144, 0); }
         }
         
         #contact.highlight-section form {
@@ -245,7 +245,7 @@ function HomeContent() {
         }
         
         .heading-highlight {
-          background-image: linear-gradient(transparent 60%, rgba(34, 211, 238, 0.2) 40%);
+          background-image: linear-gradient(transparent 60%, rgba(197, 167, 144, 0.2) 40%);
           background-size: 100% 0%;
           background-repeat: no-repeat;
           animation: headingHighlight 0.8s ease-out forwards;
@@ -255,15 +255,15 @@ function HomeContent() {
         @keyframes iconPulse {
           0% { 
             transform: scale(1);
-            box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.7);
+            box-shadow: 0 0 0 0 rgba(197, 167, 144, 0.7);
           }
           70% { 
             transform: scale(1.1);
-            box-shadow: 0 0 0 10px rgba(34, 211, 238, 0);
+            box-shadow: 0 0 0 10px rgba(197, 167, 144, 0);
           }
           100% { 
             transform: scale(1);
-            box-shadow: 0 0 0 0 rgba(34, 211, 238, 0);
+            box-shadow: 0 0 0 0 rgba(197, 167, 144, 0);
           }
         }
         
@@ -280,7 +280,7 @@ function HomeContent() {
         
         .nav-link-clicked {
           animation: navLinkClick 0.3s ease-out;
-          color: #22d3ee !important;
+          color: #C5A790 !important;
         }
 
         /* Navigation link hover animation */
@@ -298,7 +298,7 @@ function HomeContent() {
           height: 2px;
           bottom: -4px;
           left: 0;
-          background-color: #22d3ee;
+          background-color: #C5A790;
           transition: width 0.3s ease;
         }
         
@@ -306,7 +306,7 @@ function HomeContent() {
           width: 100%;
         }
 
-        .nav-link.text-cyan-400::after {
+        .nav-link.text-[#C5A790]::after {
           width: 100%;
         }
 
@@ -451,7 +451,7 @@ function HomeContent() {
 
       // Reset all links to inactive first
       navLinks.forEach(link => {
-        link.classList.remove('text-cyan-400');
+        link.classList.remove('text-[#C5A790]');
         link.classList.add('text-white');
         link.style.setProperty('--nav-underline-width', '0');
       });
@@ -460,11 +460,11 @@ function HomeContent() {
       navLinks.forEach(link => {
         const href = link.getAttribute('href');
         if (href === `#${currentSectionId}`) {
-          link.classList.add('text-cyan-400');
+          link.classList.add('text-[#C5A790]');
           link.classList.remove('text-white');
           link.style.setProperty('--nav-underline-width', '100%');
         } else if (currentSectionId === 'top' && href === '#top') {
-          link.classList.add('text-cyan-400');
+          link.classList.add('text-[#C5A790]');
           link.classList.remove('text-white');
           link.style.setProperty('--nav-underline-width', '100%');
         }
@@ -490,14 +490,14 @@ function HomeContent() {
       // Reset all links to inactive state first
       const navLinks = document.querySelectorAll('.nav-link');
       navLinks.forEach(link => {
-        link.classList.remove('text-cyan-400');
+        link.classList.remove('text-[#C5A790]');
         link.classList.add('text-white');
         link.style.setProperty('--nav-underline-width', '0');
       });
 
       // Set only the clicked link to active
       if (e.currentTarget) {
-        e.currentTarget.classList.add('text-cyan-400');
+        e.currentTarget.classList.add('text-[#C5A790]');
         e.currentTarget.classList.remove('text-white');
         e.currentTarget.style.setProperty('--nav-underline-width', '100%');
       }
@@ -540,7 +540,7 @@ function HomeContent() {
 
       // Set Home link as active initially
       if (index === 0) {
-        link.classList.add('text-cyan-400');
+        link.classList.add('text-[#C5A790]');
         link.classList.remove('text-white');
         link.style.setProperty('--nav-underline-width', '100%');
       }
@@ -588,8 +588,8 @@ function HomeContent() {
       {/* Navigation Bar */}
       <nav className="flex justify-between items-center py-4 px-4 md:px-6 bg-zinc-900 sticky top-0 z-50 shadow-md border-b border-zinc-800 rounded-bl-2xl rounded-br-2xl nav-slide-down">
         <div className="flex items-center gap-2">
-          <div className="bg-cyan-400 w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold">DM</div>
-          <h1 className="text-lg font-bold bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text">DecorMind</h1>
+          <div className="bg-[#C5A790] w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold">DM</div>
+          <h1 className="text-lg font-bold bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text">DecorMind</h1>
         </div>
         {/* Mobile Menu Button */}
         <button className="md:hidden flex flex-col space-y-1" onClick={toggleMobileMenu}>
@@ -599,13 +599,13 @@ function HomeContent() {
         </button>
         {/* Desktop Navigation */}
         <div className="hidden md:flex desktop-nav absolute left-1/2 transform -translate-x-1/2 gap-4 md:gap-8 text-sm">
-          <a href="#top" className="nav-link text-cyan-400 transition-colors duration-300 relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-cyan-400">Home</a>
-          <a href="#features" className="nav-link hover:text-cyan-400 text-white transition-colors duration-300 relative">Features</a>
-          <a href="#how-it-works" className="nav-link hover:text-cyan-400 text-white transition-colors duration-300 relative">How it Works</a>
-          <a href="#Tutorial Video" className="nav-link hover:text-cyan-400 text-white transition-colors duration-300 relative">Tutorial Video</a>
-          <a href="#gallery" className="nav-link hover:text-cyan-400 text-white transition-colors duration-300 relative">Gallery</a>
-          <Link href="/pricing" className="nav-link hover:text-cyan-400 text-white transition-colors duration-300 relative">Pricing</Link>
-          <Link href="/contact-us" className="nav-link hover:text-cyan-400 text-white transition-colors duration-300 relative">Contact Us</Link>
+          <a href="#top" className="nav-link text-[#C5A790] transition-colors duration-300 relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-[#C5A790]">Home</a>
+          <a href="#features" className="nav-link hover:text-[#C5A790] text-white transition-colors duration-300 relative">Features</a>
+          <a href="#how-it-works" className="nav-link hover:text-[#C5A790] text-white transition-colors duration-300 relative">How it Works</a>
+          <a href="#Tutorial Video" className="nav-link hover:text-[#C5A790] text-white transition-colors duration-300 relative">Tutorial Video</a>
+          <a href="#gallery" className="nav-link hover:text-[#C5A790] text-white transition-colors duration-300 relative">Gallery</a>
+          <Link href="/pricing" className="nav-link hover:text-[#C5A790] text-white transition-colors duration-300 relative">Pricing</Link>
+          <Link href="/contact-us" className="nav-link hover:text-[#C5A790] text-white transition-colors duration-300 relative">Contact Us</Link>
         </div>
         {/* Desktop Buttons */}
         <div className="hidden md:flex desktop-nav-buttons gap-2">
@@ -616,7 +616,7 @@ function HomeContent() {
             Sign In
           </button>
           <button
-            className="bg-cyan-400 text-slate-800 hover:bg-cyan-500 px-4 py-2 rounded-md text-sm font-bold transition-colors"
+            className="bg-[#C5A790] text-slate-800 hover:bg-[#b0927a] px-4 py-2 rounded-md text-sm font-bold transition-colors"
             onClick={handleSignUp}
           >
             Sign Up
@@ -626,13 +626,13 @@ function HomeContent() {
 
       {/* Mobile Menu */}
       <div id="mobile-menu" className="mobile-menu py-4 bg-zinc-900 fixed top-16 left-0 right-0 z-40 shadow-md border-b border-zinc-800">
-        <a href="#top" className="py-2 w-full text-center nav-link text-cyan-400 transition-colors duration-300" onClick={closeMobileMenu}>Home</a>
-        <a href="#features" className="py-2 w-full text-center nav-link hover:text-cyan-400 text-white transition-colors duration-300" onClick={closeMobileMenu}>Features</a>
-        <a href="#how-it-works" className="py-2 w-full text-center nav-link hover:text-cyan-400 text-white transition-colors duration-300" onClick={closeMobileMenu}>How it Works</a>
-        <a href="#Tutorial Video" className="py-2 w-full text-center nav-link hover:text-cyan-400 text-white transition-colors duration-300" onClick={closeMobileMenu}>Tutorial Video</a>
-        <a href="#gallery" className="py-2 w-full text-center nav-link hover:text-cyan-400 text-white transition-colors duration-300" onClick={closeMobileMenu}>Gallery</a>
-        <Link href="/pricing" className="py-2 w-full text-center nav-link hover:text-cyan-400 text-white transition-colors duration-300" onClick={closeMobileMenu}>Pricing</Link>
-        <Link href="/contact-us" className="py-2 w-full text-center nav-link hover:text-cyan-400 text-white transition-colors duration-300" onClick={closeMobileMenu}>Contact Us</Link>
+        <a href="#top" className="py-2 w-full text-center nav-link text-[#C5A790] transition-colors duration-300" onClick={closeMobileMenu}>Home</a>
+        <a href="#features" className="py-2 w-full text-center nav-link hover:text-[#C5A790] text-white transition-colors duration-300" onClick={closeMobileMenu}>Features</a>
+        <a href="#how-it-works" className="py-2 w-full text-center nav-link hover:text-[#C5A790] text-white transition-colors duration-300" onClick={closeMobileMenu}>How it Works</a>
+        <a href="#Tutorial Video" className="py-2 w-full text-center nav-link hover:text-[#C5A790] text-white transition-colors duration-300" onClick={closeMobileMenu}>Tutorial Video</a>
+        <a href="#gallery" className="py-2 w-full text-center nav-link hover:text-[#C5A790] text-white transition-colors duration-300" onClick={closeMobileMenu}>Gallery</a>
+        <Link href="/pricing" className="py-2 w-full text-center nav-link hover:text-[#C5A790] text-white transition-colors duration-300" onClick={closeMobileMenu}>Pricing</Link>
+        <Link href="/contact-us" className="py-2 w-full text-center nav-link hover:text-[#C5A790] text-white transition-colors duration-300" onClick={closeMobileMenu}>Contact Us</Link>
         <div className="flex gap-2 mt-4 w-full justify-center">
           <button
             className="text-white border border-white bg-white/10 hover:bg-white/20 px-4 py-2 rounded-md text-sm transition-colors"
@@ -644,7 +644,7 @@ function HomeContent() {
             Sign In
           </button>
           <button
-            className="bg-cyan-400 text-slate-800 hover:bg-cyan-500 px-4 py-2 rounded-md text-sm font-bold transition-colors"
+            className="bg-[#C5A790] text-slate-800 hover:bg-[#b0927a] px-4 py-2 rounded-md text-sm font-bold transition-colors"
             onClick={() => {
               closeMobileMenu();
               handleSignUp();
@@ -658,13 +658,13 @@ function HomeContent() {
       {/* Hero Section */}
       <div className="relative px-4 md:px-6 py-8 md:py-12 bg-black flex flex-col md:flex-row">
         <div className="w-full max-w-3xl z-10 md:w-1/2 md:pr-8 mb-8 md:mb-0">
-          <h2 id='title' className="text-3xl md:text-4xl font-bold font-acorn bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text mb-4">Transform Your Space with AI</h2>
+          <h2 id='title' className="text-3xl md:text-4xl font-bold font-acorn bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text mb-4">Transform Your Space with AI</h2>
           <p className="text-base md:text-lg text-white mb-6">
             Design your dream interior in minutes, not months. Our AI-powered platform creates stunning, personalized room designs tailored to your style and budget.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 mb-8 md:mb-12">
             <button
-              className="w-full sm:w-auto bg-cyan-400 text-slate-800 hover:bg-cyan-500 px-4 py-2 rounded-md font-medium transition-colors"
+              className="w-full sm:w-auto bg-[#C5A790] text-slate-800 hover:bg-[#b0927a] px-4 py-2 rounded-md font-medium transition-colors"
               onClick={() => router.push('/sign-up')}
             >
               Get Started Free
@@ -776,31 +776,31 @@ function HomeContent() {
 
       {/* Features Section */}
       <div className="py-16 px-6 bg-black transition-all duration-300" id="features">
-        <h3 id='title' className="text-2xl font-bold text-center bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text mb-12">Key Features</h3>
+        <h3 id='title' className="text-2xl font-bold text-center bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text mb-12">Key Features</h3>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <div className="bg-black border border-zinc-800 p-6 rounded-lg">
-            <div className="w-10 h-10 bg-cyan-400 rounded-md flex items-center justify-center text-slate-800 mb-4">
+            <div className="w-10 h-10 bg-[#C5A790] rounded-md flex items-center justify-center text-slate-800 mb-4">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
             </div>
             <h4 className="text-lg font-bold mb-2 text-white">AI-Powered Design</h4>
             <p className="text-white text-sm">Our sophisticated creative algorithms create beautiful, functional room designs personalized for you.</p>
           </div>
           <div className="bg-black border border-zinc-800 p-6 rounded-lg">
-            <div className="w-10 h-10 bg-cyan-400 rounded-md flex items-center justify-center text-slate-800 mb-4">
+            <div className="w-10 h-10 bg-[#C5A790] rounded-md flex items-center justify-center text-slate-800 mb-4">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
             </div>
             <h4 className="text-lg font-bold mb-2 text-white">Save Time & Money</h4>
             <p className="text-white text-sm">Get professional-quality designs in minutes instead of waiting weeks for costly human designers.</p>
           </div>
           <div className="bg-black border border-zinc-800 p-6 rounded-lg">
-            <div className="w-10 h-10 bg-cyan-400 rounded-md flex items-center justify-center text-slate-800 mb-4">
+            <div className="w-10 h-10 bg-[#C5A790] rounded-md flex items-center justify-center text-slate-800 mb-4">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
             </div>
             <h4 className="text-lg font-bold mb-2 text-white">Highly Effective</h4>
             <p className="text-white text-sm">Explore countless design options from modern to traditional and everything in between.</p>
           </div>
           <div className="bg-black border border-zinc-800 p-6 rounded-lg">
-            <div className="w-10 h-10 bg-cyan-400 rounded-md flex items-center justify-center text-slate-800 mb-4">
+            <div className="w-10 h-10 bg-[#C5A790] rounded-md flex items-center justify-center text-slate-800 mb-4">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
             </div>
             <h4 className="text-lg font-bold mb-2 text-white">Shop the Look</h4>
@@ -811,20 +811,20 @@ function HomeContent() {
 
       {/* How It Works Section */}
       <div className="py-16 px-6 bg-black transition-all duration-300" id="how-it-works">
-        <h3 id='title' className="text-2xl font-bold text-center bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text mb-12">How It Works</h3>
+        <h3 id='title' className="text-2xl font-bold text-center bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text mb-12">How It Works</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
           <div className="text-center">
-            <div className="w-12 h-12 bg-cyan-400 rounded-full flex items-center justify-center text-slate-800 font-bold mx-auto mb-4">1</div>
+            <div className="w-12 h-12 bg-[#C5A790] rounded-full flex items-center justify-center text-slate-800 font-bold mx-auto mb-4">1</div>
             <h4 className="text-lg font-bold mb-2 text-white">Upload Your Space</h4>
             <p className="text-white text-sm">Take a photo of your room or upload an existing one.</p>
           </div>
           <div className="text-center">
-            <div className="w-12 h-12 bg-cyan-400 rounded-full flex items-center justify-center text-slate-800 font-bold mx-auto mb-4">2</div>
+            <div className="w-12 h-12 bg-[#C5A790] rounded-full flex items-center justify-center text-slate-800 font-bold mx-auto mb-4">2</div>
             <h4 className="text-lg font-bold mb-2 text-white">Set Your Preferences</h4>
             <p className="text-white text-sm">Choose your style, budget, and specific requirements.</p>
           </div>
           <div className="text-center">
-            <div className="w-12 h-12 bg-cyan-400 rounded-full flex items-center justify-center text-slate-800 font-bold mx-auto mb-4">3</div>
+            <div className="w-12 h-12 bg-[#C5A790] rounded-full flex items-center justify-center text-slate-800 font-bold mx-auto mb-4">3</div>
             <h4 className="text-lg font-bold mb-2 text-white">Get AI Designs</h4>
             <p className="text-white text-sm">Receive multiple design options in less than 2 minutes.</p>
           </div>
@@ -833,7 +833,7 @@ function HomeContent() {
 
       {/* Video Tutorial Section */}
       <div className="py-16 px-6 bg-black transition-all duration-300" id="Tutorial Video">
-        <h3 id='title' className="text-2xl font-bold text-center bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text mb-8">Watch How It Works</h3>
+        <h3 id='title' className="text-2xl font-bold text-center bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text mb-8">Watch How It Works</h3>
         <p className="text-center text-white mb-8 max-w-2xl mx-auto">See DecorMind in action with our step-by-step tutorial video</p>
         <div className="max-w-4xl mx-auto aspect-video relative rounded-lg overflow-hidden border border-zinc-800">
           <video
@@ -851,7 +851,7 @@ function HomeContent() {
 
       {/* Stunning Transformations Section */}
       <div className="py-16 px-6 bg-black transition-all duration-300" id="gallery">
-        <h3 id='title' className="text-2xl font-bold text-center bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text mb-8">Stunning Transformations</h3>
+        <h3 id='title' className="text-2xl font-bold text-center bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text mb-8">Stunning Transformations</h3>
         <p className="text-center text-white mb-12 max-w-2xl mx-auto">See what our AI can do with these real customer examples</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           <div className="bg-black border border-zinc-800 rounded-lg overflow-hidden group">
@@ -925,11 +925,11 @@ function HomeContent() {
 
       {/* CTA Section */}
       <div className="py-16 px-6 text-center bg-black" id="cta">
-        <h3 id='title' className="text-2xl font-bold bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text mb-4">Ready to Transform Your Space?</h3>
+        <h3 id='title' className="text-2xl font-bold bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text mb-4">Ready to Transform Your Space?</h3>
         <p className="text-white mb-8 max-w-2xl mx-auto">
           Join thousands of happy customers who have reimagined their homes with DecorMind.
         </p>
-        <Button className="bg-cyan-400 text-slate-800 hover:bg-cyan-500">
+        <Button className="bg-[#C5A790] text-slate-800 hover:bg-[#b0927a]">
           Start Your Free Design
         </Button>
       </div>
@@ -941,8 +941,8 @@ function HomeContent() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="bg-cyan-400 w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold">DM</div>
-              <h1 className="text-lg font-bold bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text">DecorMind</h1>
+              <div className="bg-[#C5A790] w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold">DM</div>
+              <h1 className="text-lg font-bold bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text">DecorMind</h1>
             </div>
           </div>
           <div>

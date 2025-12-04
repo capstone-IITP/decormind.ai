@@ -11,13 +11,13 @@ export default function PrivacyPolicy() {
     <div className="min-h-screen bg-black text-white py-16 px-6">
       <div className="max-w-3xl mx-auto">
         <div className="flex items-center gap-2 mb-8 cursor-pointer" onClick={() => router.push('/')}>
-          <div className="bg-cyan-400 w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold">DM</div>
-          <h1 className="text-lg font-bold bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text">DecorMind</h1>
+          <div className="bg-[#C5A790] w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold">DM</div>
+          <h1 className="text-lg font-bold bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text">DecorMind</h1>
         </div>
 
         <div className="bg-zinc-900 p-8 rounded-xl border border-zinc-800 shadow-lg">
-          <h1 className="text-3xl font-bold mb-6 bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text">Privacy Policy</h1>
-          
+          <h1 className="text-3xl font-bold mb-6 bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text">Privacy Policy</h1>
+
           <div className="text-zinc-300 space-y-6">
             <div className="border-b border-zinc-800 pb-4">
               <p className="text-sm text-zinc-500">Effective Date: April 2, 2025</p>
@@ -81,7 +81,7 @@ export default function PrivacyPolicy() {
 
             <div>
               <h2 className="text-xl font-semibold mb-3 text-white">7. Contact Us</h2>
-              <p>If you have any questions or concerns about this Privacy Policy, please contact us at <a href="mailto:ai.decormind@gmail.com" className="text-cyan-400 hover:underline">ai.decormind@gmail.com</a>.</p>
+              <p>If you have any questions or concerns about this Privacy Policy, please contact us at <a href="mailto:ai.decormind@gmail.com" className="text-[#C5A790] hover:underline">ai.decormind@gmail.com</a>.</p>
             </div>
 
             <p>By using our website, you acknowledge and agree to the terms of this Privacy Policy.</p>
@@ -93,7 +93,7 @@ export default function PrivacyPolicy() {
         </div>
 
         <div className="mt-8 text-center">
-          <Link href="/" className="text-cyan-400 hover:underline">← Back to Home</Link>
+          <Link href="/" className="text-[#C5A790] hover:underline">← Back to Home</Link>
         </div>
       </div>
     </div>

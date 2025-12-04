@@ -7,11 +7,11 @@ export default function InteriorGeneratorPage() {
       <p className="mb-8 text-gray-600">
         Transform your space with AI-generated interior designs. Simply describe the room you want, enter its dimensions, and our AI will create a beautiful visualization for you.
       </p>
-      
+
       <div className="bg-gray-50 p-6 rounded-lg">
         <ImageGenerator />
       </div>
-      
+
       <div className="mt-10">
         <h2 className="text-xl font-semibold mb-4">Tips for great results:</h2>
         <ul className="list-disc pl-5 space-y-2">
@@ -23,8 +23,8 @@ export default function InteriorGeneratorPage() {
           <li>Enter accurate room dimensions for properly scaled furniture and layout</li>
         </ul>
       </div>
-      
-      <div className="mt-10 p-4 bg-cyan-50 rounded-lg">
+
+      <div className="mt-10 p-4 bg-[#C5A790]/10 rounded-lg">
         <h3 className="font-medium mb-2">Example prompt:</h3>
         <p className="italic">
           &quot;A sunny modern minimalist living room with white walls, wooden floors, a gray L-shaped sofa, and large windows. Include indoor plants and a coffee table.&quot;

@@ -120,7 +120,7 @@ export default function RootLayout({ children }) {
           suppressHydrationWarning={true}
         >
           <NextTopLoader
-            color="#22d3ee"
+            color="#C5A790"
             showSpinner={false}
             height={3}
             shadow={true}

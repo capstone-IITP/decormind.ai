@@ -5,7 +5,7 @@ import { usePathname, useSearchParams } from 'next/navigation';
 
 // Inner component that uses useSearchParams
 function TopLoaderContent({
-  color = '#22d3ee',
+  color = '#C5A790',
   height = 3,
   showSpinner = true,
   shadow = true,

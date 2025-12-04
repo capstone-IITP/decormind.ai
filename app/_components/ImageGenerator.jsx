@@ -61,29 +61,29 @@ export default function ImageGenerator() {
 
         setLoading(true);
         setError("");
-        
+
         try {
             // Create a prompt that includes room dimensions
-            const dimensionsText = dimensions.height 
+            const dimensionsText = dimensions.height
                 ? `Room dimensions are ${dimensions.length}x${dimensions.width}x${dimensions.height} ${dimensions.unit}.`
                 : `Room dimensions are ${dimensions.length}x${dimensions.width} ${dimensions.unit}.`;
-            
+
             const fullPrompt = `${prompt}. ${dimensionsText} Ensure furniture and spacing respect this scale.`;
-            
+
             const response = await fetch("/api/generate", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ prompt: fullPrompt }),
             });
-            
+
             const data = await response.json();
-            
+
             if (!response.ok) {
                 throw new Error(data.error || "Failed to generate image");
             }
-            
+
             setImage(data.image);
-            
+
             // Use the creditUsed function instead of useCredit directly
             creditUsed();
         } catch (err) {
@@ -105,13 +105,13 @@ export default function ImageGenerator() {
     // Show credits information
     const renderCreditsInfo = () => {
         if (userLoading) return null;
-        
+
         return (
             <div className="mb-4 text-sm text-gray-600">
                 <p>
                     {userDetail.plan.charAt(0).toUpperCase() + userDetail.plan.slice(1)} Plan: {' '}
-                    {userDetail.remainingCredits === 'unlimited' 
-                        ? 'Unlimited Credits' 
+                    {userDetail.remainingCredits === 'unlimited'
+                        ? 'Unlimited Credits'
                         : `${userDetail.remainingCredits} of ${userDetail.totalCredits} credits remaining`}
                 </p>
                 {userDetail.remainingCredits !== 'unlimited' && userDetail.remainingCredits <= 2 && (
@@ -126,19 +126,19 @@ export default function ImageGenerator() {
     return (
         <div className="p-4 border border-gray-200 rounded-lg bg-white shadow-sm">
             <h3 className="text-lg font-medium mb-3">Generate Room Design</h3>
-            
+
             {renderCreditsInfo()}
-            
+
             <div className="mb-4">
                 <input
                     type="text"
                     value={prompt}
                     onChange={(e) => setPrompt(e.target.value)}
                     placeholder="Describe your dream interior..."
-                    className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                    className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#C5A790]"
                 />
             </div>
-            
+
             {/* Image upload section */}
             <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -173,44 +173,43 @@ export default function ImageGenerator() {
                     </div>
                 )}
             </div>
-            
-            <RoomDimensionForm 
+
+            <RoomDimensionForm
                 onSubmit={handleDimensionsChange}
             />
-            
-            <button 
-                onClick={generateImage} 
+
+            <button
+                onClick={generateImage}
                 disabled={loading || !userDetail.hasAvailableCredits}
-                className={`px-4 py-2 rounded-md text-white ${
-                    loading || !userDetail.hasAvailableCredits
-                    ? "bg-gray-400 cursor-not-allowed" 
-                    : "bg-cyan-500 hover:bg-cyan-600"
-                }`}
+                className={`px-4 py-2 rounded-md text-white ${loading || !userDetail.hasAvailableCredits
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-[#C5A790] hover:bg-[#b0927a]"
+                    }`}
             >
                 {loading ? "Generating..." : "Generate"}
             </button>
-            
+
             {error && (
                 <div className="mt-4 p-3 bg-red-50 text-red-700 rounded-md text-sm">
                     {error}
                 </div>
             )}
-            
+
             {loading && (
                 <div className="mt-4 p-3 bg-blue-50 rounded-md">
                     <div className="flex items-center">
-                        <div className="w-5 h-5 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin mr-3"></div>
+                        <div className="w-5 h-5 border-2 border-[#C5A790] border-t-transparent rounded-full animate-spin mr-3"></div>
                         <p className="text-sm">Generating your dream interior...</p>
                     </div>
                 </div>
             )}
-            
+
             {image && (
                 <div className="mt-4">
                     <div className="border border-gray-200 rounded-md overflow-hidden">
-                        <Image 
-                            src={image} 
-                            alt="Generated Interior" 
+                        <Image
+                            src={image}
+                            alt="Generated Interior"
                             width={500}
                             height={500}
                             className="w-full h-auto"
@@ -218,19 +217,19 @@ export default function ImageGenerator() {
                         />
                     </div>
                     <div className="mt-2 flex justify-end">
-                        <button 
+                        <button
                             onClick={handleDownloadImage}
-                            className="text-sm text-cyan-600 hover:text-cyan-800"
+                            className="text-sm text-[#C5A790] hover:text-[#b0927a]"
                         >
                             Download Image
                         </button>
                     </div>
-                    
+
                     {/* Add image comparison slider when both original and generated images are available */}
                     {previewUrl && image && (
                         <div className="mt-4 border border-gray-200 rounded-md overflow-hidden p-3">
-                            <ImageComparisonSlider 
-                                originalImage={previewUrl} 
+                            <ImageComparisonSlider
+                                originalImage={previewUrl}
                                 generatedImage={image}
                                 darkMode={false}
                             />

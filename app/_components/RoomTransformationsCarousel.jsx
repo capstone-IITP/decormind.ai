@@ -193,7 +193,7 @@ const RoomTransformationsCarousel = ({ onSeeMoreClick }) => {
       }
       
       .room-carousel .swiper-pagination-bullet {
-        background-color: #22d3ee;
+        background-color: #C5A790;
         opacity: 0.5;
       }
       
@@ -203,7 +203,7 @@ const RoomTransformationsCarousel = ({ onSeeMoreClick }) => {
       
       .room-carousel .swiper-button-next,
       .room-carousel .swiper-button-prev {
-        color: #22d3ee;
+        color: #C5A790;
         background: rgba(0, 0, 0, 0.3);
         width: 40px;
         height: 40px;
@@ -230,7 +230,7 @@ const RoomTransformationsCarousel = ({ onSeeMoreClick }) => {
       }
 
       .room-type-tab.active {
-        color: #22d3ee;
+        color: #C5A790;
       }
 
       /* Mobile styles */
@@ -304,7 +304,7 @@ const RoomTransformationsCarousel = ({ onSeeMoreClick }) => {
         {roomTypes.map((type) => (
           <button
             key={type.id}
-            className={`room-type-tab px-2 py-1 text-base md:text-lg font-medium whitespace-nowrap ${activeRoomType === type.id ? 'active text-cyan-400' : 'text-white'}`}
+            className={`room-type-tab px-2 py-1 text-base md:text-lg font-medium whitespace-nowrap ${activeRoomType === type.id ? 'active text-[#C5A790]' : 'text-white'}`}
             onClick={() => {
               // Add animation class to the content when switching room types
               const contentElement = document.querySelector('.room-content');
@@ -350,7 +350,7 @@ const RoomTransformationsCarousel = ({ onSeeMoreClick }) => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
                     <div className="p-4 md:p-6">
-                      <span className="bg-cyan-400 text-slate-800 px-2 py-1 rounded-full text-xs md:text-sm font-medium">Before</span>
+                      <span className="bg-[#C5A790] text-slate-800 px-2 py-1 rounded-full text-xs md:text-sm font-medium">Before</span>
                       <h3 className="text-lg md:text-xl font-bold text-white mt-2">{item.beforeTitle}</h3>
                     </div>
                   </div>
@@ -367,7 +367,7 @@ const RoomTransformationsCarousel = ({ onSeeMoreClick }) => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
                     <div className="p-4 md:p-6">
-                      <span className="bg-cyan-400 text-slate-800 px-2 py-1 rounded-full text-xs md:text-sm font-medium">After</span>
+                      <span className="bg-[#C5A790] text-slate-800 px-2 py-1 rounded-full text-xs md:text-sm font-medium">After</span>
                       <h3 className="text-lg md:text-xl font-bold text-white mt-2">{item.afterTitle}</h3>
                     </div>
                   </div>
@@ -380,7 +380,7 @@ const RoomTransformationsCarousel = ({ onSeeMoreClick }) => {
 
       <div className="text-center fade-in">
         <Button
-          className="w-full sm:w-auto bg-cyan-400 text-slate-800 hover:bg-cyan-500"
+          className="w-full sm:w-auto bg-[#C5A790] text-slate-800 hover:bg-[#b0927a]"
           onClick={() => onSeeMoreClick(activeRoomType)}
         >
           {getButtonText()}

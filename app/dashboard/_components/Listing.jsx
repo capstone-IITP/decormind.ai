@@ -8,7 +8,7 @@ export default function Listing() {
   const { user } = useUser();
   const [userRoomList, setUserRoomList] = useState([]);
   const [isClient, setIsClient] = useState(false);
-  
+
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -17,7 +17,7 @@ export default function Listing() {
     <div className="min-h-screen bg-black">
       <div className="max-w-7xl mx-auto p-6">
         <div className="flex justify-center items-center mb-8">
-          <h2 suppressHydrationWarning className="text-5xl font-bold bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text">
+          <h2 suppressHydrationWarning className="text-5xl font-bold bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text">
             Hello, {isClient && user?.fullName ? user.fullName.toUpperCase() : ''}
           </h2>
         </div>

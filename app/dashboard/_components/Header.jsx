@@ -18,7 +18,7 @@ function Header() {
   // Handle link click animation
   const handleLinkClick = (path) => {
     setActiveLink(path);
-    
+
     // Reset active link after animation completes
     setTimeout(() => {
       setActiveLink(null);
@@ -28,7 +28,7 @@ function Header() {
   // Add CSS animations when component mounts
   useEffect(() => {
     setMounted(true);
-    
+
     // Create a style element
     const style = document.createElement('style');
     style.innerHTML = `
@@ -56,7 +56,7 @@ function Header() {
         height: 2px;
         bottom: -4px;
         left: 0;
-        background-color: #22d3ee;
+        background-color: #C5A790;
         transition: width 0.3s ease;
       }
       
@@ -150,7 +150,7 @@ function Header() {
         right: -5px;
         bottom: -5px;
         border-radius: 50%;
-        background: radial-gradient(circle, rgba(34, 211, 238, 0.4) 0%, rgba(34, 211, 238, 0) 70%);
+        background: radial-gradient(circle, rgba(197, 167, 144, 0.4) 0%, rgba(197, 167, 144, 0) 70%);
         z-index: -1;
         animation: glow 1.5s infinite alternate;
       }
@@ -179,7 +179,7 @@ function Header() {
       }
     `;
     document.head.appendChild(style);
-    
+
     // Add scroll event for sticky navbar effect
     const handleScroll = () => {
       const navbar = document.querySelector('.sticky-nav');
@@ -191,7 +191,7 @@ function Header() {
         }
       }
     };
-    
+
     window.addEventListener('scroll', handleScroll);
 
     // Cleanup function
@@ -213,43 +213,43 @@ function Header() {
         className="flex gap-2 items-center cursor-pointer hover:opacity-80 transition-opacity logo-pulse"
         onClick={() => router.push('/')}
       >
-        <div className="logo-container bg-cyan-400 w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold">DM</div>
-        <h2 suppressHydrationWarning className="font-bold text-lg bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text">DecorMind</h2>
+        <div className="logo-container bg-[#C5A790] w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold">DM</div>
+        <h2 suppressHydrationWarning className="font-bold text-lg bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text">DecorMind</h2>
       </div>
 
       <div className="absolute left-1/2 transform -translate-x-1/2 flex gap-8 text-sm">
         <nav className="flex gap-6">
-          <Link 
-            href="/dashboard" 
-            className={`nav-link ${isActive('/dashboard') ? 'text-cyan-400 active' : 'text-white'} ${activeLink === '/dashboard' ? 'link-clicked' : ''} hover:text-cyan-400 transition-colors duration-300 relative`}
+          <Link
+            href="/dashboard"
+            className={`nav-link ${isActive('/dashboard') ? 'text-[#C5A790] active' : 'text-white'} ${activeLink === '/dashboard' ? 'link-clicked' : ''} hover:text-[#C5A790] transition-colors duration-300 relative`}
             onClick={() => handleLinkClick('/dashboard')}
           >
             Home
           </Link>
-          <Link 
-            href="/redesign" 
-            className={`nav-link ${isActive('/redesign') ? 'text-cyan-400 active' : 'text-white'} ${activeLink === '/redesign' ? 'link-clicked' : ''} hover:text-cyan-400 transition-colors duration-300 relative`}
+          <Link
+            href="/redesign"
+            className={`nav-link ${isActive('/redesign') ? 'text-[#C5A790] active' : 'text-white'} ${activeLink === '/redesign' ? 'link-clicked' : ''} hover:text-[#C5A790] transition-colors duration-300 relative`}
             onClick={() => handleLinkClick('/redesign')}
           >
             Redesign
           </Link>
-          <Link 
-            href="/decormind" 
-            className={`nav-link ${isActive('/decormind') ? 'text-cyan-400 active' : 'text-white'} ${activeLink === '/decormind' ? 'link-clicked' : ''} hover:text-cyan-400 transition-colors duration-300 relative`}
+          <Link
+            href="/decormind"
+            className={`nav-link ${isActive('/decormind') ? 'text-[#C5A790] active' : 'text-white'} ${activeLink === '/decormind' ? 'link-clicked' : ''} hover:text-[#C5A790] transition-colors duration-300 relative`}
             onClick={() => handleLinkClick('/decormind')}
           >
             DecorMind
           </Link>
-          <Link 
-            href="/dashboard-pricing" 
-            className={`nav-link ${isActive('/dashboard-pricing') ? 'text-cyan-400 active' : 'text-white'} ${activeLink === '/dashboard-pricing' ? 'link-clicked' : ''} hover:text-cyan-400 transition-colors duration-300 relative`}
+          <Link
+            href="/dashboard-pricing"
+            className={`nav-link ${isActive('/dashboard-pricing') ? 'text-[#C5A790] active' : 'text-white'} ${activeLink === '/dashboard-pricing' ? 'link-clicked' : ''} hover:text-[#C5A790] transition-colors duration-300 relative`}
             onClick={() => handleLinkClick('/dashboard-pricing')}
           >
             Pricing
           </Link>
-          <Link 
-            href="/dashboard-contact-us" 
-            className={`nav-link ${isActive('/dashboard-contact-us') ? 'text-cyan-400 active' : 'text-white'} ${activeLink === '/dashboard-contact-us' ? 'link-clicked' : ''} hover:text-cyan-400 transition-colors duration-300 relative`}
+          <Link
+            href="/dashboard-contact-us"
+            className={`nav-link ${isActive('/dashboard-contact-us') ? 'text-[#C5A790] active' : 'text-white'} ${activeLink === '/dashboard-contact-us' ? 'link-clicked' : ''} hover:text-[#C5A790] transition-colors duration-300 relative`}
             onClick={() => handleLinkClick('/dashboard-contact-us')}
           >
             Contact Us
@@ -258,12 +258,12 @@ function Header() {
       </div>
 
       <div className="flex items-center gap-4">
-        <Link 
-          href="/favorites" 
-          className={`${isActive('/favorites') ? 'text-cyan-400' : 'text-white'} ${activeLink === '/favorites' ? 'link-clicked' : ''} hover:text-cyan-400 transition-all duration-300 transform hover:scale-110`}
+        <Link
+          href="/favorites"
+          className={`${isActive('/favorites') ? 'text-[#C5A790]' : 'text-white'} ${activeLink === '/favorites' ? 'link-clicked' : ''} hover:text-[#C5A790] transition-all duration-300 transform hover:scale-110`}
           onClick={() => handleLinkClick('/favorites')}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill={isActive('/favorites') ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="hover:fill-cyan-400 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill={isActive('/favorites') ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="hover:fill-[#C5A790] transition-colors">
             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
           </svg>
         </Link>

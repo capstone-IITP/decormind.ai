@@ -34,9 +34,9 @@ export default function ContactUs() {
   // Custom popup component
   const CustomPopup = ({ message, onClose, onAction, isSuccess }) => (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/80">
-      <div className={`bg-zinc-900 border-2 ${isSuccess ? 'border-green-400' : 'border-cyan-400'} rounded-xl p-8 max-w-md w-full mx-4 ${isSuccess ? 'shadow-[0_0_15px_rgba(74,222,128,0.3)]' : 'shadow-[0_0_15px_rgba(34,211,238,0.3)]'} animate-fade-in-scale`}>
+      <div className={`bg-zinc-900 border-2 ${isSuccess ? 'border-green-400' : 'border-[#C5A790]'} rounded-xl p-8 max-w-md w-full mx-4 ${isSuccess ? 'shadow-[0_0_15px_rgba(74,222,128,0.3)]' : 'shadow-[0_0_15px_rgba(197,167,144,0.3)]'} animate-fade-in-scale`}>
         <div className="text-center">
-          <div className={`mx-auto w-12 h-12 ${isSuccess ? 'bg-green-400' : 'bg-cyan-400'} rounded-full flex items-center justify-center text-slate-800 mb-4`}>
+          <div className={`mx-auto w-12 h-12 ${isSuccess ? 'bg-green-400' : 'bg-[#C5A790]'} rounded-full flex items-center justify-center text-slate-800 mb-4`}>
             {isSuccess ? (
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -50,12 +50,12 @@ export default function ContactUs() {
           <h3 className="text-xl font-semibold text-white mb-2">{isSuccess ? 'Success' : 'Notice'}</h3>
           <p className="text-zinc-300 mb-6">{message}</p>
           <div className="flex justify-center">
-            <button 
+            <button
               onClick={() => {
                 onClose();
                 router.push(`/sign-in?redirectUrl=${encodeURIComponent('/dashboard-contact-us')}`);
               }}
-              className={`popup-btn bg-gradient-to-r ${isSuccess ? 'from-green-500 to-green-400' : 'from-cyan-500 to-cyan-400'} text-slate-800 font-medium px-10 py-2 rounded-md hover:opacity-90 transition-colors`}
+              className={`popup-btn bg-gradient-to-r ${isSuccess ? 'from-green-500 to-green-400' : 'from-[#C5A790] to-[#b0927a]'} text-slate-800 font-medium px-10 py-2 rounded-md hover:opacity-90 transition-colors`}
             >
               OK
             </button>
@@ -192,7 +192,7 @@ export default function ContactUs() {
           height: 2px;
           bottom: -4px;
           left: 0;
-          background-color: #22d3ee;
+          background-color: #C5A790;
           transition: width 0.3s ease;
         }
         
@@ -286,7 +286,7 @@ export default function ContactUs() {
           right: -5px;
           bottom: -5px;
           border-radius: 50%;
-          background: radial-gradient(circle, rgba(34, 211, 238, 0.4) 0%, rgba(34, 211, 238, 0) 70%);
+          background: radial-gradient(circle, rgba(197, 167, 144, 0.4) 0%, rgba(197, 167, 144, 0) 70%);
           z-index: -1;
           animation: glow 1.5s infinite alternate;
         }
@@ -316,9 +316,9 @@ export default function ContactUs() {
 
         /* Form field animation */
         @keyframes formFieldFocus {
-          0% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0); }
-          50% { box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.3); }
-          100% { box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.2); }
+          0% { box-shadow: 0 0 0 0 rgba(197, 167, 144, 0); }
+          50% { box-shadow: 0 0 0 4px rgba(197, 167, 144, 0.3); }
+          100% { box-shadow: 0 0 0 2px rgba(197, 167, 144, 0.2); }
         }
         
         .form-field:focus {
@@ -393,36 +393,36 @@ export default function ContactUs() {
   return (
     <div className="min-h-screen bg-black text-white">
       {showPopup && (
-        <CustomPopup 
-          message={popupMessage} 
-          onClose={() => setShowPopup(false)} 
+        <CustomPopup
+          message={popupMessage}
+          onClose={() => setShowPopup(false)}
           onAction={popupAction}
           isSuccess={isSuccessPopup}
         />
       )}
-      
+
       {/* Navigation Bar */}
       <nav className="flex justify-between items-center py-4 px-6 bg-zinc-900 sticky top-0 z-50 shadow-md border-b border-zinc-800 rounded-bl-3xl rounded-br-3xl nav-slide-down">
         <div
           className="flex gap-2 items-center cursor-pointer hover:opacity-80 transition-opacity logo-pulse"
           onClick={() => router.push('/')}
         >
-          <div className="logo-container bg-cyan-400 w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold">DM</div>
-          <h2 className="font-bold text-lg bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text">DecorMind</h2>
+          <div className="logo-container bg-[#C5A790] w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold">DM</div>
+          <h2 className="font-bold text-lg bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text">DecorMind</h2>
         </div>
 
         <div className="absolute left-1/2 transform -translate-x-1/2 flex gap-8 text-sm">
           <nav className="flex gap-6">
             <Link
               href="/dashboard"
-              className={`nav-link ${isActive('/dashboard') ? 'text-cyan-400 active' : 'text-white'} ${activeLink === '/dashboard' ? 'link-clicked' : ''} hover:text-cyan-400 transition-colors duration-300 relative`}
+              className={`nav-link ${isActive('/dashboard') ? 'text-[#C5A790] active' : 'text-white'} ${activeLink === '/dashboard' ? 'link-clicked' : ''} hover:text-[#C5A790] transition-colors duration-300 relative`}
               onClick={() => handleLinkClick('/dashboard')}
             >
               Home
             </Link>
             <Link
               href="/redesign"
-              className={`nav-link ${isActive('/redesign') ? 'text-cyan-400 active' : 'text-white'} ${activeLink === '/redesign' ? 'link-clicked' : ''} hover:text-cyan-400 transition-colors duration-300 relative`}
+              className={`nav-link ${isActive('/redesign') ? 'text-[#C5A790] active' : 'text-white'} ${activeLink === '/redesign' ? 'link-clicked' : ''} hover:text-[#C5A790] transition-colors duration-300 relative`}
               onClick={(e) => {
                 e.preventDefault();
                 handleLinkClick('/redesign');
@@ -432,21 +432,21 @@ export default function ContactUs() {
             </Link>
             <Link
               href="/decormind"
-              className={`nav-link ${isActive('/decormind') ? 'text-cyan-400 active' : 'text-white'} ${activeLink === '/decormind' ? 'link-clicked' : ''} hover:text-cyan-400 transition-colors duration-300 relative`}
+              className={`nav-link ${isActive('/decormind') ? 'text-[#C5A790] active' : 'text-white'} ${activeLink === '/decormind' ? 'link-clicked' : ''} hover:text-[#C5A790] transition-colors duration-300 relative`}
               onClick={() => handleLinkClick('/decormind')}
             >
               DecorMind
             </Link>
             <Link
               href="/dashboard-pricing"
-              className={`nav-link ${isActive('/dashboard-pricing') ? 'text-cyan-400 active' : 'text-white'} ${activeLink === '/dashboard-pricing' ? 'link-clicked' : ''} hover:text-cyan-400 transition-colors duration-300 relative`}
+              className={`nav-link ${isActive('/dashboard-pricing') ? 'text-[#C5A790] active' : 'text-white'} ${activeLink === '/dashboard-pricing' ? 'link-clicked' : ''} hover:text-[#C5A790] transition-colors duration-300 relative`}
               onClick={() => handleLinkClick('/dashboard-pricing')}
             >
               Pricing
             </Link>
             <Link
               href="/dashboard-contact-us"
-              className={`nav-link ${isActive('/dashboard-contact-us') ? 'text-cyan-400 active' : 'text-white'} ${activeLink === '/dashboard-contact-us' ? 'link-clicked' : ''} hover:text-cyan-400 transition-colors duration-300 relative`}
+              className={`nav-link ${isActive('/dashboard-contact-us') ? 'text-[#C5A790] active' : 'text-white'} ${activeLink === '/dashboard-contact-us' ? 'link-clicked' : ''} hover:text-[#C5A790] transition-colors duration-300 relative`}
               onClick={() => handleLinkClick('/dashboard-contact-us')}
             >
               Contact Us
@@ -463,7 +463,7 @@ export default function ContactUs() {
       <div className="py-16 px-6 fade-in">
         <div className="max-w-3xl mx-auto">
           <div className="bg-zinc-900 p-8 rounded-xl border border-zinc-800 shadow-lg">
-            <h1 className="text-3xl font-bold mb-6 bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text">Contact Us</h1>
+            <h1 className="text-3xl font-bold mb-6 bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text">Contact Us</h1>
 
             <p className="text-zinc-300 mb-8">Have questions or need assistance? Reach out to our team and we'll get back to you as soon as possible.</p>
 
@@ -478,7 +478,7 @@ export default function ContactUs() {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-4 py-2 bg-black border border-zinc-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 form-field transition-all duration-300"
+                      className="w-full px-4 py-2 bg-black border border-zinc-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-[#C5A790] form-field transition-all duration-300"
                       placeholder="Your name"
                       required={true}
                     />
@@ -491,7 +491,7 @@ export default function ContactUs() {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-4 py-2 bg-black border border-zinc-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 form-field transition-all duration-300"
+                      className="w-full px-4 py-2 bg-black border border-zinc-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-[#C5A790] form-field transition-all duration-300"
                       placeholder="Your email"
                       required={true}
                     />
@@ -505,7 +505,7 @@ export default function ContactUs() {
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 bg-black border border-zinc-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 form-field transition-all duration-300"
+                    className="w-full px-4 py-2 bg-black border border-zinc-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-[#C5A790] form-field transition-all duration-300"
                     placeholder="Subject"
                     required={true}
                   />
@@ -518,7 +518,7 @@ export default function ContactUs() {
                     value={formData.message}
                     onChange={handleChange}
                     rows="4"
-                    className="w-full px-4 py-2 bg-black border border-zinc-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 form-field transition-all duration-300"
+                    className="w-full px-4 py-2 bg-black border border-zinc-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-[#C5A790] form-field transition-all duration-300"
                     placeholder="Your message"
                     required={true}
                   ></textarea>
@@ -526,7 +526,7 @@ export default function ContactUs() {
                 <div className="text-center">
                   <Button
                     type="submit"
-                    className="bg-cyan-400 text-slate-800 hover:bg-cyan-500 transition-all duration-300 transform hover:scale-[1.02]"
+                    className="bg-[#C5A790] text-slate-800 hover:bg-[#b0927a] transition-all duration-300 transform hover:scale-[1.02]"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? 'Sending...' : 'Send Message'}
@@ -569,12 +569,12 @@ export default function ContactUs() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
                   <h3 className="text-lg font-semibold mb-3 text-white">Email Us</h3>
-                  <p className="text-zinc-300">For general inquiries: <a href="mailto:ai.decormind@gmail.com" className="text-cyan-400 hover:underline">ai.decormind@gmail.com</a></p>
+                  <p className="text-zinc-300">For general inquiries: <a href="mailto:ai.decormind@gmail.com" className="text-[#C5A790] hover:underline">ai.decormind@gmail.com</a></p>
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold mb-3 text-white">Address</h3>
                   <a href="https://maps.google.com/?q=Old+Kondli,+Delhi,+110096" target="_blank" rel="noopener noreferrer" className="text-zinc-300 flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#C5A790]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
@@ -584,17 +584,17 @@ export default function ContactUs() {
                 <div>
                   <h3 className="text-lg font-semibold mb-3 text-white">Follow Us</h3>
                   <div className="flex gap-4">
-                    <a href="#" className="text-white hover:text-cyan-400 transform transition-transform duration-300 hover:-translate-y-1">
+                    <a href="#" className="text-white hover:text-[#C5A790] transform transition-transform duration-300 hover:-translate-y-1">
                       <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 48 48">
                         <linearGradient id="Ld6sqrtcxMyckEl6xeDdMa_uLWV5A9vXIPu_gr1" x1="9.993" x2="40.615" y1="9.993" y2="40.615" gradientUnits="userSpaceOnUse"><stop offset="0" stopColor="#2aa4f4"></stop><stop offset="1" stopColor="#007ad9"></stop></linearGradient><path fill="url(#Ld6sqrtcxMyckEl6xeDdMa_uLWV5A9vXIPu_gr1)" d="M24,4C12.954,4,4,12.954,4,24s8.954,20,20,20s20-8.954,20-20S35.046,4,24,4z"></path><path fill="#fff" d="M26.707,29.301h5.176l0.813-5.258h-5.989v-2.874c0-2.184,0.714-4.121,2.757-4.121h3.283V12.46 c-0.577-0.078-1.797-0.248-4.102-0.248c-4.814,0-7.636,2.542-7.636,8.334v3.498H16.06v5.258h4.948v14.452 C21.988,43.9,22.981,44,24,44c0.921,0,1.82-0.084,2.707-0.204V29.301z"></path>
                       </svg>
                     </a>
-                    <a href="#" className="text-white hover:text-cyan-400 transform transition-transform duration-300 hover:-translate-y-1">
+                    <a href="#" className="text-white hover:text-[#C5A790] transform transition-transform duration-300 hover:-translate-y-1">
                       <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 48 48">
                         <radialGradient id="yOrnnhliCrdS2gy~4tD8ma_Xy10Jcu1L2Su_gr1" cx="19.38" cy="42.035" r="44.899" gradientUnits="userSpaceOnUse"><stop offset="0" stopColor="#fd5"></stop><stop offset=".328" stopColor="#ff543f"></stop><stop offset=".348" stopColor="#fc5245"></stop><stop offset=".504" stopColor="#e64771"></stop><stop offset=".643" stopColor="#d53e91"></stop><stop offset=".761" stopColor="#cc39a4"></stop><stop offset=".841" stopColor="#c837ab"></stop></radialGradient><path fill="url(#yOrnnhliCrdS2gy~4tD8ma_Xy10Jcu1L2Su_gr1)" d="M34.017,41.99l-20,0.019c-4.4,0.004-8.003-3.592-8.008-7.992l-0.019-20	c-0.004-4.4,3.592-8.003,7.992-8.008l20-0.019c4.4-0.004,8.003,3.592,8.008,7.992l0.019,20	C42.014,38.383,38.417,41.986,34.017,41.99z"></path><radialGradient id="yOrnnhliCrdS2gy~4tD8mb_Xy10Jcu1L2Su_gr2" cx="11.786" cy="5.54" r="29.813" gradientTransform="matrix(1 0 0 .6663 0 1.849)" gradientUnits="userSpaceOnUse"><stop offset="0" stopColor="#4168c9"></stop><stop offset=".999" stopColor="#4168c9" stopOpacity="0"></stop></radialGradient><path fill="url(#yOrnnhliCrdS2gy~4tD8mb_Xy10Jcu1L2Su_gr2)" d="M34.017,41.99l-20,0.019c-4.4,0.004-8.003-3.592-8.008-7.992l-0.019-20	c-0.004-4.4,3.592-8.003,7.992-8.008l20-0.019c4.4-0.004,8.003,3.592,8.008,7.992l0.019,20	C42.014,38.383,38.417,41.986,34.017,41.99z"></path><path fill="#fff" d="M24,31c-3.859,0-7-3.14-7-7s3.141-7,7-7s7,3.14,7,7S27.859,31,24,31z M24,19c-2.757,0-5,2.243-5,5	s2.243,5,5,5s5-2.243,5-5S26.757,19,24,19z"></path><circle cx="31.5" cy="16.5" r="1.5" fill="#fff"></circle><path fill="#fff" d="M30,37H18c-3.859,0-7-3.14-7-7V18c0-3.86,3.141-7,7-7h12c3.859,0,7,3.14,7,7v12	C37,33.86,33.859,37,30,37z M18,13c-2.757,0-5,2.243-5,5v12c0,2.757,2.243,5,5,5h12c2.757,0,5-2.243,5-5V18c0-2.757-2.243-5-5-5H18z"></path>
                       </svg>
                     </a>
-                    <a href="#" className="text-white hover:text-cyan-400 transform transition-transform duration-300 hover:-translate-y-1">
+                    <a href="#" className="text-white hover:text-[#C5A790] transform transition-transform duration-300 hover:-translate-y-1">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"></path>
                       </svg>
@@ -612,8 +612,8 @@ export default function ContactUs() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="bg-cyan-400 w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold">DM</div>
-              <h1 className="text-lg font-bold bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text">DecorMind</h1>
+              <div className="bg-[#C5A790] w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold">DM</div>
+              <h1 className="text-lg font-bold bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text">DecorMind</h1>
             </div>
           </div>
           <div>

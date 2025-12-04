@@ -24,8 +24,8 @@ export default function DecorMind() {
       style = document.createElement('style');
       style.innerHTML = `
         @keyframes highlightSection {
-          0% { background-color: rgba(34, 211, 238, 0.1); }
-          50% { background-color: rgba(34, 211, 238, 0.2); }
+          0% { background-color: rgba(197, 167, 144, 0.1); }
+          50% { background-color: rgba(197, 167, 144, 0.2); }
           100% { background-color: transparent; }
         }
         
@@ -35,8 +35,8 @@ export default function DecorMind() {
 
         /* Special animation for contact section */
         @keyframes highlightContactSection {
-          0% { background-color: rgba(34, 211, 238, 0.15); }
-          50% { background-color: rgba(34, 211, 238, 0.3); }
+          0% { background-color: rgba(197, 167, 144, 0.15); }
+          50% { background-color: rgba(197, 167, 144, 0.3); }
           100% { background-color: rgba(24, 24, 27, 1); } /* bg-zinc-900 */
         }
         
@@ -46,9 +46,9 @@ export default function DecorMind() {
 
         /* Contact form highlight animation */
         @keyframes highlightContactForm {
-          0% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.3); }
-          50% { box-shadow: 0 0 20px 5px rgba(34, 211, 238, 0.5); }
-          100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0); }
+          0% { box-shadow: 0 0 0 0 rgba(197, 167, 144, 0.3); }
+          50% { box-shadow: 0 0 20px 5px rgba(197, 167, 144, 0.5); }
+          100% { box-shadow: 0 0 0 0 rgba(197, 167, 144, 0); }
         }
         
         #contact.highlight-section form {
@@ -71,7 +71,7 @@ export default function DecorMind() {
 
         .success-popup-content {
           background-color: #18181b;
-          border: 2px solid #22d3ee;
+          border: 2px solid #C5A790;
           border-radius: 12px;
           padding: 20px 30px;
           text-align: center;
@@ -91,7 +91,7 @@ export default function DecorMind() {
         }
 
         .success-popup button {
-          background-color: #22d3ee;
+          background-color: #C5A790;
           color: #000;
           border: none;
           border-radius: 50px;
@@ -103,7 +103,7 @@ export default function DecorMind() {
         }
 
         .success-popup button:hover {
-          background-color: #0cb8de;
+          background-color: #b0927a;
           transform: scale(1.05);
         }
         
@@ -134,7 +134,7 @@ export default function DecorMind() {
         }
         
         .heading-highlight {
-          background-image: linear-gradient(transparent 60%, rgba(34, 211, 238, 0.2) 40%);
+          background-image: linear-gradient(transparent 60%, rgba(197, 167, 144, 0.2) 40%);
           background-size: 100% 0%;
           background-repeat: no-repeat;
           animation: headingHighlight 0.8s ease-out forwards;
@@ -144,15 +144,15 @@ export default function DecorMind() {
         @keyframes iconPulse {
           0% { 
             transform: scale(1);
-            box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.7);
+            box-shadow: 0 0 0 0 rgba(197, 167, 144, 0.7);
           }
           70% { 
             transform: scale(1.1);
-            box-shadow: 0 0 0 10px rgba(34, 211, 238, 0);
+            box-shadow: 0 0 0 10px rgba(197, 167, 144, 0);
           }
           100% { 
             transform: scale(1);
-            box-shadow: 0 0 0 0 rgba(34, 211, 238, 0);
+            box-shadow: 0 0 0 0 rgba(197, 167, 144, 0);
           }
         }
         
@@ -169,7 +169,7 @@ export default function DecorMind() {
         
         .nav-link-clicked {
           animation: navLinkClick 0.3s ease-out;
-          color: #22d3ee !important;
+          color: #C5A790 !important;
         }
 
         /* Navigation link hover animation */
@@ -185,7 +185,7 @@ export default function DecorMind() {
           height: 2px;
           bottom: -4px;
           left: 0;
-          background-color: #22d3ee;
+          background-color: #C5A790;
           transition: width 0.3s ease;
         }
         
@@ -425,15 +425,15 @@ export default function DecorMind() {
       {/* Navigation Bar */}
       <nav className="flex justify-between items-center py-4 px-6 bg-zinc-900 sticky top-0 z-50 shadow-md border-b border-zinc-800 rounded-bl-3xl rounded-br-3xl nav-slide-down">
         <div className="flex items-center gap-2 cursor-pointer" onClick={() => router.push('/')}>
-          <div className="bg-cyan-400 w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold">DM</div>
-          <h1 className="text-lg font-bold bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text">DecorMind</h1>
+          <div className="bg-[#C5A790] w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold">DM</div>
+          <h1 className="text-lg font-bold bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text">DecorMind</h1>
         </div>
         <div className="absolute left-1/2 transform -translate-x-1/2 flex gap-8 text-sm">
-          <Link href="/dashboard" className="nav-link hover:text-cyan-400 text-white transition-colors duration-300 relative" prefetch={true}>Home</Link>
-          <Link href="/redesign" className="nav-link hover:text-cyan-400 text-white transition-colors duration-300 relative" prefetch={true}>Redesign</Link>
-          <Link href="/decormind" className="nav-link text-cyan-400 transition-colors duration-300 relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-cyan-400" prefetch={true}>DecorMind</Link>
-          <Link href="/dashboard-pricing" className="nav-link hover:text-cyan-400 text-white transition-colors duration-300 relative" prefetch={true}>Pricing</Link>
-          <Link href="/dashboard-contact-us" className="nav-link hover:text-cyan-400 text-white transition-colors duration-300">Contact Us</Link>
+          <Link href="/dashboard" className="nav-link hover:text-[#C5A790] text-white transition-colors duration-300 relative" prefetch={true}>Home</Link>
+          <Link href="/redesign" className="nav-link hover:text-[#C5A790] text-white transition-colors duration-300 relative" prefetch={true}>Redesign</Link>
+          <Link href="/decormind" className="nav-link text-[#C5A790] transition-colors duration-300 relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-[#C5A790]" prefetch={true}>DecorMind</Link>
+          <Link href="/dashboard-pricing" className="nav-link hover:text-[#C5A790] text-white transition-colors duration-300 relative" prefetch={true}>Pricing</Link>
+          <Link href="/dashboard-contact-us" className="nav-link hover:text-[#C5A790] text-white transition-colors duration-300">Contact Us</Link>
         </div>
         <div>
           <UserButton afterSignOutUrl="/" />
@@ -443,12 +443,12 @@ export default function DecorMind() {
       {/* Hero Section */}
       <div className="relative px-6 py-16 bg-black flex flex-col items-center">
         <div className="max-w-3xl text-center z-10">
-          <h2 className="text-4xl font-bold bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text mb-4">Meet DecorMind</h2>
+          <h2 className="text-4xl font-bold bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text mb-4">Meet DecorMind</h2>
           <p className="text-lg text-white mb-6">
             Your AI interior design assistant that understands your style, preferences, and needs.
           </p>
           <Button
-            className="bg-cyan-400 text-slate-800 hover:bg-cyan-500 px-6 py-3 rounded-md font-medium transition-colors"
+            className="bg-[#C5A790] text-slate-800 hover:bg-[#b0927a] px-6 py-3 rounded-md font-medium transition-colors"
             onClick={handleTryDecorMind}
           >
             Try DecorMind Now
@@ -459,24 +459,24 @@ export default function DecorMind() {
       {/* Features Section */}
       <div className="py-16 px-6 bg-zinc-950">
         <div className="max-w-6xl mx-auto">
-          <h3 className="text-2xl font-bold text-center bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text mb-12">What DecorMind Can Do</h3>
+          <h3 className="text-2xl font-bold text-center bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text mb-12">What DecorMind Can Do</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-black border border-zinc-800 p-6 rounded-lg">
-              <div className="w-12 h-12 bg-cyan-400 rounded-full flex items-center justify-center text-slate-800 mb-4">
+              <div className="w-12 h-12 bg-[#C5A790] rounded-full flex items-center justify-center text-slate-800 mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
               </div>
               <h4 className="text-lg font-bold mb-2 text-white">Personalized Advice</h4>
               <p className="text-white text-sm">Get tailored interior design recommendations based on your preferences, space, and budget.</p>
             </div>
             <div className="bg-black border border-zinc-800 p-6 rounded-lg">
-              <div className="w-12 h-12 bg-cyan-400 rounded-full flex items-center justify-center text-slate-800 mb-4">
+              <div className="w-12 h-12 bg-[#C5A790] rounded-full flex items-center justify-center text-slate-800 mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
               </div>
               <h4 className="text-lg font-bold mb-2 text-white">Design Q&A</h4>
               <p className="text-white text-sm">Ask any interior design questions and get expert answers instantly.</p>
             </div>
             <div className="bg-black border border-zinc-800 p-6 rounded-lg">
-              <div className="w-12 h-12 bg-cyan-400 rounded-full flex items-center justify-center text-slate-800 mb-4">
+              <div className="w-12 h-12 bg-[#C5A790] rounded-full flex items-center justify-center text-slate-800 mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
               </div>
               <h4 className="text-lg font-bold mb-2 text-white">Style Suggestions</h4>
@@ -489,11 +489,11 @@ export default function DecorMind() {
       {/* How It Works Section */}
       <div className="py-16 px-6 bg-black">
         <div className="max-w-4xl mx-auto">
-          <h3 className="text-2xl font-bold text-center bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text mb-12">How DecorMind Works</h3>
+          <h3 className="text-2xl font-bold text-center bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text mb-12">How DecorMind Works</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div className="bg-zinc-900 p-8 rounded-lg border border-zinc-800">
               <div className="mb-6">
-                <span className="bg-cyan-400 text-slate-800 px-3 py-1 rounded-full text-sm font-medium">Step 1</span>
+                <span className="bg-[#C5A790] text-slate-800 px-3 py-1 rounded-full text-sm font-medium">Step 1</span>
               </div>
               <h4 className="text-xl font-bold mb-4 text-white">Start a Conversation</h4>
               <p className="text-white mb-6">
@@ -505,7 +505,7 @@ export default function DecorMind() {
             </div>
             <div className="bg-zinc-900 p-8 rounded-lg border border-zinc-800">
               <div className="mb-6">
-                <span className="bg-cyan-400 text-slate-800 px-3 py-1 rounded-full text-sm font-medium">Step 2</span>
+                <span className="bg-[#C5A790] text-slate-800 px-3 py-1 rounded-full text-sm font-medium">Step 2</span>
               </div>
               <h4 className="text-xl font-bold mb-4 text-white">Get Personalized Guidance</h4>
               <p className="text-white mb-6">
@@ -522,13 +522,13 @@ export default function DecorMind() {
       {/* CTA Section */}
       <div className="py-16 px-6 text-center bg-zinc-950">
         <div className="max-w-3xl mx-auto">
-          <h3 className="text-2xl font-bold bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text mb-4">Ready to Transform Your Space?</h3>
+          <h3 className="text-2xl font-bold bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text mb-4">Ready to Transform Your Space?</h3>
           <p className="text-white mb-8">
             Get unlimited access to DecorMind with our premium plans.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
-              className="bg-cyan-400 text-slate-800 hover:bg-cyan-500"
+              className="bg-[#C5A790] text-slate-800 hover:bg-[#b0927a]"
               onClick={handleStartFreeTrial}
             >
               Start Free Trial
@@ -548,8 +548,8 @@ export default function DecorMind() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="bg-cyan-400 w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold">DM</div>
-              <h1 className="text-lg font-bold bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text">DecorMind</h1>
+              <div className="bg-[#C5A790] w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold">DM</div>
+              <h1 className="text-lg font-bold bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text">DecorMind</h1>
             </div>
           </div>
           <div>

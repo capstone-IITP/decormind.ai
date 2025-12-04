@@ -15,7 +15,7 @@ import 'swiper/css/pagination';
 const DiningRoomCarousel = ({ onSeeMoreClick }) => {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
-  
+
   // Dining room transformations data
   const diningRoomTransformations = [
     {
@@ -43,7 +43,7 @@ const DiningRoomCarousel = ({ onSeeMoreClick }) => {
 
   useEffect(() => {
     setMounted(true);
-    
+
     // Add custom styles for the carousel
     const style = document.createElement('style');
     style.textContent = `
@@ -53,7 +53,7 @@ const DiningRoomCarousel = ({ onSeeMoreClick }) => {
       }
       
       .dining-room-carousel .swiper-pagination-bullet {
-        background-color: #22d3ee;
+        background-color: #C5A790;
         opacity: 0.5;
       }
       
@@ -64,7 +64,7 @@ const DiningRoomCarousel = ({ onSeeMoreClick }) => {
       
       .dining-room-carousel .swiper-button-next,
       .dining-room-carousel .swiper-button-prev {
-        color: #22d3ee;
+        color: #C5A790;
         background: rgba(0, 0, 0, 0.3);
         width: 40px;
         height: 40px;
@@ -94,7 +94,7 @@ const DiningRoomCarousel = ({ onSeeMoreClick }) => {
       }
     `;
     document.head.appendChild(style);
-    
+
     return () => {
       document.head.removeChild(style);
     };
@@ -106,7 +106,7 @@ const DiningRoomCarousel = ({ onSeeMoreClick }) => {
 
   return (
     <div className="dining-room-carousel">
-      
+
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         spaceBetween={20}
@@ -130,12 +130,12 @@ const DiningRoomCarousel = ({ onSeeMoreClick }) => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
                   <div className="p-6">
-                    <span className="bg-cyan-400 text-slate-800 px-3 py-1 rounded-full text-sm font-medium">Before</span>
+                    <span className="bg-[#C5A790] text-slate-800 px-3 py-1 rounded-full text-sm font-medium">Before</span>
                     <h3 className="text-xl font-bold text-white mt-2">{item.beforeTitle}</h3>
                   </div>
                 </div>
               </div>
-              
+
               <div className="relative h-80 rounded-xl overflow-hidden group">
                 <Image
                   src={item.afterImage}
@@ -146,7 +146,7 @@ const DiningRoomCarousel = ({ onSeeMoreClick }) => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
                   <div className="p-6">
-                    <span className="bg-cyan-400 text-slate-800 px-3 py-1 rounded-full text-sm font-medium">After</span>
+                    <span className="bg-[#C5A790] text-slate-800 px-3 py-1 rounded-full text-sm font-medium">After</span>
                     <h3 className="text-xl font-bold text-white mt-2">{item.afterTitle}</h3>
                   </div>
                 </div>
@@ -155,10 +155,10 @@ const DiningRoomCarousel = ({ onSeeMoreClick }) => {
           </SwiperSlide>
         ))}
       </Swiper>
-      
+
       <div className="text-center fade-in">
-        <Button 
-          className="bg-cyan-400 text-slate-800 hover:bg-cyan-500"
+        <Button
+          className="bg-[#C5A790] text-slate-800 hover:bg-[#b0927a]"
           onClick={onSeeMoreClick}
         >
           See More Dining Room Designs

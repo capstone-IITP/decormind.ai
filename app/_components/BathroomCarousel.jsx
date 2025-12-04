@@ -15,7 +15,7 @@ import 'swiper/css/pagination';
 const BathroomCarousel = ({ onSeeMoreClick }) => {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
-  
+
   // Bathroom transformations data
   const bathroomTransformations = [
     {
@@ -43,7 +43,7 @@ const BathroomCarousel = ({ onSeeMoreClick }) => {
 
   useEffect(() => {
     setMounted(true);
-    
+
     // Add custom styles for the carousel
     const style = document.createElement('style');
     style.textContent = `
@@ -53,7 +53,7 @@ const BathroomCarousel = ({ onSeeMoreClick }) => {
       }
       
       .bathroom-carousel .swiper-pagination-bullet {
-        background-color: #22d3ee;
+        background-color: #C5A790;
         opacity: 0.5;
       }
       
@@ -64,7 +64,7 @@ const BathroomCarousel = ({ onSeeMoreClick }) => {
       
       .bathroom-carousel .swiper-button-next,
       .bathroom-carousel .swiper-button-prev {
-        color: #22d3ee;
+        color: #C5A790;
         background: rgba(0, 0, 0, 0.3);
         width: 40px;
         height: 40px;
@@ -94,27 +94,13 @@ const BathroomCarousel = ({ onSeeMoreClick }) => {
       }
     `;
     document.head.appendChild(style);
-    
+
     return () => {
       document.head.removeChild(style);
     };
   }, []);
 
   if (!mounted) {
-    return null;
-  }
-
-  return (
-    <div className="bathroom-carousel w-full max-w-5xl mx-auto mb-16">
-      <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-white mb-4 bg-gradient-to-r from-[#1e3a5c] via-[#22d3ee] to-[#4ade80] text-transparent bg-clip-text px-2 py-2 inline-block w-auto">
-          Bathroom Transformations
-        </h2>
-        <p className="text-xl text-zinc-400 max-w-3xl mx-auto">
-          See the dramatic before and after results of our AI-powered bathroom redesigns
-        </p>
-      </div>
-      
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         spaceBetween={30}
@@ -129,8 +115,8 @@ const BathroomCarousel = ({ onSeeMoreClick }) => {
           <SwiperSlide key={transformation.id}>
             <div className="grid grid-cols-2 h-[500px] relative">
               <div className="relative">
-                <Image 
-                  src={transformation.beforeImage} 
+                <Image
+                  src={transformation.beforeImage}
                   alt={transformation.beforeTitle}
                   fill
                   className="object-cover"
@@ -141,13 +127,13 @@ const BathroomCarousel = ({ onSeeMoreClick }) => {
                 </div>
               </div>
               <div className="relative">
-                <Image 
-                  src={transformation.afterImage} 
+                <Image
+                  src={transformation.afterImage}
                   alt={transformation.afterTitle}
                   fill
                   className="object-cover"
                 />
-                <div className="absolute bottom-4 right-4 bg-cyan-400/90 text-slate-800 px-4 py-2 rounded-lg">
+                <div className="absolute bottom-4 right-4 bg-[#C5A790]/90 text-slate-800 px-4 py-2 rounded-lg">
                   <h3 className="text-lg font-bold">{transformation.afterTitle}</h3>
                   <p className="text-sm">After</p>
                 </div>
@@ -156,15 +142,15 @@ const BathroomCarousel = ({ onSeeMoreClick }) => {
           </SwiperSlide>
         ))}
       </Swiper>
-      
+
       <div className="flex justify-center mt-8 gap-4">
         <Button
-          className="bg-cyan-400 text-slate-800 hover:bg-cyan-500"
+          className="bg-[#C5A790] text-slate-800 hover:bg-[#b0927a]"
           onClick={() => router.push('/redesign')}
         >
           Redesign My Bathroom
         </Button>
-        
+
         {onSeeMoreClick && (
           <Button
             className="bg-zinc-700 hover:bg-zinc-600 text-white"
@@ -174,7 +160,7 @@ const BathroomCarousel = ({ onSeeMoreClick }) => {
           </Button>
         )}
       </div>
-    </div>
+    </div >
   );
 };
 

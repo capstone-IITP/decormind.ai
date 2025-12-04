@@ -19,14 +19,14 @@ const PaymentButton = ({ amount = 500, buttonText = 'Pay Now', className = '', o
     if (window.Razorpay) {
       setIsRazorpayLoaded(true);
     }
-    
+
     // Create overlay element if it doesn't exist
     if (!document.querySelector('.razorpay-payment-overlay')) {
       const overlay = document.createElement('div');
       overlay.className = 'razorpay-payment-overlay';
       document.body.appendChild(overlay);
     }
-    
+
     // Cleanup function to remove overlay when component unmounts
     return () => {
       const overlay = document.querySelector('.razorpay-payment-overlay');
@@ -74,21 +74,21 @@ const PaymentButton = ({ amount = 500, buttonText = 'Pay Now', className = '', o
 
     try {
       setIsProcessing(true);
-      
+
       console.log("Creating Razorpay order with amount:", amount);
-      
+
       // Get auth token
       const token = await getToken();
-      
+
       // Create order on the server
       const res = await fetch("/api/razorpay", {
         method: "POST",
-        headers: { 
+        headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${token}`
         },
         credentials: 'include',
-        body: JSON.stringify({ 
+        body: JSON.stringify({
           amount: Math.max(100, Math.round(amount)) // Ensure minimum 1 INR (100 paise) and round to integer
         }),
       });
@@ -102,7 +102,7 @@ const PaymentButton = ({ amount = 500, buttonText = 'Pay Now', className = '', o
           router.push('/sign-in?redirectUrl=' + encodeURIComponent(window.location.pathname));
           return; // Return early instead of throwing an error
         }
-        
+
         const errorData = await res.json();
         throw new Error(errorData.error || 'Failed to create payment order');
       }
@@ -127,10 +127,10 @@ const PaymentButton = ({ amount = 500, buttonText = 'Pay Now', className = '', o
         handler: function (response) {
           // Hide overlay when payment is successful
           hideOverlay();
-          
+
           // Handle successful payment
           setIsProcessing(false);
-          
+
           // Call the success callback if provided
           if (onSuccess && typeof onSuccess === 'function') {
             onSuccess(response);
@@ -140,7 +140,7 @@ const PaymentButton = ({ amount = 500, buttonText = 'Pay Now', className = '', o
           }
         },
         modal: {
-          ondismiss: function() {
+          ondismiss: function () {
             // Hide overlay when Razorpay modal is dismissed
             hideOverlay();
             setIsProcessing(false);
@@ -149,7 +149,7 @@ const PaymentButton = ({ amount = 500, buttonText = 'Pay Now', className = '', o
           backdropclose: false
         },
         theme: {
-          color: "#22d3ee" // Cyan color to match the site theme
+          color: "#C5A790" // Beige color to match the site theme
         }
       };
 
@@ -162,13 +162,13 @@ const PaymentButton = ({ amount = 500, buttonText = 'Pay Now', className = '', o
 
       // Initialize Razorpay
       const paymentObject = new window.Razorpay(options);
-      paymentObject.on('payment.failed', function (response){
+      paymentObject.on('payment.failed', function (response) {
         console.error("Payment failed:", response.error);
         alert(`Payment failed: ${response.error.description}`);
         hideOverlay();
         setIsProcessing(false);
       });
-      
+
       // Open the Razorpay dialog
       setTimeout(() => {
         paymentObject.open();
@@ -190,7 +190,7 @@ const PaymentButton = ({ amount = 500, buttonText = 'Pay Now', className = '', o
         onLoad={handleRazorpayLoad}
         strategy="lazyOnload"
       />
-      
+
       <Button
         onClick={handlePayment}
         disabled={isProcessing || !isRazorpayLoaded}

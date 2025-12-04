@@ -495,7 +495,7 @@ function FavoritesContent() {
     <div className="min-h-screen bg-gradient-to-b from-black to-zinc-900 text-white">
       <div className="container mx-auto px-4 py-8">
         <div className="flex items-center justify-between mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#1e3a5c] via-[#22d3ee] to-[#4ade80] text-transparent bg-clip-text">
+          <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text">
             My Favorite Designs
           </h1>
 
@@ -512,7 +512,7 @@ function FavoritesContent() {
 
             <Button
               onClick={() => router.push('/redesign')}
-              className="bg-gradient-to-r from-[#1e3a5c] via-[#22d3ee] to-[#4ade80] text-white hover:opacity-90 transition-all duration-300"
+              className="bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-white hover:opacity-90 transition-all duration-300"
             >
               Create New Design
             </Button>
@@ -521,7 +521,7 @@ function FavoritesContent() {
 
         {isLoading ? (
           <div className="flex justify-center items-center py-20">
-            <div className="w-10 h-10 border-4 border-[#22d3ee] border-t-transparent rounded-full animate-spin"></div>
+            <div className="w-10 h-10 border-4 border-[#C5A790] border-t-transparent rounded-full animate-spin"></div>
           </div>
         ) : favorites.length === 0 ? (
           <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-8 text-center shadow-xl">
@@ -536,7 +536,7 @@ function FavoritesContent() {
             </p>
             <Button
               onClick={() => router.push('/redesign')}
-              className="bg-gradient-to-r from-[#1e3a5c] via-[#22d3ee] to-[#4ade80] text-white hover:opacity-90 transition-all duration-300"
+              className="bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-white hover:opacity-90 transition-all duration-300"
             >
               Create Your First Design
             </Button>
@@ -544,7 +544,7 @@ function FavoritesContent() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {favorites.map((favorite) => (
-              <div key={favorite.id} className="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-[0_0_15px_rgba(34,211,238,0.3)] hover:border-[#22d3ee]/50">
+              <div key={favorite.id} className="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-[0_0_15px_rgba(197,167,144,0.3)] hover:border-[#C5A790]/50">
                 <div
                   key={`image-container-${favorite.id}`}
                   className="relative cursor-pointer h-48 overflow-hidden"
@@ -560,7 +560,7 @@ function FavoritesContent() {
                   />
                   {/* Add DecorMind watermark overlay */}
                   <div className="absolute top-2 right-2 text-white text-sm font-bold drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]" style={{
-                    background: 'linear-gradient(90deg, #1e3a5c, #22d3ee, #4ade80)',
+                    background: 'linear-gradient(90deg, #1A1A1A, #C5A790, #FFF)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     padding: '2px 6px',
@@ -634,7 +634,7 @@ function FavoritesContent() {
                     <Button
                       key={`similar-btn-${favorite.id}`}
                       onClick={() => router.push('/redesign')}
-                      className="bg-[#22d3ee] text-black hover:bg-[#22d3ee]/90 transition-all duration-300 text-sm"
+                      className="bg-[#C5A790] text-black hover:bg-[#C5A790]/90 transition-all duration-300 text-sm"
                     >
                       Create Similar
                     </Button>
@@ -678,7 +678,7 @@ function FavoritesContent() {
                   />
                   {/* Add DecorMind watermark overlay */}
                   <div className="absolute top-4 right-4 text-white text-sm font-bold drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]" style={{
-                    background: 'linear-gradient(90deg, #1e3a5c, #22d3ee, #4ade80)',
+                    background: 'linear-gradient(90deg, #1A1A1A, #C5A790, #FFF)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     padding: '2px 6px',
@@ -798,7 +798,7 @@ function FavoritesContent() {
                       router.push('/redesign');
                       handleCloseModal();
                     }}
-                    className="bg-[#22d3ee] text-black hover:bg-[#22d3ee]/90 transition-all duration-300"
+                    className="bg-[#C5A790] text-black hover:bg-[#C5A790]/90 transition-all duration-300"
                   >
                     Create Similar Design
                   </Button>
@@ -828,7 +828,7 @@ function FavoritesContent() {
                 handleShareDesign(e, favorites[0]);
               }
             }}
-            className="bg-gradient-to-r from-[#1e3a5c] via-[#22d3ee] to-[#4ade80] text-white p-3 rounded-full shadow-lg hover:opacity-90 transition-all duration-300"
+            className="bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-white p-3 rounded-full shadow-lg hover:opacity-90 transition-all duration-300"
             aria-label="Share design"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

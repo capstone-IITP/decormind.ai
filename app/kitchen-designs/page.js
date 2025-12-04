@@ -75,7 +75,7 @@ export default function KitchenDesigns() {
             }
             
             .heading-highlight {
-                background: linear-gradient(90deg, rgba(30, 58, 92, 0.1), rgba(34, 211, 238, 0.2), rgba(74, 222, 128, 0.1));
+                background: linear-gradient(90deg, rgba(30, 58, 92, 0.1), rgba(197, 167, 144, 0.2), rgba(74, 222, 128, 0.1));
                 background-size: 200% 100%;
                 border-radius: 4px;
             }
@@ -179,80 +179,80 @@ export default function KitchenDesigns() {
                     className="flex gap-2 items-center cursor-pointer hover:opacity-80 transition-opacity mb-4 md:mb-0"
                     onClick={() => router.push('/')}
                 >
-                    <div className="bg-cyan-400 w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold">DM</div>
-                    <h2 className="font-bold text-lg bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text">DecorMind</h2>
+                    <div className="bg-[#C5A790] w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold">DM</div>
+                    <h2 className="font-bold text-lg bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text">DecorMind</h2>
                 </div>
 
                 <nav className="flex gap-4 md:gap-6 mx-auto justify-center flex-wrap" style={{ fontSize: '0.875rem' }}>
-                    <Link href="/" className="text-white hover:text-cyan-400 transition-colors relative group">
+                    <Link href="/" className="text-white hover:text-[#C5A790] transition-colors relative group">
                         Home
-                        <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+                        <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-[#C5A790] transition-all duration-300 group-hover:w-full"></span>
                     </Link>
                     <Link
                         href="/#features"
-                        className="text-white hover:text-cyan-400 transition-colors relative group"
+                        className="text-white hover:text-[#C5A790] transition-colors relative group"
                         onClick={(e) => {
                             e.preventDefault();
                             handleLinkClick('/#features');
                         }}
                     >
                         Features
-                        <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+                        <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-[#C5A790] transition-all duration-300 group-hover:w-full"></span>
                     </Link>
                     <Link
                         href="/#how-it-works"
-                        className="text-white hover:text-cyan-400 transition-colors relative group"
+                        className="text-white hover:text-[#C5A790] transition-colors relative group"
                         onClick={(e) => {
                             e.preventDefault();
                             handleLinkClick('/#how-it-works');
                         }}
                     >
                         How it Works
-                        <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+                        <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-[#C5A790] transition-all duration-300 group-hover:w-full"></span>
                     </Link>
                     <Link
                         href="/#gallery"
-                        className="text-white hover:text-cyan-400 transition-colors relative group"
+                        className="text-white hover:text-[#C5A790] transition-colors relative group"
                         onClick={(e) => {
                             e.preventDefault();
                             handleLinkClick('/#gallery');
                         }}
                     >
                         Gallery
-                        <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+                        <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-[#C5A790] transition-all duration-300 group-hover:w-full"></span>
                     </Link>
                     <Link
                         href="/#Tutorial Video"
-                        className="text-white hover:text-cyan-400 transition-colors relative group"
+                        className="text-white hover:text-[#C5A790] transition-colors relative group"
                         onClick={(e) => {
                             e.preventDefault();
                             handleLinkClick('/#Tutorial Video');
                         }}
                     >
                         Tutorial Video
-                        <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+                        <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-[#C5A790] transition-all duration-300 group-hover:w-full"></span>
                     </Link>
                     <Link
                         href="/pricing"
-                        className="text-white hover:text-cyan-400 transition-colors relative group"
+                        className="text-white hover:text-[#C5A790] transition-colors relative group"
                         onClick={(e) => {
                             e.preventDefault();
                             handleLinkClick('/pricing');
                         }}
                     >
                         Pricing
-                        <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+                        <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-[#C5A790] transition-all duration-300 group-hover:w-full"></span>
                     </Link>
                     <Link
                         href="/contact-us"
-                        className="text-white hover:text-cyan-400 transition-colors relative group"
+                        className="text-white hover:text-[#C5A790] transition-colors relative group"
                         onClick={(e) => {
                             e.preventDefault();
                             handleLinkClick('/contact-us');
                         }}
                     >
                         Contact Us
-                        <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+                        <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-[#C5A790] transition-all duration-300 group-hover:w-full"></span>
                     </Link>
                 </nav>
 
@@ -260,12 +260,12 @@ export default function KitchenDesigns() {
                     {!isSignedIn ? (
                         <>
                             <Link href="/sign-in">
-                                <Button variant="ghost" className="text-white hover:text-cyan-400 hover:bg-zinc-800 transition-colors">
+                                <Button variant="ghost" className="text-white hover:text-[#C5A790] hover:bg-zinc-800 transition-colors">
                                     Sign In
                                 </Button>
                             </Link>
                             <Link href="/sign-up">
-                                <Button className="bg-cyan-400 hover:bg-cyan-500 text-slate-800">
+                                <Button className="bg-[#C5A790] hover:bg-[#b0927a] text-slate-800">
                                     Sign Up
                                 </Button>
                             </Link>
@@ -283,49 +283,49 @@ export default function KitchenDesigns() {
 
             {/* Mobile Menu */}
             <div className={`md:hidden fixed top-16 left-0 right-0 z-40 bg-zinc-900 shadow-md border-b border-zinc-800 transition-all duration-300 ${mobileMenuOpen ? 'block' : 'hidden'}`}>
-                <Link href="/" className="block py-2 w-full text-center hover:text-cyan-400 text-white transition-colors duration-300 "
+                <Link href="/" className="block py-2 w-full text-center hover:text-[#C5A790] text-white transition-colors duration-300 "
                     onClick={(e) => {
                         e.preventDefault();
                         closeMobileMenu();
                         handleLinkClick('/');
                     }}
                 >Home</Link>
-                <Link href="/#features" className="block py-2 w-full text-center hover:text-cyan-400 text-white transition-colors duration-300"
+                <Link href="/#features" className="block py-2 w-full text-center hover:text-[#C5A790] text-white transition-colors duration-300"
                     onClick={(e) => {
                         e.preventDefault();
                         closeMobileMenu();
                         handleLinkClick('/#features');
                     }}
                 >Features</Link>
-                <Link href="/#how-it-works" className="block py-2 w-full text-center hover:text-cyan-400 text-white transition-colors duration-300"
+                <Link href="/#how-it-works" className="block py-2 w-full text-center hover:text-[#C5A790] text-white transition-colors duration-300"
                     onClick={(e) => {
                         e.preventDefault();
                         closeMobileMenu();
                         handleLinkClick('/#how-it-works');
                     }}
                 >How it Works</Link>
-                <Link href="/#gallery" className="block py-2 w-full text-center hover:text-cyan-400 text-white transition-colors duration-300"
+                <Link href="/#gallery" className="block py-2 w-full text-center hover:text-[#C5A790] text-white transition-colors duration-300"
                     onClick={(e) => {
                         e.preventDefault();
                         closeMobileMenu();
                         handleLinkClick('/#gallery');
                     }}
                 >Gallery</Link>
-                <Link href="/#Tutorial Video" className="block py-2 w-full text-center hover:text-cyan-400 text-white transition-colors duration-300"
+                <Link href="/#Tutorial Video" className="block py-2 w-full text-center hover:text-[#C5A790] text-white transition-colors duration-300"
                     onClick={(e) => {
                         e.preventDefault();
                         closeMobileMenu();
                         handleLinkClick('/#Tutorial Video');
                     }}
                 >Tutorial Video</Link>
-                <Link href="/pricing" className="block py-2 w-full text-center hover:text-cyan-400 text-white transition-colors duration-300"
+                <Link href="/pricing" className="block py-2 w-full text-center hover:text-[#C5A790] text-white transition-colors duration-300"
                     onClick={(e) => {
                         e.preventDefault();
                         closeMobileMenu();
                         handleLinkClick('/pricing');
                     }}
                 >Pricing</Link>
-                <Link href="/contact-us" className="block py-2 w-full text-center hover:text-cyan-400 text-white transition-colors duration-300"
+                <Link href="/contact-us" className="block py-2 w-full text-center hover:text-[#C5A790] text-white transition-colors duration-300"
                     onClick={(e) => {
                         e.preventDefault();
                         closeMobileMenu();
@@ -343,7 +343,7 @@ export default function KitchenDesigns() {
                         Sign In
                     </button>
                     <button
-                        className="bg-cyan-400 text-slate-800 hover:bg-cyan-500 px-4 py-2 rounded-md text-sm font-bold transition-colors"
+                        className="bg-[#C5A790] text-slate-800 hover:bg-[#b0927a] px-4 py-2 rounded-md text-sm font-bold transition-colors"
                         onClick={() => {
                             closeMobileMenu();
                             handleSignUp();
@@ -357,7 +357,7 @@ export default function KitchenDesigns() {
             {/* Main content */}
             <div className="container mx-auto px-4 py-12">
                 <div className="text-center mb-16">
-                    <h1 id='title' className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-[#1e3a5c] via-[#22d3ee] to-[#4ade80] text-transparent bg-clip-text px-2 py-2 inline-block w-auto">
+                    <h1 id='title' className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text px-2 py-2 inline-block w-auto">
                         Kitchen Design Inspiration
                     </h1>
                     <p className="text-xl text-zinc-400 max-w-3xl mx-auto">
@@ -371,7 +371,7 @@ export default function KitchenDesigns() {
                     {kitchenDesigns.map((design) => (
                         <div
                             key={design.id}
-                            className="bg-zinc-800/50 rounded-xl overflow-hidden border border-zinc-700/50 hover:border-cyan-400/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/10"
+                            className="bg-zinc-800/50 rounded-xl overflow-hidden border border-zinc-700/50 hover:border-[#C5A790]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#C5A790]/10"
                         >
                             <div className="relative h-64 overflow-hidden">
                                 <Image
@@ -383,7 +383,7 @@ export default function KitchenDesigns() {
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     className="object-cover transition-transform duration-300 hover:scale-105"
                                 />
-                                <div className="absolute top-3 right-3 bg-cyan-400 text-slate-800 px-3 py-1 rounded-full text-sm font-medium">
+                                <div className="absolute top-3 right-3 bg-[#C5A790] text-slate-800 px-3 py-1 rounded-full text-sm font-medium">
                                     {design.style}
                                 </div>
                             </div>
@@ -392,13 +392,13 @@ export default function KitchenDesigns() {
                                 <p className="text-zinc-400 mb-4">{design.description}</p>
                                 <div className="flex justify-between items-center">
                                     <Button
-                                        className="bg-gradient-to-r from-[#1e3a5c] via-[#22d3ee] to-[#4ade80] hover:opacity-90 text-white"
+                                        className="bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] hover:opacity-90 text-white"
                                         onClick={handleRedesignClick}
                                     >
                                         Redesign My Kitchen
                                     </Button>
                                     <button
-                                        className="text-cyan-400 hover:text-cyan-300 flex items-center gap-1"
+                                        className="text-[#C5A790] hover:text-[#b0927a] flex items-center gap-1"
                                         onClick={() => {
                                             event({
                                                 action: 'view_before_after',
@@ -427,7 +427,7 @@ export default function KitchenDesigns() {
                                 Upload a photo of your current Kitchen and our AI will redesign it in minutes. Choose from various styles and see the transformation instantly.
                             </p>
                             <Button
-                                className="bg-gradient-to-r from-[#1e3a5c] via-[#22d3ee] to-[#4ade80] hover:opacity-90"
+                                className="bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] hover:opacity-90"
                                 onClick={handleRedesignClick}
                             >
                                 Redesign My Kitchen
@@ -445,7 +445,7 @@ export default function KitchenDesigns() {
                                         sizes="(max-width: 768px) 50vw, 25vw"
                                         className="object-cover rounded-l-xl"
                                     />
-                                    <div className="absolute bottom-3 left-3 bg-cyan-400 text-slate-800 px-3 py-1 rounded-full text-sm">
+                                    <div className="absolute bottom-3 left-3 bg-[#C5A790] text-slate-800 px-3 py-1 rounded-full text-sm">
                                         Before
                                     </div>
                                 </div>
@@ -459,7 +459,7 @@ export default function KitchenDesigns() {
                                         sizes="(max-width: 768px) 50vw, 25vw"
                                         className="object-cover rounded-r-xl"
                                     />
-                                    <div className="absolute bottom-3 right-3 bg-cyan-400 text-slate-800 px-3 py-1 rounded-full text-sm">
+                                    <div className="absolute bottom-3 right-3 bg-[#C5A790] text-slate-800 px-3 py-1 rounded-full text-sm">
                                         After
                                     </div>
                                 </div>
@@ -470,13 +470,13 @@ export default function KitchenDesigns() {
 
                 {/* Kitchen Design Tips */}
                 <div className="container mx-auto px-4 text-center">
-                    <h2 className="text-3xl font-bold text-white mb-16 bg-gradient-to-r from-[#1e3a5c] via-[#22d3ee] to-[#4ade80] text-transparent bg-clip-text px-2 py-2 inline-block mx-auto">
+                    <h2 className="text-3xl font-bold text-white mb-16 bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text px-2 py-2 inline-block mx-auto">
                         Kitchen Design Tips
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 shadow-lg hover:shadow-[0_0_15px_rgba(34,211,238,0.3)] hover:border-[#22d3ee]/50 transition-all duration-300">
+                        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 shadow-lg hover:shadow-[0_0_15px_rgba(197,167,144,0.3)] hover:border-[#C5A790]/50 transition-all duration-300">
                             <div className="bg-zinc-800 w-12 h-12 rounded-full flex items-center justify-center mb-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#C5A790]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
                                 </svg>
                             </div>
@@ -485,9 +485,9 @@ export default function KitchenDesigns() {
                                 Position your sink, stove, and refrigerator in a triangle layout with 4-9 feet between each. This creates an efficient workflow for cooking and meal preparation while minimizing unnecessary movement.
                             </p>
                         </div>
-                        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 shadow-lg hover:shadow-[0_0_15px_rgba(34,211,238,0.3)] hover:border-[#22d3ee]/50 transition-all duration-300">
+                        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 shadow-lg hover:shadow-[0_0_15px_rgba(197,167,144,0.3)] hover:border-[#C5A790]/50 transition-all duration-300">
                             <div className="bg-zinc-800 w-12 h-12 rounded-full flex items-center justify-center mb-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#C5A790]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                                 </svg>
                             </div>
@@ -496,9 +496,9 @@ export default function KitchenDesigns() {
                                 Maximize cabinet space with pull-out shelves, drawer dividers, and vertical storage. Use wall-mounted racks and magnetic strips for utensils. Consider a kitchen island with built-in storage for additional functionality.
                             </p>
                         </div>
-                        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 shadow-lg hover:shadow-[0_0_15px_rgba(34,211,238,0.3)] hover:border-[#22d3ee]/50 transition-all duration-300">
+                        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 shadow-lg hover:shadow-[0_0_15px_rgba(197,167,144,0.3)] hover:border-[#C5A790]/50 transition-all duration-300">
                             <div className="bg-zinc-800 w-12 h-12 rounded-full flex items-center justify-center mb-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#C5A790]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                                 </svg>
                             </div>
@@ -512,7 +512,7 @@ export default function KitchenDesigns() {
 
                 {/* FAQ section */}
                 <div className="container mx-auto px-4 py-16 text-center">
-                    <h2 className="text-3xl font-bold text-white mb-16 bg-gradient-to-r from-[#1e3a5c] via-[#22d3ee] to-[#4ade80] text-transparent bg-clip-text px-2 py-2 inline-block mx-auto">
+                    <h2 className="text-3xl font-bold text-white mb-16 bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text px-2 py-2 inline-block mx-auto">
                         Frequently Asked Questions
                     </h2>
                     <div className="space-y-6 max-w-3xl mx-auto">
@@ -543,7 +543,7 @@ export default function KitchenDesigns() {
                 <div className="container mx-auto px-4">
                     <div className="flex flex-col md:flex-row justify-between items-center">
                         <div className="flex items-center mb-4 md:mb-0">
-                            <div className="bg-cyan-400 w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold mr-2">DM</div>
+                            <div className="bg-[#C5A790] w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold mr-2">DM</div>
                             <span className="text-white font-medium">DecorMind</span>
                         </div>
                         <div className="text-zinc-500 text-sm">

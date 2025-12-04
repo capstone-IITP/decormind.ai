@@ -685,31 +685,31 @@ export default function Redesign() {
   // Render step 1: Upload room image
   const renderStep1 = () => (
     <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 shadow-xl">
-      <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-[#1e3a5c] via-[#22d3ee] to-[#4ade80] text-transparent bg-clip-text">Upload Your Room Photo</h2>
+      <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text">Upload Your Room Photo</h2>
       <p className="text-zinc-400 mb-6">Take a photo of the room you want to redesign. Make sure the photo is clear and shows the entire space.</p>
 
       <div
-        className="border-2 border-dashed border-zinc-700 hover:border-[#22d3ee] rounded-lg p-8 text-center cursor-pointer transition-all duration-300 hover:shadow-[0_0_15px_rgba(34,211,238,0.3)]"
+        className="border-2 border-dashed border-zinc-700 hover:border-[#C5A790] rounded-lg p-8 text-center cursor-pointer transition-all duration-300 hover:shadow-[0_0_15px_rgba(197,167,144,0.3)]"
         onClick={() => fileInputRef.current?.click()}
         onDragOver={(e) => {
           e.preventDefault();
           e.stopPropagation();
-          e.currentTarget.classList.add('border-[#22d3ee]', 'shadow-[0_0_15px_rgba(34,211,238,0.3)]');
+          e.currentTarget.classList.add('border-[#C5A790]', 'shadow-[0_0_15px_rgba(197,167,144,0.3)]');
         }}
         onDragEnter={(e) => {
           e.preventDefault();
           e.stopPropagation();
-          e.currentTarget.classList.add('border-[#22d3ee]', 'shadow-[0_0_15px_rgba(34,211,238,0.3)]');
+          e.currentTarget.classList.add('border-[#C5A790]', 'shadow-[0_0_15px_rgba(197,167,144,0.3)]');
         }}
         onDragLeave={(e) => {
           e.preventDefault();
           e.stopPropagation();
-          e.currentTarget.classList.remove('border-[#22d3ee]', 'shadow-[0_0_15px_rgba(34,211,238,0.3)]');
+          e.currentTarget.classList.remove('border-[#C5A790]', 'shadow-[0_0_15px_rgba(197,167,144,0.3)]');
         }}
         onDrop={(e) => {
           e.preventDefault();
           e.stopPropagation();
-          e.currentTarget.classList.remove('border-[#22d3ee]', 'shadow-[0_0_15px_rgba(34,211,238,0.3)]');
+          e.currentTarget.classList.remove('border-[#C5A790]', 'shadow-[0_0_15px_rgba(197,167,144,0.3)]');
           const file = e.dataTransfer.files[0];
           if (file && file.type.startsWith('image/')) {
             setRoomImage(file);
@@ -752,7 +752,7 @@ export default function Redesign() {
         ) : (
           <>
             <div className="w-16 h-16 bg-zinc-800 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-[#22d3ee]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-[#C5A790]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
               </svg>
             </div>
@@ -789,7 +789,7 @@ export default function Redesign() {
           }}
           disabled={!roomImage}
           className={`${roomImage
-            ? 'bg-gradient-to-r from-[#1e3a5c] via-[#22d3ee] to-[#4ade80] hover:opacity-90'
+            ? 'bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] hover:opacity-90'
             : 'bg-zinc-700 cursor-not-allowed'
             } text-white transition-all duration-300`}
         >
@@ -802,7 +802,7 @@ export default function Redesign() {
   // Render step 2: Select design style
   const renderStep2 = () => (
     <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 shadow-xl">
-      <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-[#1e3a5c] via-[#22d3ee] to-[#4ade80] text-transparent bg-clip-text">Choose Your Design Style</h2>
+      <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text">Choose Your Design Style</h2>
       <p className="text-zinc-400 mb-6">Select a design style that matches your taste and preferences.</p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-h-[60vh] overflow-y-auto pr-2">
@@ -810,8 +810,8 @@ export default function Redesign() {
           <div
             key={style.id}
             className={`border rounded-xl p-4 cursor-pointer transition-all duration-300 ${selectedStyle === style.id
-              ? 'border-[#22d3ee] bg-[#1e3a5c]/10 shadow-[0_0_15px_rgba(34,211,238,0.3)]'
-              : 'border-zinc-800 hover:border-[#22d3ee]/50 bg-zinc-900/50'
+              ? 'border-[#C5A790] bg-[#C5A790]/10 shadow-[0_0_15px_rgba(197,167,144,0.3)]'
+              : 'border-zinc-800 hover:border-[#C5A790]/50 bg-zinc-900/50'
               }`}
             onClick={() => handleStyleSelect(style.id)}
           >
@@ -841,7 +841,7 @@ export default function Redesign() {
           }}
           disabled={!selectedStyle}
           className={`${selectedStyle
-            ? 'bg-gradient-to-r from-[#1e3a5c] via-[#22d3ee] to-[#4ade80] hover:opacity-90'
+            ? 'bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] hover:opacity-90'
             : 'bg-zinc-700 cursor-not-allowed'
             } text-white transition-all duration-300`}
         >
@@ -854,7 +854,7 @@ export default function Redesign() {
   // Render step 3: Select room type
   const renderStep3 = () => (
     <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 shadow-xl">
-      <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-[#1e3a5c] via-[#22d3ee] to-[#4ade80] text-transparent bg-clip-text">Select Your Room Type</h2>
+      <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text">Select Your Room Type</h2>
       <p className="text-zinc-400 mb-6">Tell us which room you're redesigning for tailored suggestions.</p>
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -862,8 +862,8 @@ export default function Redesign() {
           <div
             key={room.id}
             className={`border rounded-xl p-4 cursor-pointer transition-all duration-300 ${selectedRoom === room.id
-              ? 'border-[#22d3ee] bg-[#1e3a5c]/10 shadow-[0_0_15px_rgba(34,211,238,0.3)]'
-              : 'border-zinc-800 hover:border-[#22d3ee]/50 bg-zinc-900/50'
+              ? 'border-[#C5A790] bg-[#C5A790]/10 shadow-[0_0_15px_rgba(197,167,144,0.3)]'
+              : 'border-zinc-800 hover:border-[#C5A790]/50 bg-zinc-900/50'
               }`}
             onClick={() => handleRoomSelect(room.id)}
           >
@@ -892,7 +892,7 @@ export default function Redesign() {
           }}
           disabled={!selectedRoom}
           className={`${selectedRoom
-            ? 'bg-gradient-to-r from-[#1e3a5c] via-[#22d3ee] to-[#4ade80] hover:opacity-90'
+            ? 'bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] hover:opacity-90'
             : 'bg-zinc-700 cursor-not-allowed'
             } text-white transition-all duration-300`}
         >
@@ -905,14 +905,14 @@ export default function Redesign() {
   // Render step 4: Select budget
   const renderStep4 = () => (
     <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 shadow-xl">
-      <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-[#1e3a5c] via-[#22d3ee] to-[#4ade80] text-transparent bg-clip-text">Set Your Budget</h2>
+      <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text">Set Your Budget</h2>
       <p className="text-zinc-400 mb-6">Define your budget to get recommendations within your price range.</p>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div
           className={`border rounded-xl p-4 cursor-pointer transition-all duration-300 ${budget === 'low'
-            ? 'border-[#22d3ee] bg-[#1e3a5c]/10 shadow-[0_0_15px_rgba(34,211,238,0.3)]'
-            : 'border-zinc-800 hover:border-[#22d3ee]/50 bg-zinc-900/50'
+            ? 'border-[#C5A790] bg-[#C5A790]/10 shadow-[0_0_15px_rgba(197,167,144,0.3)]'
+            : 'border-zinc-800 hover:border-[#C5A790]/50 bg-zinc-900/50'
             }`}
           onClick={() => handleBudgetSelect('low')}
         >
@@ -922,8 +922,8 @@ export default function Redesign() {
 
         <div
           className={`border rounded-xl p-4 cursor-pointer transition-all duration-300 ${budget === 'medium'
-            ? 'border-[#22d3ee] bg-[#1e3a5c]/10 shadow-[0_0_15px_rgba(34,211,238,0.3)]'
-            : 'border-zinc-800 hover:border-[#22d3ee]/50 bg-zinc-900/50'
+            ? 'border-[#C5A790] bg-[#C5A790]/10 shadow-[0_0_15px_rgba(197,167,144,0.3)]'
+            : 'border-zinc-800 hover:border-[#C5A790]/50 bg-zinc-900/50'
             }`}
           onClick={() => handleBudgetSelect('medium')}
         >
@@ -933,8 +933,8 @@ export default function Redesign() {
 
         <div
           className={`border rounded-xl p-4 cursor-pointer transition-all duration-300 ${budget === 'high'
-            ? 'border-[#22d3ee] bg-[#1e3a5c]/10 shadow-[0_0_15px_rgba(34,211,238,0.3)]'
-            : 'border-zinc-800 hover:border-[#22d3ee]/50 bg-zinc-900/50'
+            ? 'border-[#C5A790] bg-[#C5A790]/10 shadow-[0_0_15px_rgba(197,167,144,0.3)]'
+            : 'border-zinc-800 hover:border-[#C5A790]/50 bg-zinc-900/50'
             }`}
           onClick={() => handleBudgetSelect('high')}
         >
@@ -963,7 +963,7 @@ export default function Redesign() {
           }}
           disabled={!selectedRoom || !selectedStyle || !budget}
           className={`${selectedRoom && selectedStyle && budget
-            ? 'bg-gradient-to-r from-[#1e3a5c] via-[#22d3ee] to-[#4ade80] hover:opacity-90'
+            ? 'bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] hover:opacity-90'
             : 'bg-zinc-700 cursor-not-allowed'
             } text-white transition-all duration-300`}
         >
@@ -976,7 +976,7 @@ export default function Redesign() {
   // Render step 5: Review and generate
   const renderStep5 = () => (
     <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 shadow-xl">
-      <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-[#1e3a5c] via-[#22d3ee] to-[#4ade80] text-transparent bg-clip-text">
+      <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text">
         {generatedDesign ? 'Design Generated' : 'Review and Generate'}
       </h2>
       <p className="text-zinc-400 mb-6">
@@ -1044,8 +1044,8 @@ export default function Redesign() {
             disabled={isGenerating || generatedDesign}
             className={`w-full py-6 text-lg ${generatedDesign
               ? 'bg-green-600 hover:bg-green-700'
-              : 'bg-gradient-to-r from-[#1e3a5c] via-[#22d3ee] to-[#4ade80] hover:opacity-90'
-              } text-white transition-all duration-300 rounded-xl shadow-lg hover:shadow-[0_0_15px_rgba(34,211,238,0.3)]`}
+              : 'bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] hover:opacity-90'
+              } text-white transition-all duration-300 rounded-xl shadow-lg hover:shadow-[0_0_15px_rgba(197,167,144,0.3)]`}
           >
             {isGenerating ? (
               <div className="flex items-center justify-center">
@@ -1083,7 +1083,7 @@ export default function Redesign() {
                 behavior: 'smooth'
               });
             }}
-            className="bg-gradient-to-r from-[#1e3a5c] via-[#22d3ee] to-[#4ade80] hover:opacity-90 text-white transition-all duration-300"
+            className="bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] hover:opacity-90 text-white transition-all duration-300"
           >
             View Results
           </Button>
@@ -1096,7 +1096,7 @@ export default function Redesign() {
   const renderResults = () => (
     <div className="space-y-8">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#1e3a5c] via-[#22d3ee] to-[#4ade80]">Your redesigned room</h2>
+        <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF]">Your redesigned room</h2>
         <div className="flex items-center gap-4">
           <div className="text-zinc-400 text-sm">
             <span className="mr-2">Plan: <span className="text-white font-medium uppercase">{userPlan}</span></span>
@@ -1104,7 +1104,7 @@ export default function Redesign() {
           </div>
           <button
             onClick={handleStartOver}
-            className="text-zinc-400 hover:text-[#22d3ee] transition-colors text-sm flex items-center gap-1"
+            className="text-zinc-400 hover:text-[#C5A790] transition-colors text-sm flex items-center gap-1"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
@@ -1147,7 +1147,7 @@ export default function Redesign() {
                 />
                 {/* Add DecorMind watermark overlay to ensure it's always visible */}
                 <div className="absolute top-2 right-2 text-white text-sm font-bold drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]" style={{
-                  background: 'linear-gradient(90deg, #1e3a5c, #22d3ee, #4ade80)',
+                  background: 'linear-gradient(90deg, #1A1A1A, #C5A790, #FFF)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   padding: '2px 6px',
@@ -1326,7 +1326,7 @@ export default function Redesign() {
 
               <button
                 onClick={() => router.push('/favorites')}
-                className="bg-[#22d3ee] text-black hover:bg-[#22d3ee]/90 transition-all rounded-md shadow-md flex items-center gap-2 px-4 py-2 font-medium text-sm"
+                className="bg-[#C5A790] text-black hover:bg-[#C5A790]/90 transition-all rounded-md shadow-md flex items-center gap-2 px-4 py-2 font-medium text-sm"
               >
                 View all my designs
               </button>
@@ -1346,25 +1346,25 @@ export default function Redesign() {
 
         <div className="space-y-6">
           <div>
-            <h3 className="text-xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-[#1e3a5c] via-[#22d3ee] to-[#4ade80] mb-3">Design suggestions</h3>
+            <h3 className="text-xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] mb-3">Design suggestions</h3>
             <ul className="space-y-3">
               {(generatedDesign?.suggestions ?? []).map((suggestion, index) => (
                 <li key={index} className="flex items-start bg-zinc-800/50 p-3 rounded-lg border border-zinc-700/50">
-                  <span className="text-[#22d3ee] mr-2 mt-0.5">•</span>
+                  <span className="text-[#C5A790] mr-2 mt-0.5">•</span>
                   <span className="text-zinc-300">{suggestion}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="bg-gradient-to-br from-[#1e3a5c]/30 via-[#22d3ee]/30 to-[#4ade80]/30 rounded-xl p-6 border border-[#22d3ee]/30 shadow-lg">
+          <div className="bg-gradient-to-br from-[#1e3a5c]/30 via-[#22d3ee]/30 to-[#4ade80]/30 rounded-xl p-6 border border-[#C5A790]/30 shadow-lg">
             <h3 className="text-lg font-medium text-white mb-2">Want more designs?</h3>
             <p className="text-zinc-400 mb-4">
               Upgrade to our premium plan to get unlimited designs, higher quality renders, and more style options.
             </p>
             <button
               onClick={() => router.push('/dashboard-pricing')}
-              className="bg-gradient-to-r from-[#1e3a5c] via-[#22d3ee] to-[#4ade80] text-white hover:opacity-90 transition-all duration-300 rounded-md shadow-md flex items-center gap-2 px-4 py-2 font-medium"
+              className="bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-white hover:opacity-90 transition-all duration-300 rounded-md shadow-md flex items-center gap-2 px-4 py-2 font-medium"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
@@ -1389,7 +1389,7 @@ export default function Redesign() {
             e.stopPropagation();
             handleShareDesign(e);
           }}
-          className="bg-gradient-to-r from-[#1e3a5c] via-[#22d3ee] to-[#4ade80] text-white p-3 rounded-full shadow-lg hover:opacity-90 transition-all duration-300"
+          className="bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-white p-3 rounded-full shadow-lg hover:opacity-90 transition-all duration-300"
           aria-label="Share design"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -1647,7 +1647,7 @@ export default function Redesign() {
     <div className="min-h-screen bg-gradient-to-b from-black to-zinc-900 text-white">
       <div className={`container mx-auto px-4 py-8 transition-all duration-300 ${showUpgradeModal ? 'blur-sm filter brightness-50' : ''}`}>
         <div className="text-center mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold mb-2 bg-gradient-to-r from-[#1e3a5c] via-[#22d3ee] to-[#4ade80] text-transparent bg-clip-text">
+          <h1 className="text-3xl md:text-4xl font-bold mb-2 bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text">
             AI Room Redesign
           </h1>
           <p className="text-zinc-400 max-w-2xl mx-auto">
@@ -1666,7 +1666,7 @@ export default function Redesign() {
             </div>
             <button
               onClick={() => router.push('/favorites')}
-              className="text-[#22d3ee] hover:text-white transition-colors duration-300 flex items-center gap-1 text-sm"
+              className="text-[#C5A790] hover:text-white transition-colors duration-300 flex items-center gap-1 text-sm"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
@@ -1697,7 +1697,7 @@ export default function Redesign() {
                   className="absolute top-1/2 left-0 h-1 -translate-y-1/2 rounded-full transition-all duration-700 ease-out"
                   style={{
                     width: `${(step / 5) * 100}%`,
-                    background: 'linear-gradient(90deg, #1e3a5c, #22d3ee, #4ade80)',
+                    background: 'linear-gradient(90deg, #1A1A1A, #C5A790, #FFF)',
                     boxShadow: '0 0 10px rgba(34, 211, 238, 0.7)',
                     zIndex: 1
                   }}
@@ -1730,7 +1730,7 @@ export default function Redesign() {
                     <div
                       className={`w-8 h-8 md:w-12 md:h-12 rounded-full flex items-center justify-center mb-2 transition-all duration-500 
                         ${step === point.id
-                          ? 'bg-gradient-to-r from-[#1e3a5c] via-[#22d3ee] to-[#4ade80] text-white scale-110 shadow-lg'
+                          ? 'bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-white scale-110 shadow-lg'
                           : step > point.id
                             ? 'bg-gradient-to-r from-[#1e3a5c]/80 via-[#22d3ee]/80 to-[#4ade80]/80 text-white'
                             : 'bg-zinc-800 text-zinc-500'}`}
@@ -1779,7 +1779,7 @@ export default function Redesign() {
                     <div className="flex flex-col items-center">
                       <span
                         className={`text-xs md:text-sm font-medium transition-colors duration-300 px-2 py-1 rounded-md bg-zinc-900/80 ${step === point.id
-                          ? 'text-[#22d3ee]'
+                          ? 'text-[#C5A790]'
                           : step > point.id
                             ? 'text-zinc-300'
                             : 'text-zinc-500'
