@@ -4,14 +4,12 @@ import React, { useEffect, useState } from 'react';
 import { UserButton } from '@clerk/nextjs';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
-import MobileMenu from './MobileMenu';
 
 function Header() {
   const router = useRouter();
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
   const [activeLink, setActiveLink] = useState(null);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleLogoClick = () => {
     router.push('/dashboard');
@@ -20,7 +18,6 @@ function Header() {
   // Handle link click animation
   const handleLinkClick = (path) => {
     setActiveLink(path);
-    setMobileMenuOpen(false);
     
     // Reset active link after animation completes
     setTimeout(() => {
@@ -28,32 +25,9 @@ function Header() {
     }, 300);
   };
 
-  // Toggle mobile menu
-  const toggleMobileMenu = () => {
-    console.log("Toggle mobile menu", !mobileMenuOpen);
-    setMobileMenuOpen(prevState => !prevState);
-  };
-
-  // Close mobile menu on resize if screen becomes larger than mobile breakpoint
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const handleResize = () => {
-        if (window.innerWidth >= 768 && mobileMenuOpen) {
-          setMobileMenuOpen(false);
-        }
-      };
-      
-      window.addEventListener('resize', handleResize);
-      return () => window.removeEventListener('resize', handleResize);
-    }
-  }, [mobileMenuOpen]);
-
   // Add CSS animations when component mounts
   useEffect(() => {
     setMounted(true);
-    
-    // Skip on server-side rendering
-    if (typeof window === 'undefined') return;
     
     // Create a style element
     const style = document.createElement('style');
@@ -73,7 +47,6 @@ function Header() {
       .nav-link {
         position: relative;
         opacity: 0;
-        text-decoration: none;
       }
 
       .nav-link::after {
@@ -112,27 +85,24 @@ function Header() {
         animation: clickEffect 0.3s ease forwards;
       }
 
-      /* Desktop animations */
-      @media (min-width: 768px) {
-        .nav-link:nth-child(1) {
-          animation: fadeInDown 0.5s ease-out 0.1s forwards;
-        }
+      .nav-link:nth-child(1) {
+        animation: fadeInDown 0.5s ease-out 0.1s forwards;
+      }
 
-        .nav-link:nth-child(2) {
-          animation: fadeInDown 0.5s ease-out 0.2s forwards;
-        }
+      .nav-link:nth-child(2) {
+        animation: fadeInDown 0.5s ease-out 0.2s forwards;
+      }
 
-        .nav-link:nth-child(3) {
-          animation: fadeInDown 0.5s ease-out 0.3s forwards;
-        }
+      .nav-link:nth-child(3) {
+        animation: fadeInDown 0.5s ease-out 0.3s forwards;
+      }
 
-        .nav-link:nth-child(4) {
-          animation: fadeInDown 0.5s ease-out 0.4s forwards;
-        }
+      .nav-link:nth-child(4) {
+        animation: fadeInDown 0.5s ease-out 0.4s forwards;
+      }
 
-        .nav-link:nth-child(5) {
-          animation: fadeInDown 0.5s ease-out 0.5s forwards;
-        }
+      .nav-link:nth-child(5) {
+        animation: fadeInDown 0.5s ease-out 0.5s forwards;
       }
 
       /* Navigation bar slide-down animation */
@@ -207,28 +177,6 @@ function Header() {
         background-color: rgba(24, 24, 27, 0.8);
         box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
       }
-
-      /* Hamburger menu animation */
-      .hamburger-line {
-        display: block;
-        width: 24px;
-        height: 2px;
-        margin: 4px auto;
-        background-color: white;
-        transition: all 0.3s ease-in-out;
-      }
-
-      .hamburger-open .line-1 {
-        transform: translateY(6px) rotate(45deg);
-      }
-
-      .hamburger-open .line-2 {
-        opacity: 0;
-      }
-
-      .hamburger-open .line-3 {
-        transform: translateY(-6px) rotate(-45deg);
-      }
     `;
     document.head.appendChild(style);
     
@@ -259,118 +207,69 @@ function Header() {
     return pathname === path;
   };
 
-  // Update active links after mounting
-  useEffect(() => {
-    if (mounted) {
-      const currentPath = pathname;
-      const links = document.querySelectorAll('.nav-link');
-      
-      links.forEach(link => {
-        const href = link.getAttribute('href');
-        if (href === currentPath) {
-          link.classList.add('text-cyan-400');
-          link.classList.add('active');
-        }
-      });
-    }
-  }, [mounted, pathname]);
-
   return (
-    <>
-      <div className="p-5 shadow-sm flex justify-between items-center bg-zinc-900 border-b border-zinc-800 rounded-bl-3xl rounded-br-3xl nav-slide-down sticky-nav relative z-30">
-        <div
-          className="flex gap-2 items-center cursor-pointer hover:opacity-80 transition-opacity logo-pulse"
-          onClick={() => router.push('/')}
-        >
-          <div className="logo-container bg-cyan-400 w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold">DM</div>
-          <h2 suppressHydrationWarning className="font-bold text-lg bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text">DecorMind</h2>
-        </div>
-
-        {/* Desktop Navigation */}
-        <div className="hidden md:block">
-          <nav className="flex gap-6" style={{ fontSize: '0.875rem' }}>
-            <Link 
-              href="/dashboard" 
-              suppressHydrationWarning
-              className={`nav-link text-white hover:text-cyan-400 transition-colors duration-300 relative ${pathname === '/dashboard' ? 'active' : ''}`}
-              onClick={() => handleLinkClick('/dashboard')}
-            >
-              Home
-            </Link>
-            <Link 
-              href="/redesign" 
-              suppressHydrationWarning
-              className={`nav-link text-white hover:text-cyan-400 transition-colors duration-300 relative ${pathname === '/redesign' ? 'active' : ''}`}
-              onClick={() => handleLinkClick('/redesign')}
-            >
-              Redesign
-            </Link>
-            <Link 
-              href="/decormind" 
-              suppressHydrationWarning
-              className={`nav-link text-white hover:text-cyan-400 transition-colors duration-300 relative ${pathname === '/decormind' ? 'active' : ''}`}
-              onClick={() => handleLinkClick('/decormind')}
-            >
-              DecorMind
-            </Link>
-            <Link 
-              href="/dashboard-pricing" 
-              suppressHydrationWarning
-              className={`nav-link text-white hover:text-cyan-400 transition-colors duration-300 relative ${pathname === '/dashboard-pricing' ? 'active' : ''}`}
-              onClick={() => handleLinkClick('/dashboard-pricing')}
-            >
-              Pricing
-            </Link>
-            <Link 
-              href="/dashboard-contact-us" 
-              suppressHydrationWarning
-              className={`nav-link text-white hover:text-cyan-400 transition-colors duration-300 relative ${pathname === '/dashboard-contact-us' ? 'active' : ''}`}
-              onClick={() => handleLinkClick('/dashboard-contact-us')}
-            >
-              Contact Us
-            </Link>
-          </nav>
-        </div>
-
-        <div className="flex items-center space-x-4">
-          <div className="flex items-center justify-center h-8">
-            <Link 
-              href="/favorites" 
-              suppressHydrationWarning
-              className="flex items-center justify-center text-white hover:text-cyan-400 transition-all duration-300 transform hover:scale-110 h-full"
-              onClick={() => handleLinkClick('/favorites')}
-              aria-label="Favorites"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="hover:fill-cyan-400 transition-colors">
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-              </svg>
-            </Link>
-          </div>
-          <UserButton afterSignOutUrl="/" />
-          
-          {/* Mobile Menu Button */}
-          <button 
-            type="button"
-            className={`md:hidden flex flex-col justify-center items-center p-2 rounded-md ${mobileMenuOpen ? 'hamburger-open bg-zinc-800' : ''}`}
-            onClick={toggleMobileMenu}
-            aria-label="Toggle menu"
-            aria-expanded={mobileMenuOpen}
-            suppressHydrationWarning
-          >
-            <span className="hamburger-line line-1"></span>
-            <span className="hamburger-line line-2"></span>
-            <span className="hamburger-line line-3"></span>
-          </button>
-        </div>
+    <div className="p-5 shadow-sm flex justify-between items-center bg-zinc-900 border-b border-zinc-800 rounded-bl-3xl rounded-br-3xl nav-slide-down sticky-nav">
+      <div
+        className="flex gap-2 items-center cursor-pointer hover:opacity-80 transition-opacity logo-pulse"
+        onClick={() => router.push('/')}
+      >
+        <div className="logo-container bg-cyan-400 w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold">DM</div>
+        <h2 suppressHydrationWarning className="font-bold text-lg bg-gradient-to-r from-slate-800 via-cyan-400 to-green-400 text-transparent bg-clip-text">DecorMind</h2>
       </div>
 
-      {/* Mobile Menu Component */}
-      <MobileMenu 
-        isOpen={mobileMenuOpen} 
-        onClose={toggleMobileMenu} 
-        onLinkClick={handleLinkClick} 
-      />
-    </>
+      <div className="absolute left-1/2 transform -translate-x-1/2 flex gap-8 text-sm">
+        <nav className="flex gap-6">
+          <Link 
+            href="/dashboard" 
+            className={`nav-link ${isActive('/dashboard') ? 'text-cyan-400 active' : 'text-white'} ${activeLink === '/dashboard' ? 'link-clicked' : ''} hover:text-cyan-400 transition-colors duration-300 relative`}
+            onClick={() => handleLinkClick('/dashboard')}
+          >
+            Home
+          </Link>
+          <Link 
+            href="/redesign" 
+            className={`nav-link ${isActive('/redesign') ? 'text-cyan-400 active' : 'text-white'} ${activeLink === '/redesign' ? 'link-clicked' : ''} hover:text-cyan-400 transition-colors duration-300 relative`}
+            onClick={() => handleLinkClick('/redesign')}
+          >
+            Redesign
+          </Link>
+          <Link 
+            href="/decormind" 
+            className={`nav-link ${isActive('/decormind') ? 'text-cyan-400 active' : 'text-white'} ${activeLink === '/decormind' ? 'link-clicked' : ''} hover:text-cyan-400 transition-colors duration-300 relative`}
+            onClick={() => handleLinkClick('/decormind')}
+          >
+            DecorMind
+          </Link>
+          <Link 
+            href="/dashboard-pricing" 
+            className={`nav-link ${isActive('/dashboard-pricing') ? 'text-cyan-400 active' : 'text-white'} ${activeLink === '/dashboard-pricing' ? 'link-clicked' : ''} hover:text-cyan-400 transition-colors duration-300 relative`}
+            onClick={() => handleLinkClick('/dashboard-pricing')}
+          >
+            Pricing
+          </Link>
+          <Link 
+            href="/dashboard-contact-us" 
+            className={`nav-link ${isActive('/dashboard-contact-us') ? 'text-cyan-400 active' : 'text-white'} ${activeLink === '/dashboard-contact-us' ? 'link-clicked' : ''} hover:text-cyan-400 transition-colors duration-300 relative`}
+            onClick={() => handleLinkClick('/dashboard-contact-us')}
+          >
+            Contact Us
+          </Link>
+        </nav>
+      </div>
+
+      <div className="flex items-center gap-4">
+        <Link 
+          href="/favorites" 
+          className={`${isActive('/favorites') ? 'text-cyan-400' : 'text-white'} ${activeLink === '/favorites' ? 'link-clicked' : ''} hover:text-cyan-400 transition-all duration-300 transform hover:scale-110`}
+          onClick={() => handleLinkClick('/favorites')}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill={isActive('/favorites') ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="hover:fill-cyan-400 transition-colors">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+        </Link>
+        <UserButton afterSignOutUrl="/" />
+      </div>
+    </div>
   );
 }
 

@@ -5,7 +5,6 @@ import NextTopLoader from './_components/NextTopLoader';
 import GoogleAnalytics from './_components/GoogleAnalytics';
 import ConditionalLoader from './_components/ConditionalLoader';
 import Provider from './provider';
-import Footer from './_components/Footer';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -85,11 +84,7 @@ const AnimationScript = () => {
               
               // Animate headings with gradient
               document.querySelectorAll('.bg-gradient-to-r').forEach(el => {
-                // Only add the animation class if it's a heading element or span within a heading
-                if (el.tagName === 'H1' || el.tagName === 'H2' || el.tagName === 'H3' || 
-                   (el.tagName === 'SPAN' && (el.parentElement.tagName === 'H1' || el.parentElement.tagName === 'H2' || el.parentElement.tagName === 'H3'))) {
-                  el.classList.add('animated-gradient-text');
-                }
+                el.classList.add('animated-gradient-text');
               });
             }
             
@@ -134,7 +129,6 @@ export default function RootLayout({ children }) {
           <Provider>
             <ConditionalLoader>
               {children}
-              <Footer />
             </ConditionalLoader>
           </Provider>
         </body>

@@ -58,21 +58,21 @@ const initIndexedDB = () => {
       reject("IndexedDB not supported");
       return;
     }
-    
+
     const request = indexedDB.open("DesignFavoritesDB", 1);
-    
+
     request.onerror = (event) => {
       console.error("IndexedDB error:", event.target.error);
       reject("Error opening IndexedDB");
     };
-    
+
     request.onupgradeneeded = (event) => {
       const db = event.target.result;
       if (!db.objectStoreNames.contains("favorites")) {
         db.createObjectStore("favorites", { keyPath: "id" });
       }
     };
-    
+
     request.onsuccess = (event) => {
       const db = event.target.result;
       resolve(db);
@@ -86,20 +86,20 @@ const saveFavoritesToIndexedDB = async (favorites) => {
     const db = await initIndexedDB();
     const transaction = db.transaction(["favorites"], "readwrite");
     const store = transaction.objectStore("favorites");
-    
+
     // Clear existing data
     store.clear();
-    
+
     // Add each favorite as separate record
     favorites.forEach(favorite => {
       store.add(favorite);
     });
-    
+
     return new Promise((resolve, reject) => {
       transaction.oncomplete = () => {
         resolve(true);
       };
-      
+
       transaction.onerror = (event) => {
         console.error("Transaction error:", event.target.error);
         reject(event.target.error);
@@ -118,12 +118,12 @@ const getFavoritesFromIndexedDB = async () => {
     const transaction = db.transaction(["favorites"], "readonly");
     const store = transaction.objectStore("favorites");
     const request = store.getAll();
-    
+
     return new Promise((resolve, reject) => {
       request.onsuccess = () => {
         resolve(request.result);
       };
-      
+
       request.onerror = (event) => {
         console.error("Get request error:", event.target.error);
         reject(event.target.error);
@@ -139,8 +139,8 @@ const getFavoritesFromIndexedDB = async () => {
 const checkIsFavorite = async (roomType, style) => {
   try {
     const favorites = await getFavoritesFromIndexedDB();
-    return favorites.some(fav => 
-      fav.roomType === roomType && 
+    return favorites.some(fav =>
+      fav.roomType === roomType &&
       fav.style === style
     );
   } catch (error) {
@@ -199,7 +199,7 @@ export default function Redesign() {
     if (showShareOptions) {
       document.addEventListener('mousedown', handleClickOutside);
     }
-    
+
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
@@ -209,10 +209,10 @@ export default function Redesign() {
   useEffect(() => {
     const checkFavoriteStatus = async () => {
       if (!isClient || !generatedDesign || !selectedRoom || !selectedStyle) return;
-      
+
       const roomTypeName = roomTypes.find(room => room.id === selectedRoom)?.name || 'Room';
       const styleName = styleOptions.find(style => style.id === selectedStyle)?.name || 'Style';
-      
+
       try {
         const result = await checkIsFavorite(roomTypeName, styleName);
         setIsFavorite(result);
@@ -304,14 +304,14 @@ export default function Redesign() {
     if (usedCredits >= plans[userPlan]) {
       // Show upgrade modal instead of directly navigating to pricing page
       setShowUpgradeModal(true);
-      
+
       // Track upgrade needed event
       event({
         action: 'credits_exceeded',
         category: 'redesign',
         label: userPlan
       });
-      
+
       return;
     }
 
@@ -323,7 +323,7 @@ export default function Redesign() {
       category: 'redesign',
       label: `${selectedRoom}_${selectedStyle}_${budget}`
     });
-    
+
     try {
       // Get the style name and room type name for a better prompt
       const styleName = styleOptions.find(style => style.id === selectedStyle)?.name || selectedStyle;
@@ -332,7 +332,7 @@ export default function Redesign() {
       // Create a more detailed prompt based on room type
       let promptDetails = '';
       let styleDetails = '';
-      
+
       // Add style-specific details for better accuracy
       if (selectedStyle === 'artdeco' && selectedRoom === 'study') {
         styleDetails = `The Art Deco style should feature bold geometric patterns, rich colors like emerald green, gold, and black, luxurious materials, symmetrical designs, and decorative lighting fixtures like the chandelier. Include Art Deco furniture with sleek lines, mirrored surfaces, and metallic accents. The study should have built-in bookshelves, a statement desk, and artistic wall treatments.`;
@@ -343,9 +343,9 @@ export default function Redesign() {
       } else if (selectedStyle === 'rustic' && selectedRoom === 'study') {
         styleDetails = `The Rustic style should feature natural materials like wood and stone, warm earthy colors, and vintage or antique elements. The study should have a solid wood desk, open shelving, and comfortable seating with natural textures.`;
       }
-      
+
       // Add room-specific details to make the generation more accurate
-      switch(selectedRoom) {
+      switch (selectedRoom) {
         case 'study':
           promptDetails = `The study should have a desk, bookshelves, a comfortable chair, adequate lighting for reading, and storage for books and documents. It should be designed for focused work and reading.`;
           break;
@@ -380,9 +380,9 @@ export default function Redesign() {
         controller.abort();
         throw new Error("Request timed out. The image generation server may be busy. Please try again.");
       }, 30000); // 30 second timeout - image generation can take time
-      
+
       console.log("Generating design with prompt:", prompt);
-      
+
       // API call
       const response = await fetch('/api/generate', {
         method: 'POST',
@@ -394,18 +394,18 @@ export default function Redesign() {
         }),
         signal: controller.signal
       })
-      .catch(fetchError => {
-        console.error("Fetch error:", fetchError);
-        throw new Error(`Network error: ${fetchError.message}`);
-      });
-      
+        .catch(fetchError => {
+          console.error("Fetch error:", fetchError);
+          throw new Error(`Network error: ${fetchError.message}`);
+        });
+
       clearTimeout(timeoutId);
 
       if (!response.ok) {
         try {
           const errorData = await response.json();
           console.error("API error response:", errorData);
-          
+
           // API might return fallback image even with error
           if (errorData.fallbackImage) {
             const generatedDesignData = {
@@ -423,7 +423,7 @@ export default function Redesign() {
             setGeneratedDesign(generatedDesignData);
             return; // Exit early since we've set the design
           }
-          
+
           if (response.status === 402 && errorData.code === 'billing_hard_limit_reached') {
             throw new Error('Stability AI API billing limit reached. Please try again later or contact support.');
           }
@@ -433,7 +433,7 @@ export default function Redesign() {
           if (jsonError.message.includes('JSON')) {
             console.error("Failed to parse error response as JSON:", jsonError);
           }
-          
+
           if (response.status === 404) {
             throw new Error(`API endpoint not found. Please ensure your STABLE_DIFFUSION_API_KEY is set in .env.local file.`);
           } else {
@@ -457,7 +457,7 @@ export default function Redesign() {
           `Add lighting fixtures that complement the ${styleName.toLowerCase()} style`
         ]
       };
-      
+
       // If using fallback image, log this information
       if (data.isFallback) {
         console.log("Using fallback image due to API limit:", data.message);
@@ -479,14 +479,14 @@ export default function Redesign() {
       });
     } catch (error) {
       console.error('Error generating design:', error);
-      
+
       // Fallback to sample design if API call fails
       const styleName = styleOptions.find(style => style.id === selectedStyle)?.name || selectedStyle;
       const roomTypeName = roomTypes.find(room => room.id === selectedRoom)?.name || selectedRoom;
-      
+
       // Create a fallback image URL based on room type
       let fallbackImageUrl;
-      switch(selectedRoom) {
+      switch (selectedRoom) {
         case 'living':
           fallbackImageUrl = 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?q=80&w=1400&auto=format&fit=crop';
           break;
@@ -508,7 +508,7 @@ export default function Redesign() {
         default:
           fallbackImageUrl = 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?q=80&w=1400&auto=format&fit=crop';
       }
-      
+
       // Set fallback design with error message
       setGeneratedDesign({
         error: true,
@@ -553,7 +553,7 @@ export default function Redesign() {
 
       // Set the download filename
       const fileName = `${roomTypes.find(room => room.id === selectedRoom)?.name || 'Room'}_${styleOptions.find(style => style.id === selectedStyle)?.name || 'Design'}.jpg`;
-      
+
       // Use the watermarking utility to download the image
       await downloadImageWithWatermark(generatedDesign.imageUrl, fileName);
 
@@ -621,17 +621,17 @@ export default function Redesign() {
     try {
       // Get current favorites from IndexedDB
       const favorites = await getFavoritesFromIndexedDB();
-      
+
       if (!isFavorite) {
         // Create a minimal object to save space
         const imageUrl = generatedDesign?.imageUrl;
         let thumbnailUrl = imageUrl;
-        
+
         // If the URL contains a high-resolution image, use a smaller version
         if (imageUrl && imageUrl.includes('unsplash.com')) {
           thumbnailUrl = imageUrl.replace(/w=\d+/, 'w=200').replace(/q=\d+/, 'q=60');
         }
-        
+
         const newFavorite = {
           id: Date.now(),
           thumbnailUrl: thumbnailUrl,
@@ -642,16 +642,16 @@ export default function Redesign() {
 
         // Add the new favorite to the beginning
         favorites.unshift(newFavorite);
-        
+
         // No limit on the number of favorites
         // Allow unlimited favorites storage
       } else {
         // Find and remove from favorites
         const roomTypeName = roomTypes.find(room => room.id === selectedRoom)?.name || 'Room';
         const styleName = styleOptions.find(style => style.id === selectedStyle)?.name || 'Style';
-        
-        const index = favorites.findIndex(fav => 
-          fav.roomType === roomTypeName && 
+
+        const index = favorites.findIndex(fav =>
+          fav.roomType === roomTypeName &&
           fav.style === styleName
         );
 
@@ -659,10 +659,10 @@ export default function Redesign() {
           favorites.splice(index, 1);
         }
       }
-      
+
       // Save to IndexedDB
       await saveFavoritesToIndexedDB(favorites);
-      
+
       // Also update localStorage reference with minimal data for compatibility
       try {
         // Just store IDs and dates in localStorage for compatibility
@@ -676,7 +676,7 @@ export default function Redesign() {
       } catch (storageError) {
         console.warn("Could not update localStorage reference:", storageError);
       }
-      
+
     } catch (error) {
       console.error("Error handling favorites:", error);
     }
@@ -729,10 +729,10 @@ export default function Redesign() {
         {previewUrl ? (
           <div className="relative">
             <div className="relative h-64 w-full">
-              <Image 
-                src={previewUrl} 
-                alt="Room preview" 
-                className="rounded-lg" 
+              <Image
+                src={previewUrl}
+                alt="Room preview"
+                className="rounded-lg"
                 fill
                 style={{ objectFit: 'contain' }}
               />
@@ -994,9 +994,9 @@ export default function Redesign() {
               <p className="text-sm text-zinc-500 mb-1">Room Photo</p>
               {previewUrl && (
                 <div className="relative h-40 rounded-lg overflow-hidden">
-                  <Image 
-                    src={previewUrl} 
-                    alt="Room preview" 
+                  <Image
+                    src={previewUrl}
+                    alt="Room preview"
                     fill
                     style={{ objectFit: 'cover' }}
                   />
@@ -1184,7 +1184,7 @@ export default function Redesign() {
                         Share Design
                       </span>
                     </button>
-                    
+
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
@@ -1235,7 +1235,7 @@ export default function Redesign() {
                   Design downloaded successfully!
                 </div>
               )}
-              
+
               {shareSuccess && (
                 <div className="bg-blue-900/30 text-blue-200 p-3 rounded-lg mb-4 text-sm flex items-center w-full">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -1244,7 +1244,7 @@ export default function Redesign() {
                   {shareMessage || 'Design shared successfully!'}
                 </div>
               )}
-              
+
               {generatedDesign?.isFallback && (
                 <div className="bg-amber-900/30 text-amber-200 p-3 rounded-lg mb-4 text-sm flex items-center w-full">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-amber-400" viewBox="0 0 20 20" fill="currentColor">
@@ -1273,7 +1273,7 @@ export default function Redesign() {
                 <div ref={shareOptionsRef} className="bg-zinc-800 p-3 rounded-lg mb-4 w-full">
                   <div className="flex justify-between items-center mb-2">
                     <p className="text-zinc-300 text-sm">Share via:</p>
-                    <button 
+                    <button
                       onClick={() => setShowShareOptions(false)}
                       className="text-zinc-400 hover:text-white"
                     >
@@ -1283,7 +1283,7 @@ export default function Redesign() {
                     </button>
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    <button 
+                    <button
                       onClick={() => handleShareVia('whatsapp')}
                       className="bg-[#25D366] hover:bg-opacity-90 text-white p-2 rounded-md transition-colors duration-300 flex items-center gap-1 text-sm"
                     >
@@ -1292,7 +1292,7 @@ export default function Redesign() {
                       </svg>
                       WhatsApp
                     </button>
-                    <button 
+                    <button
                       onClick={() => handleShareVia('facebook')}
                       className="bg-[#1877F2] hover:bg-opacity-90 text-white p-2 rounded-md transition-colors duration-300 flex items-center gap-1 text-sm"
                     >
@@ -1301,7 +1301,7 @@ export default function Redesign() {
                       </svg>
                       Facebook
                     </button>
-                    <button 
+                    <button
                       onClick={() => handleShareVia('twitter')}
                       className="bg-[#1DA1F2] hover:bg-opacity-90 text-white p-2 rounded-md transition-colors duration-300 flex items-center gap-1 text-sm"
                     >
@@ -1310,7 +1310,7 @@ export default function Redesign() {
                       </svg>
                       Twitter
                     </button>
-                    <button 
+                    <button
                       onClick={() => handleShareVia('copy')}
                       className="bg-zinc-600 hover:bg-zinc-500 text-white p-2 rounded-md transition-colors duration-300 flex items-center gap-1 text-sm"
                     >
@@ -1337,8 +1337,8 @@ export default function Redesign() {
         {/* Add before-and-after image comparison slider */}
         {previewUrl && generatedDesign?.imageUrl && (
           <div className="col-span-1 lg:col-span-2 bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden shadow-xl p-3 mt-3 mb-3">
-            <ImageComparisonSlider 
-              originalImage={previewUrl} 
+            <ImageComparisonSlider
+              originalImage={previewUrl}
               generatedImage={generatedDesign.imageUrl}
             />
           </div>
@@ -1372,16 +1372,16 @@ export default function Redesign() {
               Upgrade Now
             </button>
           </div>
-          
+
           {/* Add feedback form component */}
-          <FeedbackForm 
+          <FeedbackForm
             designId={generatedDesign?.id}
             roomType={roomTypes.find(room => room.id === selectedRoom)?.name}
             styleType={styleOptions.find(style => style.id === selectedStyle)?.name}
           />
         </div>
       </div>
-      
+
       {/* Mobile share button - fixed to bottom on small screens */}
       <div className="md:hidden fixed bottom-4 right-4 z-50">
         <button
@@ -1394,7 +1394,7 @@ export default function Redesign() {
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-        </svg>
+          </svg>
         </button>
       </div>
     </div>
@@ -1406,7 +1406,7 @@ export default function Redesign() {
       try {
         // Apply watermark to the image before opening
         const watermarkedImageUrl = await addWatermarkToImage(imageUrl);
-        
+
         // Create a temporary window to display the watermarked image
         const newWindow = window.open('', '_blank');
         if (newWindow) {
@@ -1441,9 +1441,9 @@ export default function Redesign() {
             </html>
           `);
           newWindow.document.close();
-          
+
           // Clean up the object URL when the window is closed
-          newWindow.onbeforeunload = function() {
+          newWindow.onbeforeunload = function () {
             URL.revokeObjectURL(watermarkedImageUrl);
           };
         } else {
@@ -1461,7 +1461,7 @@ export default function Redesign() {
   // Add a function to handle sharing the design
   const handleShareDesign = async (e) => {
     e.stopPropagation();
-    
+
     // Check if Web Share API is available
     if (navigator.share && !navigator.userAgent.match(/firefox|fxios/i)) { // Firefox has issues with Web Share API
       try {
@@ -1470,48 +1470,48 @@ export default function Redesign() {
         const shareTitle = `${styleName} ${roomTypeName} Design by Decormind`;
         const shareText = `Check out my ${styleName} style ${roomTypeName.toLowerCase()} design created with AI!`;
         const shareUrl = window.location.href;
-        
+
         // Check if we can share the image directly
         if (generatedDesign?.imageUrl && navigator.canShare && navigator.canShare({ files: [new File([new Blob()], 'test.jpg', { type: 'image/jpeg' })] })) {
           try {
             // Apply watermark before sharing - import this from imageUtils
             const watermarkedImageUrl = await addWatermarkToImage(generatedDesign.imageUrl);
-            
+
             // Fetch the watermarked image and share it
             const response = await fetch(watermarkedImageUrl);
             const blob = await response.blob();
             const file = new File([blob], `${roomTypeName.toLowerCase()}_design.jpg`, { type: 'image/jpeg' });
-            
+
             navigator.share({
               title: shareTitle,
               text: shareText,
               url: shareUrl,
               files: [file]
             })
-            .then(() => {
-              setShareSuccess(true);
-              setShareMessage('Design shared successfully!');
-              
-              // Track share event
-              event({
-                action: 'design_image_shared',
-                category: 'redesign',
-                label: 'web_share_api_with_image'
+              .then(() => {
+                setShareSuccess(true);
+                setShareMessage('Design shared successfully!');
+
+                // Track share event
+                event({
+                  action: 'design_image_shared',
+                  category: 'redesign',
+                  label: 'web_share_api_with_image'
+                });
+
+                // Hide success message after 3 seconds
+                setTimeout(() => {
+                  setShareSuccess(false);
+                }, 3000);
+
+                // Clean up the object URL
+                URL.revokeObjectURL(watermarkedImageUrl);
+              })
+              .catch((error) => {
+                console.error('Error sharing with image:', error);
+                // Fallback to sharing without image
+                shareWithoutImage();
               });
-              
-              // Hide success message after 3 seconds
-              setTimeout(() => {
-                setShareSuccess(false);
-              }, 3000);
-              
-              // Clean up the object URL
-              URL.revokeObjectURL(watermarkedImageUrl);
-            })
-            .catch((error) => {
-              console.error('Error sharing with image:', error);
-              // Fallback to sharing without image
-              shareWithoutImage();
-            });
           } catch (error) {
             console.error('Error applying watermark:', error);
             // Fallback to sharing without image
@@ -1521,36 +1521,36 @@ export default function Redesign() {
           // Share without image
           shareWithoutImage();
         }
-        
+
         function shareWithoutImage() {
           navigator.share({
             title: shareTitle,
             text: shareText,
             url: shareUrl,
           })
-          .then(() => {
-            setShareSuccess(true);
-            setShareMessage('Design shared successfully!');
-            
-            // Track share event
-            event({
-              action: 'design_shared',
-              category: 'redesign',
-              label: 'web_share_api'
+            .then(() => {
+              setShareSuccess(true);
+              setShareMessage('Design shared successfully!');
+
+              // Track share event
+              event({
+                action: 'design_shared',
+                category: 'redesign',
+                label: 'web_share_api'
+              });
+
+              // Hide success message after 3 seconds
+              setTimeout(() => {
+                setShareSuccess(false);
+              }, 3000);
+            })
+            .catch((error) => {
+              console.error('Error sharing:', error);
+              // If user cancels, don't show the fallback options
+              if (error.name !== 'AbortError') {
+                setShowShareOptions(true);
+              }
             });
-            
-            // Hide success message after 3 seconds
-            setTimeout(() => {
-              setShareSuccess(false);
-            }, 3000);
-          })
-          .catch((error) => {
-            console.error('Error sharing:', error);
-            // If user cancels, don't show the fallback options
-            if (error.name !== 'AbortError') {
-              setShowShareOptions(true);
-            }
-          });
         }
       } catch (error) {
         console.error('Error using Web Share API:', error);
@@ -1569,39 +1569,39 @@ export default function Redesign() {
     const shareTitle = `${styleName} ${roomTypeName} Design by Decormind`;
     const shareText = `Check out my ${styleName} style ${roomTypeName.toLowerCase()} design created with AI!`;
     const shareUrl = window.location.href;
-    
+
     let shareLink = '';
-    
+
     switch (platform) {
       case 'whatsapp':
         shareLink = `https://wa.me/?text=${encodeURIComponent(`${shareText} ${shareUrl}`)}`;
         window.open(shareLink, '_blank');
         break;
-      
+
       case 'facebook':
         shareLink = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
         window.open(shareLink, '_blank');
         break;
-      
+
       case 'twitter':
         shareLink = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
         window.open(shareLink, '_blank');
         break;
-      
+
       case 'copy':
         // Copy link to clipboard
         try {
           navigator.clipboard.writeText(shareUrl).then(() => {
             setShareSuccess(true);
             setShareMessage('Link copied to clipboard!');
-            
+
             // Track copy event
             event({
               action: 'design_link_copied',
               category: 'redesign',
               label: 'clipboard'
             });
-            
+
             // Hide success message after 3 seconds
             setTimeout(() => {
               setShareSuccess(false);
@@ -1615,21 +1615,21 @@ export default function Redesign() {
           textArea.select();
           document.execCommand('copy');
           document.body.removeChild(textArea);
-          
+
           setShareSuccess(true);
           setShareMessage('Link copied to clipboard!');
-          
+
           // Hide success message after 3 seconds
           setTimeout(() => {
             setShareSuccess(false);
           }, 3000);
         }
         break;
-      
+
       default:
         console.error('Unknown sharing platform:', platform);
     }
-    
+
     // Track share event if not copy (which has its own tracking)
     if (platform !== 'copy') {
       event({
@@ -1638,7 +1638,7 @@ export default function Redesign() {
         label: platform
       });
     }
-    
+
     // Hide share options after selecting one
     setShowShareOptions(false);
   };
@@ -1824,7 +1824,7 @@ export default function Redesign() {
             </div>
           </div>
         )}
-        
+
         {/* Main content */}
         <div className="max-w-4xl mx-auto">
           {step === 1 && renderStep1()}
@@ -1837,10 +1837,10 @@ export default function Redesign() {
       </div>
 
       {/* Add the UpgradeModal here */}
-      <UpgradeModal 
-        show={showUpgradeModal} 
+      <UpgradeModal
+        show={showUpgradeModal}
         onClose={() => setShowUpgradeModal(false)}
-        currentPlan={userPlan} 
+        currentPlan={userPlan}
       />
 
       {/* Add shimmer animation styles */}

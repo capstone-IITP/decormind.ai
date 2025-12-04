@@ -14,8 +14,8 @@ export default async function handler(req, res) {
     // Extract feedback data from request body
     const { message, designId, roomType, styleType } = req.body;
 
-    // Validate required fields
-    if (!message || message.trim() === '') {
+    // Validate required fields with proper type checking
+    if (!message || typeof message !== 'string' || message.trim() === '') {
       return res.status(400).json({ success: false, message: 'Feedback message is required' });
     }
 
@@ -28,17 +28,17 @@ export default async function handler(req, res) {
     });
 
     // Return success response
-    return res.status(201).json({ 
-      success: true, 
+    return res.status(201).json({
+      success: true,
       message: 'Feedback submitted successfully',
       feedback
     });
   } catch (error) {
     console.error('Error submitting feedback:', error);
-    return res.status(500).json({ 
-      success: false, 
+    return res.status(500).json({
+      success: false,
       message: 'Error submitting feedback',
       error: error.message
     });
   }
-} 
+}

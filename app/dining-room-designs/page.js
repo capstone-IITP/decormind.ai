@@ -559,25 +559,38 @@ export default function DiningRoomDesigns() {
                     <div className="bg-zinc-800/30 p-6 rounded-xl border border-zinc-700/30">
                         <h3 className="text-xl font-bold text-white mb-2">How does the dining room redesign process work?</h3>
                         <p className="text-zinc-400">
-                            Simply upload a photo of your current dining room space, select your preferred style and budget, and our AI will generate a redesigned version of your space within minutes.
+                            Simply upload a photo of your current dining room, select your preferred style and budget, and our AI will generate a redesigned version of your space within minutes.
                         </p>
                     </div>
                     <div className="bg-zinc-800/30 p-6 rounded-xl border border-zinc-700/30">
-                        <h3 className="text-xl font-bold text-white mb-2">What are the popular dining room styles in 2023?</h3>
+                        <h3 className="text-xl font-bold text-white mb-2">What dining room styles can I choose from?</h3>
                         <p className="text-zinc-400">
-                            Trending styles include modern minimalist with clean lines, biophilic designs that incorporate natural elements, mixed material aesthetics, and multifunctional dining spaces that can adapt to various needs.
+                            We offer a variety of styles including Modern, Scandinavian, Industrial, Traditional, Bohemian, and Minimalist. Each style has unique characteristics that can transform your dining space.
                         </p>
                     </div>
                     <div className="bg-zinc-800/30 p-6 rounded-xl border border-zinc-700/30">
-                        <h3 className="text-xl font-bold text-white mb-2">How can I maximize space in a small dining area?</h3>
+                        <h3 className="text-xl font-bold text-white mb-2">Can I get furniture recommendations for my dining room?</h3>
                         <p className="text-zinc-400">
-                            Our AI analyzes your space dimensions and suggests solutions like round tables instead of rectangular ones, bench seating, wall-mounted storage, and proper lighting to create an open feeling even in compact areas.
+                            Yes! After generating your redesign, you'll receive a list of dining tables, chairs, lighting fixtures, and decor recommendations that match the new design, along with estimated prices.
                         </p>
                     </div>
                 </div>
             </div>
 
-            {/* Footer section removed - now handled by global Footer component */}
+            {/* Footer */}
+            <footer className="bg-zinc-900 border-t border-zinc-800 py-8">
+                <div className="container mx-auto px-4">
+                    <div className="flex flex-col md:flex-row justify-between items-center">
+                        <div className="flex items-center mb-4 md:mb-0">
+                            <div className="bg-cyan-400 w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold mr-2">DM</div>
+                            <span className="text-white font-medium">DecorMind</span>
+                        </div>
+                        <div className="text-zinc-500 text-sm">
+                            © {new Date().getFullYear()} DecorMind. All rights reserved.
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
     );
 }
