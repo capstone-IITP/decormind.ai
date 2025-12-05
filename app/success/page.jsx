@@ -14,11 +14,11 @@ export default function VerificationSuccess() {
         <div className="relative min-h-screen w-full bg-[#050505] flex items-center justify-center p-4 overflow-hidden font-sans text-slate-200">
 
             {/* --- Ambient Background Effects --- */}
-            <div className={`absolute inset-0 transition-opacity duration-[2000ms] ${mounted ? 'opacity-100' : 'opacity-0'}`}>
+            <div className={`absolute inset-0 transition-opacity ${mounted ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDuration: '2000ms' }}>
 
                 {/* Animated Gold/Beige Orbs - "Breathing" Background */}
-                <div className="absolute top-[-10%] left-[-10%] w-[70vw] h-[70vw] bg-[#C5A790] rounded-full mix-blend-screen filter blur-[120px] opacity-[0.08] animate-pulse duration-[10000ms]"></div>
-                <div className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] bg-[#C5A790] rounded-full mix-blend-screen filter blur-[140px] opacity-[0.05] animate-pulse duration-[7000ms]"></div>
+                <div className="absolute top-[-10%] left-[-10%] w-[70vw] h-[70vw] bg-[#C5A790] rounded-full mix-blend-screen filter blur-[120px] opacity-[0.08] animate-pulse" style={{ animationDuration: '10000ms' }}></div>
+                <div className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] bg-[#C5A790] rounded-full mix-blend-screen filter blur-[140px] opacity-[0.05] animate-pulse" style={{ animationDuration: '7000ms' }}></div>
 
                 {/* Fine Mesh Grid for Texture */}
                 <div

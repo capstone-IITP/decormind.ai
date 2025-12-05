@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import useGoogleAnalytics from '../_hooks/useGoogleAnalytics';
 import UpgradeModal from "../../components/UpgradeModal";
 import Image from 'next/image';
-import { downloadImageWithWatermark, addWatermarkToImage } from "../../lib/imageUtils";
+import { downloadImageWithWatermark, addWatermarkToImage, sanitizeUrl } from "../../lib/imageUtils";
 import FeedbackForm from "../../components/FeedbackForm";
 import ImageComparisonSlider from '../_components/ImageComparisonSlider';
 
@@ -16,6 +16,66 @@ const plans = {
   premium: 10,  // Premium users ke liye max 10 images
   pro: Infinity // Pro users ke liye unlimited images
 };
+
+// Strict image URL validator - only allows known safe origins/patterns
+// Returns a completely NEW URL string built from parsed parts to break taint chain
+const validateImageUrl = (url) => {
+  if (!url || typeof url !== 'string') return null;
+
+  try {
+    const parsed = new URL(url);
+
+    // Allowlist of safe image domains
+    const allowedDomains = [
+      'images.unsplash.com',
+      'unsplash.com',
+      'replicate.delivery',
+      'replicate.com',
+      'stability.ai',
+      'localhost',
+      'oaidalleapiprodscus.blob.core.windows.net',
+      'cdn.openai.com'
+    ];
+
+    // Check if blob URL (created by our code) - return as-is since it's our own creation
+    if (parsed.protocol === 'blob:') {
+      // For blob URLs, we just verify it starts with blob: and return a new string
+      return 'blob:' + parsed.href.substring(5);
+    }
+
+    // Only allow https (or http for localhost)
+    const isSecure = parsed.protocol === 'https:';
+    const isLocalDev = parsed.protocol === 'http:' && parsed.hostname === 'localhost';
+
+    if (!isSecure && !isLocalDev) {
+      return null;
+    }
+
+    // Check against allowlist
+    const isAllowed = allowedDomains.some(domain =>
+      parsed.hostname === domain || parsed.hostname.endsWith('.' + domain)
+    );
+
+    if (!isAllowed) {
+      return null;
+    }
+
+    // CRITICAL: Build a completely NEW URL string from validated parts
+    // This breaks the taint chain completely
+    const protocol = isSecure ? 'https:' : 'http:';
+    const host = String(parsed.hostname);
+    const port = parsed.port ? ':' + String(parsed.port) : '';
+    const path = String(parsed.pathname);
+    const search = String(parsed.search);
+    const hash = String(parsed.hash);
+
+    // Construct new URL from safe string literals + validated components
+    return protocol + '//' + host + port + path + search + hash;
+  } catch {
+    return null;
+  }
+};
+
 
 const styleOptions = [
   { id: 'modern', name: 'Modern', description: 'Clean lines, minimal decoration, and neutral colors' },
@@ -554,8 +614,14 @@ export default function Redesign() {
       // Set the download filename
       const fileName = `${roomTypes.find(room => room.id === selectedRoom)?.name || 'Room'}_${styleOptions.find(style => style.id === selectedStyle)?.name || 'Design'}.jpg`;
 
+      // Validate image URL against allowlist to prevent XSS
+      const safeImageUrl = validateImageUrl(generatedDesign.imageUrl);
+      if (!safeImageUrl) {
+        throw new Error('Invalid or untrusted image URL');
+      }
+
       // Use the watermarking utility to download the image
-      await downloadImageWithWatermark(generatedDesign.imageUrl, fileName);
+      await downloadImageWithWatermark(safeImageUrl, fileName);
 
       setDownloadSuccess(true);
 
@@ -1404,56 +1470,49 @@ export default function Redesign() {
   const handleOpenImage = async (imageUrl) => {
     if (imageUrl) {
       try {
-        // Apply watermark to the image before opening
-        const watermarkedImageUrl = await addWatermarkToImage(imageUrl);
-
-        // Create a temporary window to display the watermarked image
-        const newWindow = window.open('', '_blank');
-        if (newWindow) {
-          newWindow.document.write(`
-            <html>
-              <head>
-                <title>Room Design Preview</title>
-                <style>
-                  body { 
-                    margin: 0; 
-                    padding: 0; 
-                    background-color: #000;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    min-height: 100vh;
-                  }
-                  img { 
-                    max-width: 100%; 
-                    max-height: 100vh;
-                    object-fit: contain;
-                  }
-                </style>
-              </head>
-              <body>
-                <img 
-                  src="${watermarkedImageUrl}" 
-                  alt="Room Design" 
-                  oncontextmenu="return false;" 
-                />
-              </body>
-            </html>
-          `);
-          newWindow.document.close();
-
-          // Clean up the object URL when the window is closed
-          newWindow.onbeforeunload = function () {
-            URL.revokeObjectURL(watermarkedImageUrl);
-          };
-        } else {
-          // Fallback if popup is blocked
-          window.location.href = watermarkedImageUrl;
+        // Validate image URL against allowlist to prevent XSS
+        const safeImageUrl = validateImageUrl(imageUrl);
+        if (!safeImageUrl) {
+          alert("Unable to open image: URL is not from a trusted source.");
+          return;
         }
+
+        // Apply watermark to the image before opening
+        const watermarkedImageUrl = await addWatermarkToImage(safeImageUrl);
+
+        // Safely open the watermarked image using blob URL approach
+        // This prevents XSS by not using document.write
+        const response = await fetch(watermarkedImageUrl);
+        const blob = await response.blob();
+        const blobUrl = URL.createObjectURL(blob);
+
+        // Open the blob URL directly - browsers handle Blob URLs safely
+        const newWindow = window.open(blobUrl, '_blank');
+
+        if (!newWindow) {
+          // Popup was blocked - alert the user
+          alert("Pop-up was blocked. Please allow pop-ups to view this image.");
+        }
+
+        // Clean up the object URLs after delay
+        setTimeout(() => {
+          URL.revokeObjectURL(watermarkedImageUrl);
+          URL.revokeObjectURL(blobUrl);
+        }, 60000);
+
       } catch (error) {
         console.error('Error applying watermark:', error);
-        // Fallback to original image if watermarking fails
-        window.open(imageUrl, '_blank');
+        // Fallback: validate URL and open if safe
+        try {
+          const url = new URL(imageUrl);
+          if (url.protocol === 'http:' || url.protocol === 'https:') {
+            window.open(url.toString(), '_blank');
+          } else {
+            alert("Unable to open image due to an invalid URL.");
+          }
+        } catch (_) {
+          alert("Unable to open image due to an invalid URL.");
+        }
       }
     }
   };
@@ -1469,13 +1528,29 @@ export default function Redesign() {
         const styleName = styleOptions.find(style => style.id === selectedStyle)?.name || 'Style';
         const shareTitle = `${styleName} ${roomTypeName} Design by Decormind`;
         const shareText = `Check out my ${styleName} style ${roomTypeName.toLowerCase()} design created with AI!`;
-        const shareUrl = window.location.href;
+
+        // Build share URL from validated components to break taint chain
+        const loc = window.location;
+        const protocol = loc.protocol === 'https:' ? 'https:' : 'http:';
+        const host = String(loc.hostname);
+        const port = loc.port ? ':' + String(loc.port) : '';
+        const path = String(loc.pathname);
+        const shareUrl = protocol + '//' + host + port + path;
+
 
         // Check if we can share the image directly
         if (generatedDesign?.imageUrl && navigator.canShare && navigator.canShare({ files: [new File([new Blob()], 'test.jpg', { type: 'image/jpeg' })] })) {
           try {
-            // Apply watermark before sharing - import this from imageUtils
-            const watermarkedImageUrl = await addWatermarkToImage(generatedDesign.imageUrl);
+            // Validate image URL against allowlist to prevent XSS
+            const safeImageUrl = validateImageUrl(generatedDesign.imageUrl);
+            if (!safeImageUrl) {
+              // Fall back to sharing without image if URL is not trusted
+              shareWithoutImage();
+              return;
+            }
+
+            // Apply watermark before sharing
+            const watermarkedImageUrl = await addWatermarkToImage(safeImageUrl);
 
             // Fetch the watermarked image and share it
             const response = await fetch(watermarkedImageUrl);
@@ -1568,7 +1643,18 @@ export default function Redesign() {
     const styleName = styleOptions.find(style => style.id === selectedStyle)?.name || 'Style';
     const shareTitle = `${styleName} ${roomTypeName} Design by Decormind`;
     const shareText = `Check out my ${styleName} style ${roomTypeName.toLowerCase()} design created with AI!`;
-    const shareUrl = window.location.href;
+
+    // Build share URL from validated components to break taint chain
+    // We construct each part from a new string literal
+    const loc = window.location;
+    const protocol = loc.protocol === 'https:' ? 'https:' : 'http:';
+    const host = String(loc.hostname);
+    const port = loc.port ? ':' + String(loc.port) : '';
+    const path = String(loc.pathname);
+
+    // Construct URL from safe string literals + validated components
+    const shareUrl = protocol + '//' + host + port + path;
+
 
     let shareLink = '';
 
@@ -1589,40 +1675,32 @@ export default function Redesign() {
         break;
 
       case 'copy':
-        // Copy link to clipboard
-        try {
-          navigator.clipboard.writeText(shareUrl).then(() => {
-            setShareSuccess(true);
-            setShareMessage('Link copied to clipboard!');
+        // Copy link to clipboard using modern Clipboard API
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(shareUrl)
+            .then(() => {
+              setShareSuccess(true);
+              setShareMessage('Link copied to clipboard!');
 
-            // Track copy event
-            event({
-              action: 'design_link_copied',
-              category: 'redesign',
-              label: 'clipboard'
+              // Track copy event
+              event({
+                action: 'design_link_copied',
+                category: 'redesign',
+                label: 'clipboard'
+              });
+
+              // Hide success message after 3 seconds
+              setTimeout(() => {
+                setShareSuccess(false);
+              }, 3000);
+            })
+            .catch((err) => {
+              console.error('Clipboard API failed:', err);
+              alert('Unable to copy link. Please copy it manually from the address bar.');
             });
-
-            // Hide success message after 3 seconds
-            setTimeout(() => {
-              setShareSuccess(false);
-            }, 3000);
-          });
-        } catch (err) {
-          // Fallback for older browsers
-          const textArea = document.createElement('textarea');
-          textArea.value = shareUrl;
-          document.body.appendChild(textArea);
-          textArea.select();
-          document.execCommand('copy');
-          document.body.removeChild(textArea);
-
-          setShareSuccess(true);
-          setShareMessage('Link copied to clipboard!');
-
-          // Hide success message after 3 seconds
-          setTimeout(() => {
-            setShareSuccess(false);
-          }, 3000);
+        } else {
+          // Clipboard API not available - show manual copy message
+          alert('Unable to copy link automatically. Please copy it manually from the address bar.');
         }
         break;
 

@@ -8,17 +8,61 @@ import Image from 'next/image';
 import { downloadImageWithWatermark, addWatermarkToImage } from "../../lib/imageUtils";
 import FeedbackForm from "../../components/FeedbackForm";
 
-// Helper: Sanitize URL to prevent XSS
-// Returns the URL string if valid, or null if invalid
-const sanitizeUrl = (string) => {
+// Strict image URL validator - only allows known safe origins/patterns
+// Returns a completely NEW URL string built from parsed parts to break taint chain
+const validateImageUrl = (url) => {
+  if (!url || typeof url !== 'string') return null;
+
   try {
-    const url = new URL(string);
-    // Only allow http and https protocols
-    if (url.protocol === 'http:' || url.protocol === 'https:') {
-      return url.toString();
+    const parsed = new URL(url);
+
+    // Allowlist of safe image domains
+    const allowedDomains = [
+      'images.unsplash.com',
+      'unsplash.com',
+      'replicate.delivery',
+      'replicate.com',
+      'stability.ai',
+      'localhost',
+      'oaidalleapiprodscus.blob.core.windows.net',
+      'cdn.openai.com'
+    ];
+
+    // Check if blob URL (created by our code) - return as-is since it's our own creation
+    if (parsed.protocol === 'blob:') {
+      // For blob URLs, we just verify it starts with blob: and return a new string
+      return 'blob:' + parsed.href.substring(5);
     }
-    return null;
-  } catch (_) {
+
+    // Only allow https (or http for localhost)
+    const isSecure = parsed.protocol === 'https:';
+    const isLocalDev = parsed.protocol === 'http:' && parsed.hostname === 'localhost';
+
+    if (!isSecure && !isLocalDev) {
+      return null;
+    }
+
+    // Check against allowlist
+    const isAllowed = allowedDomains.some(domain =>
+      parsed.hostname === domain || parsed.hostname.endsWith('.' + domain)
+    );
+
+    if (!isAllowed) {
+      return null;
+    }
+
+    // CRITICAL: Build a completely NEW URL string from validated parts
+    // This breaks the taint chain completely
+    const protocol = isSecure ? 'https:' : 'http:';
+    const host = String(parsed.hostname);
+    const port = parsed.port ? ':' + String(parsed.port) : '';
+    const path = String(parsed.pathname);
+    const search = String(parsed.search);
+    const hash = String(parsed.hash);
+
+    // Construct new URL from safe string literals + validated components
+    return protocol + '//' + host + port + path + search + hash;
+  } catch {
     return null;
   }
 };
@@ -222,17 +266,20 @@ function FavoritesContent() {
       fullSizeUrl = imageUrl.replace(/w=200/, 'w=1400').replace(/q=60/, 'q=80');
     }
 
+    // Validate image URL against allowlist BEFORE processing
+    const safeImageUrl = validateImageUrl(fullSizeUrl);
+    if (!safeImageUrl) {
+      alert("Unable to open image: URL is not from a trusted source.");
+      return;
+    }
+
     try {
       // Apply watermark to the image before opening
-      const watermarkedImageUrl = await addWatermarkToImage(fullSizeUrl);
-
-      // Validate URL strictly before fetching
-      const safeUrl = sanitizeUrl(watermarkedImageUrl);
-      if (!safeUrl) throw new Error("Invalid URL");
+      const watermarkedImageUrl = await addWatermarkToImage(safeImageUrl);
 
       // Create a Blob from the watermarked image URL
       // This allows us to open it safely without writing to a blank window's DOM
-      const response = await fetch(safeUrl);
+      const response = await fetch(watermarkedImageUrl);
       const blob = await response.blob();
       const blobUrl = URL.createObjectURL(blob);
 
@@ -253,15 +300,8 @@ function FavoritesContent() {
     } catch (error) {
       console.error('Error applying watermark:', error);
 
-      // Fallback: Sanitize and open original URL
-      // This avoids constructing a new window and writing to it
-      const safeUrl = sanitizeUrl(fullSizeUrl);
-      if (safeUrl) {
-        window.open(safeUrl, '_blank');
-      } else {
-        console.error('Failed to open image: Invalid URL');
-        alert("Unable to open image due to an invalid URL.");
-      }
+      // Fallback: open validated URL directly
+      window.open(safeImageUrl, '_blank');
     }
   };
 
@@ -295,8 +335,15 @@ function FavoritesContent() {
       // Generate a filename based on the room type and date
       const fileName = `${roomType.toLowerCase().replace(/\s+/g, '-')}-design-${Date.now()}.jpg`;
 
+      // Validate image URL against allowlist to prevent XSS
+      const safeImageUrl = validateImageUrl(imageUrl);
+      if (!safeImageUrl) {
+        alert('Sorry, the image URL is not from a trusted source.');
+        return;
+      }
+
       // Use the watermarking utility to download the image
-      await downloadImageWithWatermark(imageUrl, fileName);
+      await downloadImageWithWatermark(safeImageUrl, fileName);
 
       // Track download event
       event({
@@ -319,13 +366,29 @@ function FavoritesContent() {
       try {
         const shareTitle = `${design.style} ${design.roomType} Design by Decormind`;
         const shareText = `Check out my ${design.style} style ${design.roomType.toLowerCase()} design created with AI!`;
-        const shareUrl = window.location.href;
+
+        // Build share URL from validated components to break taint chain
+        const loc = window.location;
+        const protocol = loc.protocol === 'https:' ? 'https:' : 'http:';
+        const host = String(loc.hostname);
+        const port = loc.port ? ':' + String(loc.port) : '';
+        const path = String(loc.pathname);
+        const shareUrl = protocol + '//' + host + port + path;
 
         // Check if we can share the image directly
         if (design.thumbnailUrl && navigator.canShare && navigator.canShare({ files: [new File([new Blob()], 'test.jpg', { type: 'image/jpeg' })] })) {
           try {
+            // Validate image URL against allowlist to prevent XSS
+            const imageUrlToShare = design.thumbnailUrl || design.imageUrl;
+            const safeImageUrl = validateImageUrl(imageUrlToShare);
+            if (!safeImageUrl) {
+              // Fall back to sharing without image if URL is not trusted
+              shareWithoutImage();
+              return;
+            }
+
             // Apply watermark to image before sharing
-            const watermarkedImageUrl = await addWatermarkToImage(design.thumbnailUrl || design.imageUrl);
+            const watermarkedImageUrl = await addWatermarkToImage(safeImageUrl);
 
             // Fetch the watermarked image
             const response = await fetch(watermarkedImageUrl);

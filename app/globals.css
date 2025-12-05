@@ -85,7 +85,7 @@
 
 @font-face {
   font-family: 'Acorn';
-  src: url('/public/fonts/acorn-7.woff') format('woff');
+  src: url('/fonts/acorn-7.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
