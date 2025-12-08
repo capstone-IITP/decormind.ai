@@ -1,9 +1,11 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import 'lenis/dist/lenis.css';
 import { ClerkProvider } from "@clerk/nextjs";
 import NextTopLoader from './_components/NextTopLoader';
 import GoogleAnalytics from './_components/GoogleAnalytics';
 import ConditionalLoader from './_components/ConditionalLoader';
+import LenisProvider from './_components/LenisProvider';
 import Provider from './provider';
 
 const geistSans = Geist({
@@ -126,11 +128,13 @@ export default function RootLayout({ children }) {
             shadow={true}
           />
           <GoogleAnalytics />
-          <Provider>
-            <ConditionalLoader>
-              {children}
-            </ConditionalLoader>
-          </Provider>
+          <LenisProvider>
+            <Provider>
+              <ConditionalLoader>
+                {children}
+              </ConditionalLoader>
+            </Provider>
+          </LenisProvider>
         </body>
       </html>
     </ClerkProvider>
