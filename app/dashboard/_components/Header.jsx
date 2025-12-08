@@ -4,12 +4,14 @@ import React, { useEffect, useState } from 'react';
 import { UserButton } from '@clerk/nextjs';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
+import useRealtimeCredits from '../../_hooks/useRealtimeCredits';
 
 function Header() {
   const router = useRouter();
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
   const [activeLink, setActiveLink] = useState(null);
+  const { credits, loading: creditsLoading } = useRealtimeCredits();
 
   const handleLogoClick = () => {
     router.push('/dashboard');
@@ -177,6 +179,20 @@ function Header() {
         background-color: rgba(24, 24, 27, 0.8);
         box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
       }
+
+      /* Credits badge animation */
+      @keyframes creditsPulse {
+        0%, 100% {
+          box-shadow: 0 0 0 0 rgba(197, 167, 144, 0.4);
+        }
+        50% {
+          box-shadow: 0 0 0 4px rgba(197, 167, 144, 0);
+        }
+      }
+
+      .credits-badge {
+        animation: creditsPulse 2s infinite;
+      }
     `;
     document.head.appendChild(style);
 
@@ -258,6 +274,30 @@ function Header() {
       </div>
 
       <div className="flex items-center gap-4">
+        {/* Credits Display */}
+        {mounted && (
+          <div className="credits-badge flex items-center gap-1.5 bg-zinc-800 border border-zinc-700 rounded-full px-3 py-1.5 text-sm">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#C5A790"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 6v12"></path>
+              <path d="M8 10h8"></path>
+            </svg>
+            <span className="text-[#C5A790] font-medium">
+              {creditsLoading ? '...' : credits}
+            </span>
+            <span className="text-zinc-400 text-xs">credits</span>
+          </div>
+        )}
         <Link
           href="/favorites"
           className={`${isActive('/favorites') ? 'text-[#C5A790]' : 'text-white'} ${activeLink === '/favorites' ? 'link-clicked' : ''} hover:text-[#C5A790] transition-all duration-300 transform hover:scale-110`}
