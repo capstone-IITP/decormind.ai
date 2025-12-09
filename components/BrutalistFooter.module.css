@@ -1,0 +1,273 @@
+/* Swiss Modernist / Neo-Brutalist Aesthetic */
+
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;800&family=Inter:wght@300;400;500&display=swap');
+
+.footer {
+  background-color: #050505;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  padding: 4rem 2rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.borderTop {
+  position: absolute;
+  top: 0;
+  left: 2rem;
+  right: 2rem;
+  height: 1px;
+  background: #333;
+}
+
+.container {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+/* 1. Header Section */
+.headerSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.headerLabel {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #888;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background-color: #00ff41;
+  /* Cyber green accent */
+  border-radius: 50%;
+  box-shadow: 0 0 10px #00ff41;
+}
+
+.ctaButton {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid #333;
+  padding: 1rem 2rem;
+  border-radius: 100px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ctaButton:hover {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+  transform: scale(1.02);
+}
+
+.ctaButton:hover .arrow {
+  transform: translateX(5px) rotate(-45deg);
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+/* 2. Grid Layout */
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  border-top: 1px solid #333;
+  padding-top: 4rem;
+}
+
+.gridCol {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.colLabel {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.75rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.navStack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+/* Rolling Link Animation */
+.rollingLink {
+  height: 1.5rem;
+  /* Match line-height */
+  overflow: hidden;
+  text-decoration: none;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #fff;
+  display: block;
+  line-height: 1.5rem;
+}
+
+.rollingText {
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.rollingText::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: block;
+  color: #C5A790;
+  /* Brand Accent Color */
+}
+
+.rollingLink:hover .rollingText {
+  transform: translateY(-100%);
+}
+
+.contactCol {
+  border-left: 1px solid #333;
+  padding-left: 2rem;
+}
+
+.emailLink {
+  font-size: 1.1rem;
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid #555;
+  padding-bottom: 0.2rem;
+  transition: all 0.2s;
+}
+
+.emailLink:hover {
+  color: #C5A790;
+  border-color: #C5A790;
+}
+
+.address {
+  font-size: 0.9rem;
+  color: #888;
+  line-height: 1.6;
+}
+
+/* 3. Massive Brand Name */
+.bigBrandWrapper {
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+  padding: 2rem 0;
+  overflow: hidden;
+}
+
+.bigBrand {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(2rem, 13vw, 12rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 0.8;
+  margin: 0;
+  text-align: center;
+  color: #fff;
+  white-space: nowrap;
+  width: 100%;
+  display: block;
+
+  /* Outline Effect based on user feedback trends */
+  /* -webkit-text-stroke: 2px #333; */
+  /* color: transparent; */
+
+  transition: transform 0.5s ease-out;
+}
+
+.bigBrandWrapper:hover .bigBrand {
+  /* Subtle movement or color fill on hover */
+  transform: scale(1.02);
+  color: #C5A790;
+}
+
+/* 4. Bottom Bar */
+.bottomBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-bottom: 1rem;
+}
+
+.backToTop {
+  background: none;
+  border: 1px solid #333;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.7rem;
+  transition: all 0.2s;
+}
+
+.backToTop:hover {
+  background: #fff;
+  color: #000;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .gridContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .contactCol {
+    border-left: none;
+    padding-left: 0;
+    grid-column: span 2;
+    border-top: 1px solid #333;
+    padding-top: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .headerSection {
+    flex-direction: column;
+  }
+
+  .gridContainer {
+    grid-template-columns: 1fr;
+  }
+
+  .contactCol {
+    grid-column: span 1;
+  }
+
+  .bottomBar {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

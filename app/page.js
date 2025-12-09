@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import useGoogleAnalytics from './_hooks/useGoogleAnalytics';
 import RoomTransformationsCarousel from './_components/RoomTransformationsCarousel';
+import BrutalistFooter from '../components/BrutalistFooter';
 
 // Simple loading component
 const Loading = () => (
@@ -934,63 +935,8 @@ function HomeContent() {
         </Button>
       </div>
 
-      {/* Contact Section Removed - Now available as a separate page */}
-
-      {/* Footer */}
-      <footer className="bg-black py-10 px-6 border-t border-zinc-800" id="footer">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="bg-[#C5A790] w-6 h-6 rounded-full flex items-center justify-center text-slate-800 text-xs font-bold">DM</div>
-              <h1 className="text-lg font-bold bg-gradient-to-r from-[#1A1A1A] via-[#C5A790] to-[#FFF] text-transparent bg-clip-text">DecorMind</h1>
-            </div>
-          </div>
-          <div>
-            <h5 className="font-bold mb-4 text-white">Company</h5>
-            <ul className="space-y-2 text-sm text-white">
-              <li><Link href="#" className="hover:text-white text-white">About Us</Link></li>
-              <li><Link href="#" className="hover:text-white text-white">Careers</Link></li>
-              <li><Link href="/contact-us" className="hover:text-white text-white">Contact</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h5 className="font-bold mb-4 text-white">Resources</h5>
-            <ul className="space-y-2 text-sm text-white">
-              <li><Link href="#" className="hover:text-white text-white">Blog</Link></li>
-              <li><Link href="#" className="hover:text-white text-white">Design Tips</Link></li>
-              <li><Link href="#" className="hover:text-white text-white">FAQs</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h5 className="font-bold mb-4 text-white">Legal</h5>
-            <ul className="space-y-2 text-sm text-white">
-              <li><Link href="/terms-and-conditions" className="hover:text-white text-white">Terms and Conditions</Link></li>
-              <li><Link href="/privacy-policy" className="hover:text-white text-white">Privacy Policy</Link></li>
-              <li><Link href="/no-refund-policy" className="hover:text-white text-white">No Refund Policy</Link></li>
-            </ul>
-          </div>
-        </div>
-        <div className="flex justify-between items-center pt-8 border-t border-zinc-800 text-sm text-white">
-          <p>© 2025 DecorMind. All rights reserved.</p>
-          <div className="flex gap-4">
-            <Link href="#" className="hover:text-white transform transition-transform duration-300 hover:-translate-y-1">
-              <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 48 48">
-                <linearGradient id="Ld6sqrtcxMyckEl6xeDdMa_uLWV5A9vXIPu_gr1" x1="9.993" x2="40.615" y1="9.993" y2="40.615" gradientUnits="userSpaceOnUse"><stop offset="0" stopColor="#2aa4f4"></stop><stop offset="1" stopColor="#007ad9"></stop></linearGradient><path fill="url(#Ld6sqrtcxMyckEl6xeDdMa_uLWV5A9vXIPu_gr1)" d="M24,4C12.954,4,4,12.954,4,24s8.954,20,20,20s20-8.954,20-20S35.046,4,24,4z"></path><path fill="#fff" d="M26.707,29.301h5.176l0.813-5.258h-5.989v-2.874c0-2.184,0.714-4.121,2.757-4.121h3.283V12.46 c-0.577-0.078-1.797-0.248-4.102-0.248c-4.814,0-7.636,2.542-7.636,8.334v3.498H16.06v5.258h4.948v14.452 C21.988,43.9,22.981,44,24,44c0.921,0,1.82-0.084,2.707-0.204V29.301z"></path>
-              </svg>
-            </Link>
-            <Link href="#" className="hover:text-white transform transition-transform duration-300 hover:-translate-y-1">
-              <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 48 48">
-                <radialGradient id="yOrnnhliCrdS2gy~4tD8ma_Xy10Jcu1L2Su_gr1" cx="19.38" cy="42.035" r="44.899" gradientUnits="userSpaceOnUse"><stop offset="0" stopColor="#fd5"></stop><stop offset=".328" stopColor="#ff543f"></stop><stop offset=".348" stopColor="#fc5245"></stop><stop offset=".504" stopColor="#e64771"></stop><stop offset=".643" stopColor="#d53e91"></stop><stop offset=".761" stopColor="#cc39a4"></stop><stop offset=".841" stopColor="#c837ab"></stop></radialGradient><path fill="url(#yOrnnhliCrdS2gy~4tD8ma_Xy10Jcu1L2Su_gr1)" d="M34.017,41.99l-20,0.019c-4.4,0.004-8.003-3.592-8.008-7.992l-0.019-20	c-0.004-4.4,3.592-8.003,7.992-8.008l20-0.019c4.4-0.004,8.003,3.592,8.008,7.992l0.019,20	C42.014,38.383,38.417,41.986,34.017,41.99z"></path><radialGradient id="yOrnnhliCrdS2gy~4tD8mb_Xy10Jcu1L2Su_gr2" cx="11.786" cy="5.54" r="29.813" gradientTransform="matrix(1 0 0 .6663 0 1.849)" gradientUnits="userSpaceOnUse"><stop offset="0" stopColor="#4168c9"></stop><stop offset=".999" stopColor="#4168c9" stopOpacity="0"></stop></radialGradient><path fill="url(#yOrnnhliCrdS2gy~4tD8mb_Xy10Jcu1L2Su_gr2)" d="M34.017,41.99l-20,0.019c-4.4,0.004-8.003-3.592-8.008-7.992l-0.019-20	c-0.004-4.4,3.592-8.003,7.992-8.008l20-0.019c4.4-0.004,8.003,3.592,8.008,7.992l0.019,20	C42.014,38.383,38.417,41.986,34.017,41.99z"></path><path fill="#fff" d="M24,31c-3.859,0-7-3.14-7-7s3.141-7,7-7s7,3.14,7,7S27.859,31,24,31z M24,19c-2.757,0-5,2.243-5,5	s2.243,5,5,5s5-2.243,5-5S26.757,19,24,19z"></path><circle cx="31.5" cy="16.5" r="1.5" fill="#fff"></circle><path fill="#fff" d="M30,37H18c-3.859,0-7-3.14-7-7V18c0-3.86,3.141-7,7-7h12c3.859,0,7,3.14,7,7v12	C37,33.86,33.859,37,30,37z M18,13c-2.757,0-5,2.243-5,5v12c0,2.757,2.243,5,5,5h12c2.757,0,5-2.243,5-5V18c0-2.757-2.243-5-5-5H18z"></path>
-              </svg>
-            </Link>
-            <Link href="#" className="hover:text-white transform transition-transform duration-300 hover:-translate-y-1">
-              <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 48 48">
-                <path fill="#212121" fillRule="evenodd" d="M38,42H10c-2.209,0-4-1.791-4-4V10c0-2.209,1.791-4,4-4h28	c2.209,0,4,1.791,4,4v28C42,40.209,40.209,42,38,42z" clipRule="evenodd"></path><path fill="#fff" d="M34.257,34h-6.437L13.829,14h6.437L34.257,34z M28.587,32.304h2.563L19.499,15.696h-2.563 L28.587,32.304z"></path><polygon fill="#fff" points="15.866,34 23.069,25.656 22.127,24.407 13.823,34"></polygon><polygon fill="#fff" points="24.45,21.721 25.355,23.01 33.136,14 31.136,14"></polygon>
-              </svg>
-            </Link>
-          </div>
-        </div>
-      </footer>
+      {/* Brutalist Footer */}
+      <BrutalistFooter />
     </div>
   );
 }
