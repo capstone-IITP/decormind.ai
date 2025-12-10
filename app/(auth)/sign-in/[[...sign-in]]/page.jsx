@@ -3,7 +3,7 @@
 import { SignIn } from "@clerk/nextjs";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Page() {
@@ -48,8 +48,8 @@ export default function Page() {
     console.log('Sign-in page - redirectUrl updated to:', redirectUrl);
   }, [redirectUrl]);
 
-  // Array of interior design images
-  const images = [
+  // Array of interior design images - memoized to prevent useEffect re-runs
+  const images = useMemo(() => [
     "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1400&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1932&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1470&auto=format&fit=crop",
@@ -60,7 +60,7 @@ export default function Page() {
     "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=1887&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?q=80&w=1770&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=1857&auto=format&fit=crop"
-  ];
+  ], []);
 
   // Effect to change the image every 2 seconds
   useEffect(() => {

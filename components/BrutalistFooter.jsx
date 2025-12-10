@@ -27,9 +27,9 @@ const BrutalistFooter = () => {
                         <span className={styles.dot}></span>
                         READY TO TRANSFORM YOUR SPACE?
                     </div>
-                    <a href="/sign-up" className={styles.ctaButton}>
+                    <Link href="/sign-up" className={styles.ctaButton}>
                         START NOW <span className={styles.arrow}>→</span>
-                    </a>
+                    </Link>
                 </div>
 
                 {/* 2. Main Grid Layout */}
