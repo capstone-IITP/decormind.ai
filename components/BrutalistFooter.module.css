@@ -179,21 +179,22 @@
 .bigBrandWrapper {
   border-top: 1px solid #333;
   border-bottom: 1px solid #333;
-  padding: 2rem 0;
-  overflow: hidden;
+  padding: 1rem 2rem;
+  overflow: visible;
 }
 
 .bigBrand {
   font-family: 'Unbounded', sans-serif;
-  font-size: clamp(2rem, 13vw, 12rem);
+  font-size: clamp(2rem, 11vw, 10rem);
   font-weight: 800;
   letter-spacing: -0.02em;
-  line-height: 0.8;
+  line-height: 1;
   margin: 0;
+  padding: 0.5rem 1rem;
   text-align: center;
   color: #fff;
   white-space: nowrap;
-  width: 100%;
+  width: auto;
   display: block;
 
   /* Outline Effect based on user feedback trends */

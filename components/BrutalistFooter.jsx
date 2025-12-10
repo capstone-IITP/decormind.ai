@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from './BrutalistFooter.module.css';
 
@@ -15,6 +15,20 @@ const RollingLink = ({ href, children }) => {
 };
 
 const BrutalistFooter = () => {
+    const [currentTime, setCurrentTime] = useState('--:--');
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+        setCurrentTime(new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false }));
+    }, []);
+
+    const handleScrollToTop = () => {
+        if (typeof window !== 'undefined') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    };
+
     return (
         <footer className={styles.footer} suppressHydrationWarning>
             {/* Top Border */}
@@ -90,8 +104,8 @@ const BrutalistFooter = () => {
                 {/* 4. Bottom Utilities */}
                 <div className={styles.bottomBar}>
                     <div className={styles.copyright}>© 2025 DECORMIND INC.</div>
-                    <div className={styles.timeZone}>LOCAL: {new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })}</div>
-                    <button className={styles.backToTop} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+                    <div className={styles.timeZone} suppressHydrationWarning>LOCAL: {currentTime}</div>
+                    <button className={styles.backToTop} onClick={handleScrollToTop}>
                         BACK TO TOP ↑
                     </button>
                 </div>
