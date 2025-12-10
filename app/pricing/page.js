@@ -8,6 +8,7 @@ import { UserButton } from '@clerk/nextjs';
 import PaymentButton from '../_components/PaymentButton';
 import { useUser } from '@clerk/nextjs';
 import { useUserDetail } from '../_context/UserDetailContext';
+import BrutalistFooter from '../../components/BrutalistFooter';
 
 export default function PricingPage() {
   return <SimplifiedPricingComponent />;
@@ -1322,6 +1323,9 @@ function SimplifiedPricingComponent() {
           })}
         </div>
       </div>
+
+      {/* Footer */}
+      <BrutalistFooter variant="dashboard" />
     </div>
   );
 }

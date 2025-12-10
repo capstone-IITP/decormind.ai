@@ -14,7 +14,7 @@ const RollingLink = ({ href, children }) => {
     );
 };
 
-const BrutalistFooter = () => {
+const BrutalistFooter = ({ variant = 'default' }) => {
     const [currentTime, setCurrentTime] = useState('--:--');
     const [isClient, setIsClient] = useState(false);
 
@@ -28,6 +28,23 @@ const BrutalistFooter = () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     };
+
+    // Menu items based on variant
+    const menuItems = variant === 'dashboard' ? [
+        { href: '/', label: 'HOME' },
+        { href: '/redesign', label: 'REDESIGN' },
+        { href: '/decormind', label: 'DECORMIND' },
+        { href: '/pricing', label: 'PRICING' },
+        { href: '/dashboard-contact-us', label: 'CONTACT US' },
+    ] : [
+        { href: '/', label: 'HOME' },
+        { href: '/#features', label: 'FEATURES' },
+        { href: '/#how-it-works', label: 'HOW IT WORKS' },
+        { href: '/#Tutorial Video', label: 'TUTORIAL VIDEO' },
+        { href: '/#gallery', label: 'GALLERY' },
+        { href: '/pricing', label: 'PRICING' },
+        { href: '/contact-us', label: 'CONTACT US' },
+    ];
 
     return (
         <footer className={styles.footer} suppressHydrationWarning>
@@ -52,13 +69,9 @@ const BrutalistFooter = () => {
                     <div className={styles.gridCol}>
                         <h4 className={styles.colLabel}>MENU</h4>
                         <nav className={styles.navStack}>
-                            <RollingLink href="/">HOME</RollingLink>
-                            <RollingLink href="/#features">FEATURES</RollingLink>
-                            <RollingLink href="/#how-it-works">HOW IT WORKS</RollingLink>
-                            <RollingLink href="/#Tutorial Video">TUTORIAL VIDEO</RollingLink>
-                            <RollingLink href="/#gallery">GALLERY</RollingLink>
-                            <RollingLink href="/pricing">PRICING</RollingLink>
-                            <RollingLink href="/contact-us">CONTACT US</RollingLink>
+                            {menuItems.map((item) => (
+                                <RollingLink key={item.href} href={item.href}>{item.label}</RollingLink>
+                            ))}
                         </nav>
                     </div>
 
